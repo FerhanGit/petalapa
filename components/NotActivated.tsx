@@ -18,8 +18,8 @@ export default function NotActivated({ tagId, presetName }: { tagId: string; pre
   if (state === 'ok') return <ActivateForm tagId={tagId} code={code} presetName={presetName} />;
 
   return (
-    <main className="screen pad">
-      <Wordmark />
+    <main className="pscreen pad">
+      <Wordmark size={20} />
       <div style={{ width: 140, height: 140, borderRadius: '50%', margin: '40px auto 0', background: 'repeating-linear-gradient(135deg,#E9DCC3 0 10px,#F1E7D3 10px 20px)', border: '6px solid var(--surface)', boxShadow: '0 10px 30px rgba(70,50,20,.12)' }} />
       <h1 style={{ marginTop: 28, fontSize: 30, lineHeight: 1.1, textAlign: 'center', textWrap: 'pretty' }}>Този таг още не е активиран.</h1>
       <p className="lead" style={{ fontSize: 15, color: 'var(--text-3)', textAlign: 'center', marginTop: 10 }}>Ако е твой – въведи 6-знаковия код от картончето в кутийката.</p>
@@ -27,7 +27,7 @@ export default function NotActivated({ tagId, presetName }: { tagId: string; pre
       <input id="code" className={`input input-code${state === 'error' ? ' error' : ''}`} style={{ marginTop: 8 }} value={code} maxLength={6} placeholder="A1B2C3" autoCapitalize="characters" autoComplete="one-time-code"
         onChange={(e) => { setCode(e.target.value.toUpperCase().replace(/[^0-9A-Z]/g, '').slice(0, 6)); setState('idle'); }} />
       {state === 'error' && <div className="err" role="alert"><span className="dot" style={{ width: 8, height: 8, background: 'var(--terra)' }} />{msg}</div>}
-      <button className="btn btn-form" style={{ marginTop: 14 }} onClick={activate} disabled={state === 'loading'}>
+      <button className="btn btn-primary btn-block" style={{ marginTop: 14 }} onClick={activate} disabled={state === 'loading'}>
         {state === 'loading' ? <><span className="spinner" />Проверявам…</> : state === 'error' ? 'Опитай пак' : 'Активирай'}
       </button>
       <div className="infobox"><strong>Какво е това?</strong> Ръчно направен епокси таг за нашийник с NFC и QR. Който го сканира, вижда профила на любимеца и се обажда на стопанина – без да вижда номера.</div>

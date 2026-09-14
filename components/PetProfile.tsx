@@ -1,9 +1,10 @@
 import type { PublicTag } from '@/lib/supabase';
-import { BrandPill, ResinPaw, STYLES } from './Brand';
+import { Wordmark, RoundTag, STYLES } from './Brand';
+import { Ic, I } from './Site';
 import ScanBeacon from './ScanBeacon';
 
-const fmt = (iso: string | null) => iso ? new Date(iso).toLocaleDateString('bg-BG', { day: '2-digit', month: '2-digit' }) : '';
 const species = (s: string | null) => s === 'cat' ? 'Котка' : s === 'dog' ? 'Куче' : 'Любимец';
+const chipsFrom = (t: string | null) => (t ?? '').split(/[,·;]/).map((s) => s.trim()).filter(Boolean).slice(0, 4);
 
 export default function PetProfile({ tag, scanId }: { tag: PublicTag; scanId: number | null }) {
   const lost = tag.status === 'lost' || !!tag.lost;
@@ -11,39 +12,38 @@ export default function PetProfile({ tag, scanId }: { tag: PublicTag; scanId: nu
   const num = primary?.phone?.replace(/\s+/g, '');
   const tel = num ? `tel:${num}` : undefined;
   const sms = num ? `sms:${num}?body=${encodeURIComponent(`Здравей, намерих ${tag.name}. Локация: `)}` : undefined;
-  const facts: { k: string; v: string; important?: boolean }[] = [];
-  facts.push({ k: 'Чипиран', v: tag.microchip_no ? 'Да' : 'Няма данни' });
-  if (tag.medical_notes) facts.push({ k: 'Алергии / здраве', v: tag.medical_notes, important: true });
-  if (tag.diet_notes) facts.push({ k: 'Храна', v: tag.diet_notes });
-  if (tag.behaviour_notes) facts.push({ k: 'Характер', v: tag.behaviour_notes });
-  if (tag.vet_name) facts.push({ k: 'Ветеринар', v: tag.vet_name });
-  if (lost && tag.reward_text) facts.push({ k: 'Награда', v: tag.reward_text, important: true });
+  const chips = chipsFrom(tag.behaviour_notes);
+  const url = `https://petalapa.com/t/${tag.id}`;
 
   return (
-    <main className="screen">
+    <main className="pscreen">
       <ScanBeacon scanId={scanId} />
-      {lost && (
-        <div className="banner-lost" role="alert">
-          <strong>{tag.name} е изгубен{tag.species === 'cat' ? 'а' : ''} от {fmt(tag.lost_since)}</strong>
-          {tag.lost_message || 'Ако го виждаш – моля, обади се веднага.'}
-        </div>
-      )}
-      <div className={`hero${lost ? ' short' : ''}`}>
-        {tag.photo_url ? <img src={tag.photo_url} alt={tag.name ?? ''} /> : <div className="noimg"><ResinPaw s={STYLES[4]} size={180} /></div>}
-        {!lost && <BrandPill />}
-        {!lost && <span className="scanned">СКАНИРАН ТАГ</span>}
+      <div className="top"><Wordmark size={20} /><a className="back" href="/" aria-label="Начало"><Ic d={I.chev} /></a></div>
+      <div className="photo">
+        {tag.photo_url ? <img src={tag.photo_url} alt={tag.name ?? ''} /> : <div style={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><RoundTag s={STYLES[1]} size={150} /></div>}
+        {lost && <span className="lostb">ИЗГУБЕН</span>}
       </div>
-      <div className="sheet">
-        <h1 className="name">{tag.name}</h1>
-        <div className="meta">{species(tag.species)}{tag.breed ? ` · ${tag.breed}` : ''}</div>
-        <div className="facts">{facts.map((f) => (<div key={f.k} className={`fact${f.important ? ' important' : ''}`}><small>{f.k}</small><b>{f.v}</b></div>))}</div>
-        <div className="owner">
-          <small>Стопанин</small>
-          <div className="who">{lost ? `Ако си намерил ${tag.name} – обади се.` : 'Аз съм в безопасност, ако ме върнете у дома.'}</div>
-          <a className={`btn ${lost ? 'btn-lost' : 'btn-call'}`} href={tel} aria-disabled={!tel}>{lost ? 'Обади се веднага' : 'Обади се на стопанина'}</a>
-          <a className="btn btn-secondary" href={sms} aria-disabled={!sms}>Изпрати местоположение</a>
+      <div className="body">
+        <div>
+          <h1 className="pname">{tag.name} <span style={{ color: 'var(--green)' }} aria-hidden>{tag.species === 'cat' ? '♀' : '♂'}</span></h1>
+          <div className="pmeta">{tag.breed ?? species(tag.species)}{tag.vet_name ? '' : ''}</div>
+          {chips.length > 0 && <div className="chips">{chips.map((c) => <span className="chip" key={c}><Ic d={I.heart} size={12} />{c}</span>)}</div>}
         </div>
-        <p className="notice">Благодарим, че се погрижи. {!lost && 'Стопанинът получава известие, че тагът е сканиран. '}Профилът е създаден с таг от <a href="/">petalapa.com</a>.</p>
+        {tag.diet_notes && <p className="pdesc">{tag.diet_notes}</p>}
+        <div className={`contact${lost ? ' lost' : ''}`}>
+          <b>{lost ? `Ако сте намерили ${tag.name},` : 'Контакт със стопанина'}</b>
+          <p>{lost ? 'моля свържете се със стопанина му.' : `Ако сте намерили ${tag.name}, моля свържете се с нас.`}</p>
+          <div className="row">
+            <a className={`btn btn-primary${lost ? ' btn-lost' : ''}`} href={tel} aria-disabled={!tel}><Ic d={I.phone} size={16} /> {lost ? 'Свържи се със стопанина' : 'Обади се'}</a>
+            {!lost && <a className="btn btn-outline" href={sms} aria-disabled={!sms}><Ic d={I.msg} size={16} /> Изпрати съобщение</a>}
+          </div>
+          {lost && <a className="btn btn-outline btn-block" style={{ marginTop: 8 }} href={sms}><Ic d={I.msg} size={16} /> Изпрати местоположение</a>}
+          <div className="foot"><Ic d={I.lock} size={12} /> Вашата информация ще бъде предадена директно на стопанина.</div>
+        </div>
+        <details className="acc" open={lost}><summary><span className="ic"><Ic d={I.medical} size={16} /></span><span>Медицинска информация<small>{tag.medical_notes ? tag.medical_notes.slice(0, 40) : 'Алергии: няма'}</small></span><span className="chev"><Ic d={I.chev} size={16} /></span></summary><div className="cnt">{tag.medical_notes || 'Няма известни алергии или специални изисквания.'}{tag.vet_name ? <><br />Ветеринар: {tag.vet_name}{tag.vet_phone ? ` · ${tag.vet_phone}` : ''}</> : null}</div></details>
+        <details className="acc"><summary><span className="ic"><Ic d={I.info} size={16} /></span><span>Допълнителна информация<small>Микрочип: {tag.microchip_no ? 'да' : 'няма данни'}</small></span><span className="chev"><Ic d={I.chev} size={16} /></span></summary><div className="cnt">{tag.microchip_no ? `Микрочип №${tag.microchip_no}` : 'Няма въведен номер на микрочип.'}{tag.behaviour_notes ? <><br />{tag.behaviour_notes}</> : null}</div></details>
+        <div className="sharebar"><Ic d={I.share} size={16} /> Сподели профила<span className="ics"><a href={url} aria-label="Линк"><Ic d={I.arrow} size={16} /></a></span></div>
+        <p className="pfoot">Профилът е създаден с таг от <a href="/">petalapa.com</a>. {!lost && 'Стопанинът получава известие при сканиране.'}</p>
       </div>
     </main>
   );

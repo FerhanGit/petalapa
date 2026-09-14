@@ -19,7 +19,7 @@ export default async function TagPage({ params }: { params: Promise<{ id: string
   }
 
   if (tag.status === 'disabled') {
-    return (<main className="screen pad" style={{ justifyContent: 'center', textAlign: 'center' }}><h1 style={{ fontSize: 30 }}>Този таг е деактивиран.</h1><p className="lead">Ако си стопанинът – влез в профила си и го активирай пак.</p><a className="link" href="/dashboard">Към профила</a></main>);
+    return (<main className="pscreen pad" style={{ justifyContent: 'center', textAlign: 'center' }}><h1 style={{ fontSize: 30 }}>Този таг е деактивиран.</h1><p className="lead">Ако си стопанинът – влез в профила си и го активирай пак.</p><a className="link" href="/dashboard">Към профила</a></main>);
   }
   if (tag.status === 'blank' || tag.status === 'produced' || tag.status === 'assigned') {
     return <NotActivated tagId={id} presetName={presetName} />;

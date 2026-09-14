@@ -21,7 +21,7 @@ export default function ActivateForm({ tagId, code, presetName }: { tagId: strin
   }
 
   return (
-    <main className="screen pad">
+    <main className="pscreen pad">
       <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
         <span className="chip" style={{ background: 'var(--green-tint)', border: 0, color: 'var(--green-dark)', fontSize: 12, fontWeight: 800, padding: '6px 12px' }}>Код приет</span>
         <span className="hint" style={{ fontWeight: 700 }}>Таг #{tagId.slice(0, 4).toUpperCase()}</span>
@@ -42,7 +42,7 @@ export default function ActivateForm({ tagId, code, presetName }: { tagId: strin
         <div className="field"><label className="label" htmlFor="email">Имейл за известия</label><input id="email" className="input" type="email" placeholder="maria@example.com" value={f.email} onChange={set('email')} /></div>
         {err && <div className="err" role="alert"><span className="dot" style={{ width: 8, height: 8, background: 'var(--terra)' }} />{err}</div>}
       </div>
-      <button className="btn btn-form" style={{ marginTop: 14, flexShrink: 0 }} onClick={submit} disabled={busy}>{busy ? <><span className="spinner" />Записвам…</> : 'Готово'}</button>
+      <button className="btn btn-primary btn-block" style={{ marginTop: 14, flexShrink: 0 }} onClick={submit} disabled={busy}>{busy ? <><span className="spinner" />Записвам…</> : 'Готово'}</button>
     </main>
   );
 }

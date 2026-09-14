@@ -14,7 +14,7 @@ export default async function Dashboard() {
   const firstName = owner?.email?.split('@')[0] ?? '';
 
   return (
-    <main className="screen" style={{ padding: '28px 20px 24px', gap: 16 }}>
+    <main className="pscreen" style={{ padding: '28px 20px 24px', gap: 16 }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <div><div className="hint" style={{ fontSize: 13, fontWeight: 700 }}>Здравей, {firstName}</div><h1 style={{ fontSize: 28, lineHeight: 1.1, marginTop: 2 }}>Твоите тагове</h1></div>
         <span className="display" style={{ width: 44, height: 44, borderRadius: '50%', background: 'var(--green-tint)', color: 'var(--green)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 600 }}>{firstName[0]?.toUpperCase()}</span>
@@ -44,7 +44,7 @@ export default async function Dashboard() {
             </div>); })}
         </div>
       </div>
-      <a className="btn btn-outline" href="/">+ Добави таг</a>
+      <a className="btn btn-outline btn-block" href="/">+ Добави таг</a>
       <div className="card gold" style={{ padding: 18, display: 'flex', flexDirection: 'column', gap: 10 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}><span className="dot" style={{ width: 12, height: 12, background: 'var(--gold)' }} /><span className="display" style={{ fontSize: 20, color: 'var(--gold-text)' }}>Premium</span><span style={{ marginLeft: 'auto', fontSize: 13, fontWeight: 800, color: 'var(--gold-text-2)' }}>€2,49 / мес.</span></div>
         <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--gold-text)', lineHeight: 1.35 }}>· SMS при всяко сканиране<br />· История на карта<br />· Втори любимец безплатно</div>
