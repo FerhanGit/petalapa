@@ -17,7 +17,7 @@ export default function Landing() {
   return (
     <main className="screen" style={{ padding: '28px 20px 24px', gap: 22 }}>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontFamily: 'var(--font-fredoka)', fontWeight: 600, color: 'var(--green)' }}><BrandMark />Лапичка</div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontFamily: 'var(--font-fredoka), var(--font-nunito)', fontWeight: 600, color: 'var(--green)' }}><BrandMark />Лапичка</div>
         <a href="/dashboard" style={{ fontSize: 14, fontWeight: 800, color: 'var(--terra-text)', textDecoration: 'none' }}>Вход</a>
       </div>
       <div>
