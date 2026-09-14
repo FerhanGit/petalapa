@@ -4,7 +4,7 @@ import { cookies } from 'next/headers';
 
 // Service role – само на сървъра, за /t/[id] и API. Никога в client компонент.
 export const admin = () =>
-  createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.SUPABASE_SERVICE_KEY!, { auth: { persistSession: false } });
+  createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.SUPABASE_SERVICE_KEY!, { auth: { persistSession: false }, db: { schema: 'petalapa' } });
 
 // Auth-aware клиент за dashboard (RLS).
 export async function serverClient() {
