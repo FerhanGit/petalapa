@@ -9,7 +9,7 @@
 html, body { margin: 0; background: var(--cream); color: var(--text); font-family: var(--font-nunito), sans-serif; -webkit-font-smoothing: antialiased; }
 a { color: var(--green); }
 input, textarea, button { font-family: inherit; }
-h1, .display { font-family: var(--font-fredoka), sans-serif; font-weight: 700; margin: 0; }
+h1, .display { font-family: var(--font-fredoka), var(--font-nunito), sans-serif; font-weight: 700; margin: 0; }
 .screen { max-width: 480px; margin: 0 auto; min-height: 100dvh; display: flex; flex-direction: column; background: var(--cream); }
 .hero { height: 360px; flex-shrink: 0; position: relative; background: repeating-linear-gradient(135deg,#E9DCC3 0 10px,#F1E7D3 10px 20px); overflow: hidden; }
 .hero.short { height: 270px; }
