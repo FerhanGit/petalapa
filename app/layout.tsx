@@ -6,7 +6,7 @@ const fredoka = Fredoka({ subsets: ['latin'], weight: ['500', '600', '700'], var
 const nunito = Nunito({ subsets: ['latin', 'cyrillic'], weight: ['500', '600', '700', '800'], variable: '--font-nunito' });
 
 export const metadata: Metadata = {
-  title: 'Лапичка · смарт таг за любимци',
+  title: 'PetaLapa · арт таг за любимци',
   description: 'Ръчно залят в епоксидна смола, с NFC и QR вътре. Сменяш телефона – не тага.',
 };
 export const viewport: Viewport = { themeColor: '#FBF6EC', width: 'device-width', initialScale: 1 };
