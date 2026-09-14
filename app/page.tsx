@@ -16,7 +16,7 @@ export default function Landing() {
             <div className="cta-row"><a className="btn btn-primary" href="/order">Създай своя таг <Ic d={I.arrow} size={18} /></a></div>
           </div>
           <div className="note">Малък таг,<b>голямо спокойствие ♡</b></div>
-          <div className="hero-tag"><PhotoTag s={STYLES[0]} size={96} priority /></div>
+          <div className="hero-tag"><PhotoTag s={STYLES[0]} size={104} priority /></div>
         </section>
 
         <div className="features">

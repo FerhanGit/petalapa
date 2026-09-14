@@ -101,7 +101,7 @@ export default function OrderFlow() {
           {step === 3 && (<>
             <h2>Провери поръчката</h2><p className="sub">Всичко може да се редактира и след това от профила ти.</p>
             <div className="review">
-              <div className="line"><PhotoTag s={style} size={48} /><div><b>{style.name}</b><span>Размер: 3.5 см · С вграден NFC и QR код</span></div><span className="p">€{price.toFixed(2)}</span></div>
+              <div className="line"><PhotoTag s={style} size={48} qr={false} nfc={false} /><div><b>{style.name}</b><span>Размер: 3.5 см · С вграден NFC и QR код</span></div><span className="p">€{price.toFixed(2)}</span></div>
               <div className="line"><span className="ic" style={{ color: 'var(--green)' }}><Ic d={I.truck} size={26} /></span><div><b>Доставка</b><span>Стандартна доставка · 3–5 работни дни · {owner.city}</span></div><span className="p">€{SHIP.toFixed(2)}</span></div>
               <div className="line"><div><b>{pet.name} · {pet.species === 'dog' ? 'Куче' : pet.species === 'cat' ? 'Котка' : 'Любимец'}{pet.breed ? ` · ${pet.breed}` : ''}</b><span>Стопанин: {owner.name} · {owner.email}</span></div></div>
               <div className="tot"><span>Обща сума</span><span>€{(price + SHIP).toFixed(2)}</span></div>
@@ -126,11 +126,11 @@ export default function OrderFlow() {
           {step === 1 || step === 2 ? (
             <div className="viz"><div className="ph" style={{ backgroundImage: photoUrl ? `url(${photoUrl})` : undefined }} /><h3>{pet.name || 'Макс'}</h3><div className="meta">{pet.breed || 'Порода'}{pet.age ? ` · ${pet.age} г.` : ''}<br />{owner.city}</div><div className="qrs"><span><Ic d={I.qr} size={28} /><br />QR</span><span><Ic d={I.nfc} size={28} /><br />NFC</span></div><p className="hint" style={{ marginTop: 12 }}>Така ще изглежда тагът ти.</p></div>
           ) : (<>
-            <div className="stage"><ProductShot s={style} size="46%" qr={step >= 3} className="wide" /><span className="nfc">→ NFC</span></div>
+            <div className="stage"><ProductShot s={style} size="46%" className="wide" /><span className="nfc">→ NFC</span></div>
             <h3>{style.name}</h3><div className="meta">Стил: {style.name}</div>
             <ul>{['Вграден NFC чип', 'QR код', 'Ръчна изработка', 'Епоксидна смола'].map((t) => <li key={t}><Ic d={I.check} size={14} />{t}</li>)}</ul>
             <div className="price">€{price.toFixed(2)}</div>
-            <div className="thumbs">{[STYLES[0], STYLES[2], STYLES[3]].map((s) => <span key={s.slug}><PhotoTag s={s} size={56} /></span>)}</div>
+            <div className="thumbs">{[STYLES[0], STYLES[2], STYLES[3]].map((s) => <span key={s.slug}><PhotoTag s={s} size={56} qr={false} nfc={false} /></span>)}</div>
           </>)}
         </aside>
       </div>
