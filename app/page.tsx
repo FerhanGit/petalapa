@@ -1,8 +1,7 @@
-import { RoundTag, STYLES } from '@/components/Brand';
+import Image from 'next/image';
+import { STYLES, PhotoTag, ProductShot, IMG } from '@/components/PhotoTag';
 import { SiteNav, SiteFooter, Ic, I } from '@/components/Site';
 
-const HERO = 'https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=1600&q=80';
-const CAT = 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=1200&q=80';
 
 export default function Landing() {
   return (
@@ -10,14 +9,14 @@ export default function Landing() {
       <SiteNav />
       <div className="container">
         <section className="hero">
-          <img src={HERO} alt="Голдън ретривър с таг PetaLapa на нашийника" />
+          <Image src={IMG.hero} alt="Голдън ретривър с таг PetaLapa на нашийника" fill priority sizes="100vw" style={{ objectFit: 'cover', objectPosition: '68% 30%' }} />
           <div className="copy">
             <h1 className="h-hero">Красив таг.<br />Умен начин да<br />намерите своя любимец.</h1>
             <p className="lead">Епоксидни тагове с вграден NFC чип и QR код. Персонален профил на вашия любимец и лесен достъп до неговата информация.</p>
             <div className="cta-row"><a className="btn btn-primary" href="/order">Създай своя таг <Ic d={I.arrow} size={18} /></a></div>
           </div>
           <div className="note">Малък таг,<b>голямо спокойствие ♡</b></div>
-          <div className="tag-on-collar"><RoundTag s={STYLES[0]} size={64} /></div>
+          <div className="tag-on-collar"><PhotoTag s={STYLES[0]} size={56} priority /></div>
         </section>
 
         <div className="features">
@@ -40,12 +39,12 @@ export default function Landing() {
           <h2 className="h-section">Популярни дизайни</h2>
           <p className="sub">Стил, който подхожда на всяка лапа.</p>
           <div className="designs">
-            {STYLES.map((s) => (<a className="design" key={s.slug} href={`/order?style=${s.slug}`}><div className="pad"><RoundTag s={s} /></div><span className="name">{s.name}</span></a>))}
+            {STYLES.map((s) => (<a className="design" key={s.slug} href={`/order?style=${s.slug}`}><ProductShot s={s} size={96} /><span className="name">{s.name}</span></a>))}
           </div>
         </section>
 
         <section className="more" id="about">
-          <img src={CAT} alt="Котка с таг PetaLapa" loading="lazy" />
+          <div style={{ position: 'relative', minHeight: 340 }}><Image src={IMG.cat} alt="Котка с таг PetaLapa" fill sizes="50vw" style={{ objectFit: 'cover', objectPosition: '55% 40%' }} /></div>
           <div className="body">
             <h2>Повече от таг.<br />Дигитален дом<br />за твоя любимец.</h2>
             <p>Със PetaLapa получаваш не просто красив аксесоар, а сигурност, информация и връзка — когато е най-важно.</p>

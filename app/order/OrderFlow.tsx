@@ -1,7 +1,7 @@
 'use client';
 import { useMemo, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { RoundTag, STYLES, PRICE } from '@/components/Brand';
+import { STYLES, PRICE, PhotoTag, ProductShot } from '@/components/PhotoTag';
 import { Ic, I } from '@/components/Site';
 
 const STEPS = ['Дизайн', 'Любимец', 'Стопанин', 'Преглед', 'Плащане'];
@@ -64,8 +64,8 @@ export default function OrderFlow() {
         <div className="panel">
           {step === 0 && (<>
             <h2>Избери дизайн на тага</h2><p className="sub">Всяка наша плочка е изработена от епоксидна смола и е уникална. Избери стил, който подхожда на твоя любимец.</p>
-            <div className="grid4">{STYLES.map((s) => (<button key={s.slug} className={`design${s.slug === style.slug ? ' selected' : ''}`} onClick={() => setStyle(s)}><div className="pad"><RoundTag s={s} /></div><span className="name">{s.name}</span></button>))}</div>
-            <div className="custombox"><div className="box" style={{ alignItems: 'center' }}><RoundTag s={STYLES[7]} size={90} /><b>Custom</b></div><div className="box"><b>Искаш нещо уникално?</b><span>Можеш да заявиш персонален дизайн по твой избор – снимка, цветя, пясък от плажа, цветове по нашийника.</span><a className="btn btn-primary btn-sm" style={{ alignSelf: 'flex-start', marginTop: 6 }} href="mailto:hello@petalapa.com?subject=Custom таг">Свържи се с нас</a></div></div>
+            <div className="grid4">{STYLES.map((s) => (<button key={s.slug} className={`design${s.slug === style.slug ? ' selected' : ''}`} onClick={() => setStyle(s)}><ProductShot s={s} size={84} /><span className="name">{s.name}</span></button>))}</div>
+            <div className="custombox"><div className="box" style={{ alignItems: 'center' }}><PhotoTag s={STYLES[7]} size={80} /><b>Custom</b></div><div className="box"><b>Искаш нещо уникално?</b><span>Можеш да заявиш персонален дизайн по твой избор – снимка, цветя, пясък от плажа, цветове по нашийника.</span><a className="btn btn-primary btn-sm" style={{ alignSelf: 'flex-start', marginTop: 6 }} href="mailto:hello@petalapa.com?subject=Custom таг">Свържи се с нас</a></div></div>
           </>)}
           {step === 1 && (<>
             <h2>Информация за любимеца</h2><p className="sub">Тази информация се показва на всеки, който сканира тага.</p>
@@ -101,7 +101,7 @@ export default function OrderFlow() {
           {step === 3 && (<>
             <h2>Провери поръчката</h2><p className="sub">Всичко може да се редактира и след това от профила ти.</p>
             <div className="review">
-              <div className="line"><RoundTag s={style} size={56} /><div><b>{style.name}</b><span>Размер: 3.5 см · С вграден NFC и QR код</span></div><span className="p">€{price.toFixed(2)}</span></div>
+              <div className="line"><PhotoTag s={style} size={48} /><div><b>{style.name}</b><span>Размер: 3.5 см · С вграден NFC и QR код</span></div><span className="p">€{price.toFixed(2)}</span></div>
               <div className="line"><span className="ic" style={{ color: 'var(--green)' }}><Ic d={I.truck} size={26} /></span><div><b>Доставка</b><span>Стандартна доставка · 3–5 работни дни · {owner.city}</span></div><span className="p">€{SHIP.toFixed(2)}</span></div>
               <div className="line"><div><b>{pet.name} · {pet.species === 'dog' ? 'Куче' : pet.species === 'cat' ? 'Котка' : 'Любимец'}{pet.breed ? ` · ${pet.breed}` : ''}</b><span>Стопанин: {owner.name} · {owner.email}</span></div></div>
               <div className="tot"><span>Обща сума</span><span>€{(price + SHIP).toFixed(2)}</span></div>
@@ -126,11 +126,11 @@ export default function OrderFlow() {
           {step === 1 || step === 2 ? (
             <div className="viz"><div className="ph" style={{ backgroundImage: photoUrl ? `url(${photoUrl})` : undefined }} /><h3>{pet.name || 'Макс'}</h3><div className="meta">{pet.breed || 'Порода'}{pet.age ? ` · ${pet.age} г.` : ''}<br />{owner.city}</div><div className="qrs"><span><Ic d={I.qr} size={28} /><br />QR</span><span><Ic d={I.nfc} size={28} /><br />NFC</span></div><p className="hint" style={{ marginTop: 12 }}>Така ще изглежда тагът ти.</p></div>
           ) : (<>
-            <div className="stage"><RoundTag s={style} qr={step >= 3} /><span className="nfc">→ NFC</span></div>
+            <div className="stage"><ProductShot s={style} size={150} qr={step >= 3} className="wide" /><span className="nfc">→ NFC</span></div>
             <h3>{style.name}</h3><div className="meta">Стил: {style.name}</div>
             <ul>{['Вграден NFC чип', 'QR код', 'Ръчна изработка', 'Епоксидна смола'].map((t) => <li key={t}><Ic d={I.check} size={14} />{t}</li>)}</ul>
             <div className="price">€{price.toFixed(2)}</div>
-            <div className="thumbs">{[STYLES[0], STYLES[2], STYLES[3]].map((s) => <span key={s.slug}><RoundTag s={s} /></span>)}</div>
+            <div className="thumbs">{[STYLES[0], STYLES[2], STYLES[3]].map((s) => <span key={s.slug}><PhotoTag s={s} size={56} /></span>)}</div>
           </>)}
         </aside>
       </div>

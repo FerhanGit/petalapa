@@ -1,5 +1,6 @@
 import type { PublicTag } from '@/lib/supabase';
-import { Wordmark, RoundTag, STYLES } from './Brand';
+import { Wordmark } from './Brand';
+import { STYLES, PhotoTag } from './PhotoTag';
 import { Ic, I } from './Site';
 import ScanBeacon from './ScanBeacon';
 
@@ -20,7 +21,7 @@ export default function PetProfile({ tag, scanId }: { tag: PublicTag; scanId: nu
       <ScanBeacon scanId={scanId} />
       <div className="top"><Wordmark size={20} /><a className="back" href="/" aria-label="Начало"><Ic d={I.chev} /></a></div>
       <div className="photo">
-        {tag.photo_url ? <img src={tag.photo_url} alt={tag.name ?? ''} /> : <div style={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><RoundTag s={STYLES[1]} size={150} /></div>}
+        {tag.photo_url ? <img src={tag.photo_url} alt={tag.name ?? ''} /> : <div style={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><PhotoTag s={STYLES[1]} size={140} /></div>}
         {lost && <span className="lostb">ИЗГУБЕН</span>}
       </div>
       <div className="body">
