@@ -10,7 +10,13 @@ export const admin = () =>
 export async function serverClient() {
   const store = await cookies();
   return createServerClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!, {
-    cookies: { getAll: () => store.getAll(), setAll: (all) => all.forEach(({ name, value, options }) => store.set(name, value, options)) },
+    db: { schema: 'petalapa' },
+    cookies: {
+      getAll: () => store.getAll(),
+      setAll: (all: { name: string; value: string; options?: Record<string, unknown> }[]) => {
+        try { all.forEach(({ name, value, options }) => store.set(name, value, options as Parameters<typeof store.set>[2])); } catch {}
+      },
+    },
   });
 }
 
