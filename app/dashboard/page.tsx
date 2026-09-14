@@ -44,7 +44,7 @@ export default async function Dashboard() {
             </div>); })}
         </div>
       </div>
-      <a className="btn btn-tertiary" href="/">+ Добави таг</a>
+      <a className="btn btn-outline" href="/">+ Добави таг</a>
       <div className="card gold" style={{ padding: 18, display: 'flex', flexDirection: 'column', gap: 10 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}><span className="dot" style={{ width: 12, height: 12, background: 'var(--gold)' }} /><span className="display" style={{ fontSize: 20, color: 'var(--gold-text)' }}>Premium</span><span style={{ marginLeft: 'auto', fontSize: 13, fontWeight: 800, color: 'var(--gold-text-2)' }}>€2,49 / мес.</span></div>
         <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--gold-text)', lineHeight: 1.35 }}>· SMS при всяко сканиране<br />· История на карта<br />· Втори любимец безплатно</div>
