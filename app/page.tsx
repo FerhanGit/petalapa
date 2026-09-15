@@ -1,10 +1,6 @@
 import { SiteNav, Ic, I } from '@/components/Site';
 import { ReferenceTag } from '@/components/ReferenceTag';
 
-const LAGOTTO = 'https://static.wixstatic.com/media/012202_99f8e627d0c44df89ced2da9a8098933~mv2.png/v1/fill/w_510,h_456,fp_0.50_0.50,lg_1,q_85,enc_avif,quality_auto/012202_99f8e627d0c44df89ced2da9a8098933~mv2.png';
-const TABBY = 'https://cdn.explorecams.com/storage/photos/xFuFBOb2Ww_1600.jpg';
-const CAVALIER = 'https://images.pexels.com/photos/4079375/pexels-photo-4079375.jpeg?auto=compress&cs=tinysrgb&w=1400';
-
 const DESIGNS = [
   ['forest', 'Forest'],
   ['ocean', 'Ocean'],
@@ -16,10 +12,10 @@ const DESIGNS = [
 
 export default function Landing() {
   return (
-    <main className="exact-home pixel-home">
+    <main className="exact-home pixel-home natural-home">
       <SiteNav />
 
-      <section className="pixel-hero">
+      <section className="pixel-hero natural-hero">
         <div className="pixel-hero-grid">
           <div className="pixel-hero-copy">
             <span className="pixel-eyebrow">ПОВЕЧЕ ОТ ТАГ. ПОВЕЧЕ СПОКОЙСТВИЕ.</span>
@@ -34,11 +30,8 @@ export default function Landing() {
             </div>
           </div>
 
-          <div className="pixel-hero-visual">
-            <img className="pixel-dog" src={LAGOTTO} alt="Lagotto Romagnolo" />
-            <img className="pixel-cat" src={TABBY} alt="Таби котка" />
-            <div className="pixel-dog-tag"><ReferenceTag variant="forest" size={48} /></div>
-            <div className="pixel-cat-tag"><ReferenceTag variant="blush" size={41} /></div>
+          <div className="pixel-hero-visual natural-hero-visual">
+            <img className="natural-hero-image" src="/assets/hero-animals.jpg" alt="Щастливо Lagotto Romagnolo и котка с petalapa тагове" />
             <div className="pixel-note">Малки тагове<br />за големи<br />приключения <span>♡</span></div>
           </div>
         </div>
@@ -66,23 +59,18 @@ export default function Landing() {
 
       <section className="pixel-designs" id="designs">
         <div className="pixel-inner">
-          <div className="pixel-design-head">
-            <h2>Нашите дизайни</h2>
-            <p>Уникални тагове, създадени с любов.</p>
-          </div>
+          <div className="pixel-design-head"><h2>Нашите дизайни</h2><p>Уникални тагове, създадени с любов.</p></div>
           <div className="pixel-design-row">
             <div className="pixel-tag-grid">
               {DESIGNS.map(([variant, label]) => (
                 <a className="pixel-tag-card" key={variant} href={`/order?style=${variant === 'blush' ? 'floral' : variant === 'paw' ? 'minimal' : variant === 'amber' ? 'wood' : variant}`}>
-                  <div className="pixel-tag-stage"><ReferenceTag variant={variant} size={84} photo /></div>
+                  <div className="pixel-tag-stage"><ReferenceTag variant={variant} size={92} photo /></div>
                   <b>{label}</b>
                 </a>
               ))}
             </div>
-
             <aside className="pixel-custom-card">
-              <span>БЕСТСЕЛЪР</span>
-              <h3>Персонализиран<br />по твой вкус</h3>
+              <span>БЕСТСЕЛЪР</span><h3>Персонализиран<br />по твой вкус</h3>
               <p>Цвят, цветя, блясък, символи. Направи го уникален, както е и той.</p>
               <a href="/order?style=custom">Разгледай всички <Ic d={I.arrow} size={13} /></a>
             </aside>
@@ -90,11 +78,8 @@ export default function Landing() {
         </div>
       </section>
 
-      <section className="pixel-security" id="about">
-        <div className="pixel-security-photo">
-          <img src={CAVALIER} alt="Cavalier King Charles Spaniel" />
-          <div className="pixel-security-tag"><ReferenceTag variant="ocean" size={42} /></div>
-        </div>
+      <section className="pixel-security natural-security" id="about">
+        <div className="pixel-security-photo"><img src="/assets/security-dog.jpg" alt="Щастлив Cavalier King Charles Spaniel с petalapa таг" /></div>
         <div className="pixel-security-copy">
           <h2>Повече сигурност.<br />По-малко тревоги.</h2>
           <p>С NFC и QR технологията всеки, който намери твоя любимец, може бързо и лесно да се свърже с теб.</p>
