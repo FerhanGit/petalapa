@@ -1,38 +1,29 @@
-export type TagVariant = 'forest' | 'ocean' | 'blush' | 'galaxy' | 'paw' | 'amber';
+import { PhotoTag, STYLES } from './PhotoTag';
 
-const PHOTOS: Record<TagVariant, string> = {
-  forest: 'https://thetagtree.com/cdn/shop/files/0576D71F-C039-4B15-B434-71E55B9992A4.jpg?v=1775048909&width=900',
-  ocean: 'https://i.etsystatic.com/iap/ddd6cd/7022308679/iap_600x600.7022308679_jggx2q0u.jpg?version=0',
-  blush: 'https://i.etsystatic.com/56567081/r/il/e89c63/7019686905/il_794xN.7019686905_nqif.jpg',
-  galaxy: 'https://dogestshop.com/cdn/shop/files/42604AAA-B5B4-4EEC-AE9F-5B9115FC12D6.jpg?v=1712483395&width=900',
-  paw: 'https://i.etsystatic.com/iap/c159d3/6301248542/iap_640x640.6301248542_ahz5ygvt.jpg?version=0',
-  amber: 'https://i.etsystatic.com/44573715/r/il/5bc8eb/5657549496/il_794xN.5657549496_7vkw.jpg',
+export type TagVariant =
+  | 'forest' | 'ocean' | 'blush' | 'galaxy' | 'paw' | 'amber' | 'love' | 'custom'
+  | 'classic' | 'floral' | 'natural' | 'premium';
+
+const SLUG: Record<TagVariant, string> = {
+  forest: 'forest',
+  classic: 'forest',
+  ocean: 'ocean',
+  blush: 'floral',
+  floral: 'floral',
+  galaxy: 'galaxy',
+  paw: 'minimal',
+  premium: 'minimal',
+  amber: 'wood',
+  natural: 'wood',
+  love: 'love',
+  custom: 'custom',
 };
 
 export function ReferenceTag({ variant, size = 86, photo = false }: { variant: TagVariant; size?: number; photo?: boolean }) {
-  if (photo) {
-    return (
-      <div className={`ref-tag-photo-wrap ref-tag-photo-${variant}`} style={{ width: size, height: size }} aria-hidden>
-        <img className="ref-tag-photo" src={PHOTOS[variant]} alt="" loading="lazy" decoding="async" />
-      </div>
-    );
-  }
-
+  const style = STYLES.find((item) => item.slug === SLUG[variant]) ?? STYLES[0];
   return (
-    <div className={`ref-tag ref-tag-${variant}`} style={{ width: size, height: size * 1.16 }} aria-hidden>
-      <span className="ref-tag-ring" />
-      <span className="ref-tag-link" />
-      <span className="ref-tag-disc">
-        <span className="ref-tag-art">
-          {variant === 'forest' && <><i className="flower f1"/><i className="flower f2"/><i className="flower f3"/><i className="leaf l1"/><i className="leaf l2"/></>}
-          {variant === 'ocean' && <><i className="wave w1"/><i className="wave w2"/><i className="shell">◒</i><i className="flake a1"/><i className="flake a2"/></>}
-          {variant === 'blush' && <><i className="flower pink p1"/><i className="flower pink p2"/><i className="flower pink p3"/><i className="stem s1"/><i className="stem s2"/></>}
-          {variant === 'galaxy' && <><i className="moon">☾</i><i className="star st1">★</i><i className="star st2">✦</i><i className="star st3">✧</i></>}
-          {variant === 'paw' && <svg className="paw-gold" viewBox="0 0 48 48"><ellipse cx="14" cy="15" rx="5" ry="6.5"/><ellipse cx="34" cy="15" rx="5" ry="6.5"/><ellipse cx="8" cy="28" rx="4.3" ry="5.6"/><ellipse cx="40" cy="28" rx="4.3" ry="5.6"/><path d="M24 25c-9-6-19 2-15 12 2.6 6 9.4 9 15 9s12.4-3 15-9c4-10-6-18-15-12z"/></svg>}
-          {variant === 'amber' && <><i className="amber-stem as1"/><i className="amber-stem as2"/><i className="amber-flower af1"/><i className="amber-flower af2"/><i className="amber-flower af3"/></>}
-        </span>
-        <span className="ref-tag-gloss" />
-      </span>
-    </div>
+    <span className={`reference-round-tag reference-round-tag-${variant}${photo ? ' is-photo' : ''}`} aria-hidden>
+      <PhotoTag s={style} size={size} qr={false} nfc={false} />
+    </span>
   );
 }
