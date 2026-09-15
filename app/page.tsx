@@ -1,62 +1,89 @@
 import Image from 'next/image';
-import { STYLES, PhotoTag, ProductShot, IMG } from '@/components/PhotoTag';
+import { STYLES, PhotoTag, IMG } from '@/components/PhotoTag';
 import { SiteNav, SiteFooter, Ic, I } from '@/components/Site';
 
 export default function Landing() {
+  const featured = STYLES[0];
   return (
-    <main>
+    <main className="reference-home">
       <SiteNav />
-      <div className="container">
-        <section className="hero">
-          <div className="hero-img"><Image src={IMG.hero} alt="Куче с кръгъл епоксиден petalapa таг" fill priority sizes="60vw" style={{ objectFit: 'cover', objectPosition: '60% 40%' }} /></div>
-          <div className="copy">
-            <h1 className="h-hero">Красив таг.<br />Създаден специално<br />за твоя любимец.</h1>
-            <p className="lead">Ръчно изработен кръгъл таг от епоксидна смола, който съчетава характерен дизайн с NFC, QR код и персонален дигитален профил.</p>
-            <div className="cta-row"><a className="btn btn-primary" href="/order">Създай своя таг <Ic d={I.arrow} size={18} /></a><a className="btn btn-outline" href="#designs">Разгледай дизайните</a></div>
-            <span className="round-note"><Ic d={I.heart} size={13} /> Кръгъл · лек · ръчно изработен</span>
-          </div>
-          <div className="note">Ръчно направен,<b>за една специална лапа ♡</b></div>
-          <div className="hero-tag"><PhotoTag s={STYLES[0]} size={112} priority /></div>
-        </section>
 
-        <div className="features">
-          {[[I.resin, 'Ръчна изработка', 'Всеки таг е уникален'], [I.palette, 'Епоксидна смола', 'Цвят и характер'], [I.nfc, 'NFC + QR', 'Достъп за секунди'], [I.shield, 'Дигитален профил', 'Информация при нужда']].map(([d, b, s]) => (
-            <div className="feature" key={b}><span className="ic"><Ic d={d} size={22} /></span><b>{b}</b><span>{s}</span></div>
-          ))}
-        </div>
+      <section className="ref-hero">
+        <div className="container ref-hero-grid">
+          <div className="ref-hero-copy">
+            <span className="ref-eyebrow">ЕПОКСИДНИ ТАГОВЕ · NFC + QR</span>
+            <h1>Красив таг. Умен начин<br />да намерите своя<br />любимец.</h1>
+            <p>Уникален, ръчно изработен епоксиден таг с вграден NFC чип и QR код. С тих клик или сканиране се отваря персонален профил с важната информация за любимеца.</p>
+            <a className="btn btn-primary ref-cta" href="/order">Създай своя таг <Ic d={I.arrow} size={18} /></a>
 
-        <section className="section" id="how">
-          <span className="brand-kicker">лесно и лично</span>
-          <h2 className="h-section">От идея до неговия таг</h2>
-          <p className="sub">Три лесни стъпки. Ние се грижим за останалото.</p>
-          <div className="steps">
-            {[[I.palette, 'Избери дизайн', 'Намери стила, който най-добре подхожда на твоя любимец.'], null, [I.pen, 'Създай профил', 'Добави име, снимка и информация за връзка.'], null, [I.cart, 'Поръчай', 'Изработваме тага на ръка и го изпращаме до 3–5 работни дни.']].map((s, i) => s ? (
-              <div className="step" key={s[1]}><div className="wrap"><span className="ic"><Ic d={s[0]} size={28} /></span><span className="num">{i / 2 + 1}</span></div><b>{s[1]}</b><span>{s[2]}</span></div>
-            ) : <span className="arrow" key={i}><Ic d={I.arrow} /></span>)}
-          </div>
-        </section>
-
-        <section className="section" id="designs">
-          <span className="brand-kicker">избери характер</span>
-          <h2 className="h-section">Избери неговия стил</h2>
-          <p className="sub">Всеки кръгъл таг е малко произведение, изработено от смола на ръка.</p>
-          <div className="designs">
-            {STYLES.map((s) => (<a className="design" key={s.slug} href={`/order?style=${s.slug}`}><ProductShot s={s} /><span className="name">{s.name}</span></a>))}
-          </div>
-        </section>
-
-        <section className="more" id="about">
-          <div style={{ position: 'relative', minHeight: 340 }}><Image src={IMG.cat} alt="Котка с кръгъл petalapa таг" fill sizes="50vw" style={{ objectFit: 'cover', objectPosition: '55% 40%' }} /></div>
-          <div className="body">
-            <span className="brand-kicker">повече от аксесоар</span>
-            <h2>Неговата малка<br />връзка към дома.</h2>
-            <p>Красивият таг остава на нашийника. NFC и QR технологията стоят дискретно зад него и отвеждат към профила на любимеца, когато това е важно.</p>
-            <div className="list">
-              {[[I.resin, 'Ръчна изработка', 'Смола и характер'], [I.nfc, 'NFC', 'Докосни и отвори'], [I.qr, 'QR код', 'Сканирай с камера'], [I.profile, 'Профил', 'Данни за любимеца']].map(([d, b, s]) => (<div key={b}><div className="ic"><Ic d={d} /></div><b>{b}</b><span>{s}</span></div>))}
+            <div className="ref-hero-benefits">
+              {[[I.nfc, 'NFC + QR', 'технология'], [I.profile, 'Персонален', 'профил'], [I.resin, 'Ръчна изработка', 'от епоксидна смола']].map(([d, a, b]) => (
+                <div key={a} className="ref-mini-benefit"><span><Ic d={d} size={18} /></span><b>{a}</b><small>{b}</small></div>
+              ))}
             </div>
           </div>
-        </section>
-      </div>
+
+          <div className="ref-hero-media">
+            <Image src={IMG.hero} alt="Куче с кръгъл petalapa таг" fill priority sizes="(max-width:900px) 100vw, 50vw" className="ref-dog" />
+            <div className="ref-cat-card"><Image src={IMG.cat} alt="Котка с petalapa таг" fill sizes="240px" /></div>
+            <div className="ref-hero-tag"><PhotoTag s={featured} size={108} priority /></div>
+            <div className="ref-hand-note">„Тук живее<br />една голяма<br />любов ♡“</div>
+          </div>
+        </div>
+      </section>
+
+      <section className="container ref-how" id="how">
+        <h2>Как работи?</h2>
+        <p>Само три стъпки до красив таг и дигитален профил.</p>
+        <div className="ref-steps">
+          {[[I.palette, 'Избираш дизайн', 'Разгледай нашите стилове и избери любимия си.'], [I.pen, 'Добавяш информация', 'Попълваш данни за своя любимец и стопанина.'], [I.cart, 'Поръчваш', 'Плащаш удобно онлайн и получаваш тага до куриер.']].map(([d, title, text], index) => (
+            <div className="ref-step" key={title}>
+              <span className="ref-step-number">{index + 1}</span>
+              <span className="ref-step-icon"><Ic d={d} size={24} /></span>
+              <b>{title}</b><small>{text}</small>
+              {index < 2 && <span className="ref-step-arrow"><Ic d={I.arrow} size={18} /></span>}
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="container ref-designs" id="designs">
+        <div className="ref-section-title"><div><h2>Нашите дизайни</h2><p>Избери стил, който подхожда на твоя любимец.</p></div></div>
+        <div className="ref-design-layout">
+          <div className="ref-design-grid">
+            {STYLES.map((s) => (
+              <a className="ref-design-card" key={s.slug} href={`/order?style=${s.slug}`}>
+                <div className="ref-tag-stage"><PhotoTag s={s} size={92} qr={false} nfc={false} /></div>
+                <b>{s.name}</b><span>→</span>
+              </a>
+            ))}
+          </div>
+          <aside className="ref-featured-product">
+            <div className="ref-featured-stage"><PhotoTag s={featured} size={190} /></div>
+            <ul>
+              <li>NFC чип <span>(скрит в смолата)</span></li>
+              <li>QR код <span>(за бърз достъп)</span></li>
+            </ul>
+            <p>Красив, устойчив и уникален. Всеки таг е ръчно изработен.</p>
+            <a href="/order?style=ocean" className="btn btn-primary btn-block">Избери Ocean</a>
+          </aside>
+        </div>
+      </section>
+
+      <section className="ref-security" id="about">
+        <div className="container ref-security-grid">
+          <div className="ref-security-photo"><Image src={IMG.hero2} alt="Куче навън с petalapa таг" fill sizes="50vw" /></div>
+          <div className="ref-security-copy">
+            <h2>Повече сигурност.<br />По-малко тревоги.</h2>
+            <p>С NFC + QR технологията всеки, който намери вашия любимец, може бързо да се свърже с вас — без приложение и без излишни стъпки.</p>
+            <a href="/order" className="ref-text-link">Научи повече за таговете →</a>
+            <div className="ref-security-benefits">
+              {[[I.shield, 'Бърза връзка', 'до стопанина'], [I.bolt, 'При изгубване', 'сигнал за секунди'], [I.profile, 'Дискретна', 'лична информация']].map(([d, a, b]) => <div key={a}><span><Ic d={d} size={20} /></span><b>{a}</b><small>{b}</small></div>)}
+            </div>
+          </div>
+        </div>
+      </section>
+
       <SiteFooter />
     </main>
   );
