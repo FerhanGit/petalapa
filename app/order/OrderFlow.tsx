@@ -3,7 +3,7 @@ import { useMemo, useState } from 'react';
 import Image from 'next/image';
 import { useSearchParams } from 'next/navigation';
 import { STYLES, type TagStyle } from '@/components/Brand';
-import { Ic, I } from '@/components/Site';
+import { Ic, I } from '@/components/Icons';
 import DesignGrid from '@/components/DesignGrid';
 import { RandomPic } from '@/components/Pics';
 

@@ -1,6 +1,7 @@
 import { STYLES } from '@/components/Brand';
 import { HeroRotator, RandomPic } from '@/components/Pics';
-import { SiteNav, SiteFooter, Ic, I } from '@/components/Site';
+import { SiteNav, SiteFooter } from '@/components/Site';
+import { Ic, I } from '@/components/Icons';
 import DesignGrid from '@/components/DesignGrid';
 
 export default function Landing() {
@@ -8,7 +9,7 @@ export default function Landing() {
     <main>
       <SiteNav />
       <div className="container">
-        <section className="hero">
+        <section className="hero bg-soft bg-paws">
           <div>
             <span className="eyebrow">MORE THAN A TAG</span>
             <h1 className="h-hero">Малък таг.<br />Голяма<br />сигурност.</h1>
@@ -22,7 +23,7 @@ export default function Landing() {
           {[[I.grid, 'Бърз достъп'], [I.nfc, 'NFC + QR'], [I.shieldp, 'Персонален профил'], [I.shield, 'Сигурност']].map(([d, t]) => (<div className="feature" key={t}><div className="ic"><Ic d={d} size={22} /></div>{t}</div>))}
         </div>
 
-        <section className="section how" id="how">
+        <section className="section how bg-soft alt" id="how">
           <div>
             <h2 className="h-section">Как работи?</h2>
             <p className="sub">Само 4 лесни стъпки, за да бъде твоят любимец винаги в безопасност.</p>
@@ -41,7 +42,7 @@ export default function Landing() {
           <DesignGrid styles={STYLES} />
         </section>
 
-        <section className="section about" id="about">
+        <section className="section about bg-soft bg-paws" id="about">
           <div>
             <h2 className="h-section">Повече от таг.<br />Истинска сигурност.</h2>
             <div className="sec-list">

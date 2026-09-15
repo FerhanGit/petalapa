@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import type { PublicTag } from '@/lib/supabase';
 import { Wordmark } from './Brand';
-import { Ic, I } from './Site';
+import { Ic, I } from './Icons';
 import ScanBeacon from './ScanBeacon';
 import { SINGLES } from '@/lib/pics';
 
