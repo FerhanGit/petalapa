@@ -3,6 +3,7 @@ import { Lora, Manrope, Caveat } from 'next/font/google';
 import './globals.css';
 import './approved-master.css';
 import './approved-interiors.css';
+import './production-finish.css';
 
 const serif=Lora({subsets:['latin','cyrillic'],weight:['400','500','600'],variable:'--font-serif'});
 const sans=Manrope({subsets:['latin','cyrillic'],weight:['400','500','600','700'],variable:'--font-sans'});
