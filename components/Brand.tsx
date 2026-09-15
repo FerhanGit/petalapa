@@ -19,16 +19,26 @@ export function Wordmark({ href = '/', size = 24, sub = false }: { href?: string
     </a>
   );
 }
-export type TagStyle = { slug: string; name: string; img: string; price: number; cat: 'nature' | 'space' | 'flowers' | 'minimal'; story: string };
+export type TagStyle = { slug: string; name: string; img: string; price: number; cat: 'nature' | 'flowers' | 'sea' | 'space' | 'abstract' | 'sparkle' | 'minimal'; story: string };
 export const STYLES: TagStyle[] = [
-  { slug: 'ocean', name: 'Ocean', img: '/img/tag-ocean.jpg', price: 29, cat: 'nature', story: 'Вдъхновен от морето. Спокойствие, свобода и безкрайни приключения.' },
+  { slug: 'ocean', name: 'Ocean', img: '/img/tag-ocean.jpg', price: 29, cat: 'sea', story: 'Вдъхновен от морето. Спокойствие, свобода и безкрайни приключения.' },
+  { slug: 'lagoon', name: 'Lagoon', img: '/img/tag-lagoon.jpg', price: 32, cat: 'sea', story: 'Вълни, истински пясък, миди и перла – плажът, събран в един таг.' },
   { slug: 'forest', name: 'Forest', img: '/img/tag-forest.jpg', price: 29, cat: 'nature', story: 'Истинска папрат и мъх, заляти в зелена смола със златни люспи.' },
-  { slug: 'galaxy', name: 'Galaxy', img: '/img/tag-galaxy.jpg', price: 29, cat: 'space', story: 'Тюркоаз, кехлибар и златни звезди – за любимци, които блестят.' },
+  { slug: 'botanica', name: 'Botanica', img: '/img/tag-botanica.jpg', price: 29, cat: 'nature', story: 'Скелетирано листо, маргаритки и гипсофила – светло и живо.' },
+  { slug: 'meadow', name: 'Meadow', img: '/img/tag-meadow.jpg', price: 29, cat: 'nature', story: 'Полски цветя, листа и пясък – лятна поляна, събрана в 3 см.' },
   { slug: 'floral', name: 'Floral', img: '/img/tag-floral.jpg', price: 29, cat: 'flowers', story: 'Розови сакури и златен брокат. Нежно, като първата пролет.' },
-  { slug: 'meadow', name: 'Meadow', img: '/img/tag-meadow.jpg', price: 29, cat: 'flowers', story: 'Полски цветя, листа и пясък – лятна поляна, събрана в 3 см.' },
-  { slug: 'marble', name: 'Marble', img: '/img/tag-marble.jpg', price: 32, cat: 'minimal', story: 'Черно-бял мрамор със златни жилки. Класика за елегантни любимци.' },
-  { slug: 'minimal', name: 'Minimal', img: '/img/tag-minimal.jpg', price: 27, cat: 'minimal', story: 'Бяло, злато и дребни сушени цветя. Тихо и красиво.' },
-  { slug: 'tech', name: 'Tech', img: '/img/tag-tech.jpg', price: 32, cat: 'space', story: 'Сребро, черно и електриково синьо – за любимци с характер.' },
-  { slug: 'melody', name: 'Melody', img: '/img/tag-melody.jpg', price: 32, cat: 'space', story: 'Златни ноти върху тъмен тюркоаз – за тези, които те будят с песен.' },
+  { slug: 'blossom', name: 'Blossom', img: '/img/tag-blossom.jpg', price: 32, cat: 'flowers', story: 'Розови и бели цветове с перли и кристалчета – за принцеси.' },
+  { slug: 'wreath', name: 'Wreath', img: '/img/tag-wreath.jpg', price: 29, cat: 'flowers', story: 'Венец от бели цветчета със златна лапичка и сърце. Чисто и нежно.' },
+  { slug: 'galaxy', name: 'Galaxy', img: '/img/tag-galaxy.jpg', price: 29, cat: 'space', story: 'Тюркоаз, кехлибар и златни звезди – за любимци, които блестят.' },
+  { slug: 'nebula', name: 'Nebula', img: '/img/tag-nebula.jpg', price: 32, cat: 'space', story: 'Лилава мъглявина, звезден прах и малка луна. За нощните разходки.' },
+  { slug: 'aurora', name: 'Aurora', img: '/img/tag-aurora.jpg', price: 32, cat: 'abstract', story: 'Синьо, пудра и златни жилки – като мрамор, разтопен в смола.' },
+  { slug: 'tide', name: 'Tide', img: '/img/tag-tide.jpg', price: 29, cat: 'abstract', story: 'Тюркоаз, слонова кост и кехлибар на вълни. Топло и спокойно.' },
+  { slug: 'marble', name: 'Marble', img: '/img/tag-marble.jpg', price: 32, cat: 'abstract', story: 'Черно-бял мрамор със златни жилки. Класика за елегантни любимци.' },
+  { slug: 'holo', name: 'Holo', img: '/img/tag-holo.jpg', price: 29, cat: 'sparkle', story: 'Пастелен вихър с холографски люспи – сменя цвета си на светло.' },
+  { slug: 'terrazzo', name: 'Terrazzo', img: '/img/tag-terrazzo.jpg', price: 29, cat: 'sparkle', story: 'Бели и пясъчни камъчета със златен и сребърен глитер.' },
+  { slug: 'pearlpaw', name: 'Pearl Paw', img: '/img/tag-pearlpaw.jpg', price: 34, cat: 'sparkle', story: 'Перлена лапа, обградена с перли, кристали и златни мъниста.' },
+  { slug: 'melody', name: 'Melody', img: '/img/tag-melody.jpg', price: 32, cat: 'sparkle', story: 'Златни ноти върху тъмен тюркоаз – за тези, които те будят с песен.' },
+  { slug: 'ivory', name: 'Ivory', img: '/img/tag-ivory.jpg', price: 27, cat: 'minimal', story: 'Бели дъхове и златни люспи в прозрачна смола. Тихо и красиво.' },
+  { slug: 'minimal', name: 'Minimal', img: '/img/tag-minimal.jpg', price: 27, cat: 'minimal', story: 'Бяло, злато и дребни сушени цветя. Минимум, който казва много.' },
 ];
 export const PRICE: Record<string, number> = Object.fromEntries(STYLES.map((s) => [s.slug, s.price]));

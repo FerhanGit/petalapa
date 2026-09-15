@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import type { TagStyle } from './Brand';
-const CATS: [string, string][] = [['all', 'Всички'], ['nature', 'Природа'], ['space', 'Космос'], ['flowers', 'Цветя'], ['minimal', 'Минималистични']];
+const CATS: [string, string][] = [['all', 'Всички'], ['nature', 'Природа'], ['flowers', 'Цветя'], ['sea', 'Море'], ['space', 'Космос'], ['abstract', 'Абстрактни'], ['sparkle', 'Блясък'], ['minimal', 'Минимал']];
 export default function DesignGrid({ styles, selected, onSelect, hrefBase = '/order?style=' }: { styles: TagStyle[]; selected?: string; onSelect?: (s: TagStyle) => void; hrefBase?: string }) {
   const [cat, setCat] = useState('all');
   const list = styles.filter((s) => cat === 'all' || s.cat === cat);
