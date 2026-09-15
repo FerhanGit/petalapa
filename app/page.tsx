@@ -1,6 +1,10 @@
 import { SiteNav, Ic, I } from '@/components/Site';
 import { ReferenceTag } from '@/components/ReferenceTag';
 
+const LAGOTTO = 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Curly%20brown%20dog%20sitting%20outdoors%20with%20playful%20expression%20in%20a%20natural%20setting.jpg';
+const TABBY = 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Tabby%20cat%20portrait.jpg';
+const CAVALIER = 'https://images.pexels.com/photos/4079375/pexels-photo-4079375.jpeg?auto=compress&cs=tinysrgb&w=1600';
+
 const DESIGNS = [
   ['forest', 'Forest'],
   ['ocean', 'Ocean'],
@@ -12,10 +16,10 @@ const DESIGNS = [
 
 export default function Landing() {
   return (
-    <main className="exact-home pixel-home natural-home">
+    <main className="exact-home pixel-home sharp-home">
       <SiteNav />
 
-      <section className="pixel-hero natural-hero">
+      <section className="pixel-hero sharp-hero">
         <div className="pixel-hero-grid">
           <div className="pixel-hero-copy">
             <span className="pixel-eyebrow">ПОВЕЧЕ ОТ ТАГ. ПОВЕЧЕ СПОКОЙСТВИЕ.</span>
@@ -30,8 +34,11 @@ export default function Landing() {
             </div>
           </div>
 
-          <div className="pixel-hero-visual natural-hero-visual">
-            <img className="natural-hero-image" src="/assets/hero-animals.jpg" alt="Щастливо Lagotto Romagnolo и котка с petalapa тагове" />
+          <div className="pixel-hero-visual sharp-hero-visual">
+            <img className="pixel-dog sharp-dog" src={LAGOTTO} alt="Щастливо Lagotto Romagnolo" />
+            <img className="pixel-cat sharp-cat" src={TABBY} alt="Таби котка" />
+            <div className="pixel-dog-tag sharp-dog-tag"><ReferenceTag variant="forest" size={50} photo /></div>
+            <div className="pixel-cat-tag sharp-cat-tag"><ReferenceTag variant="blush" size={43} photo /></div>
             <div className="pixel-note">Малки тагове<br />за големи<br />приключения <span>♡</span></div>
           </div>
         </div>
@@ -78,8 +85,8 @@ export default function Landing() {
         </div>
       </section>
 
-      <section className="pixel-security natural-security" id="about">
-        <div className="pixel-security-photo"><img src="/assets/security-dog.jpg" alt="Щастлив Cavalier King Charles Spaniel с petalapa таг" /></div>
+      <section className="pixel-security sharp-security" id="about">
+        <div className="pixel-security-photo"><img src={CAVALIER} alt="Щастлив Cavalier King Charles Spaniel" /><div className="sharp-security-tag"><ReferenceTag variant="ocean" size={42} photo /></div></div>
         <div className="pixel-security-copy">
           <h2>Повече сигурност.<br />По-малко тревоги.</h2>
           <p>С NFC и QR технологията всеки, който намери твоя любимец, може бързо и лесно да се свърже с теб.</p>
