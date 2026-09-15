@@ -4,6 +4,7 @@ import { ReferenceTag } from '@/components/ReferenceTag';
 import OrderFlow from './OrderFlow';
 
 export const metadata = { title: 'Поръчка · petalapa' };
+const CAVALIER = 'https://images.pexels.com/photos/4079375/pexels-photo-4079375.jpeg?auto=compress&cs=tinysrgb&w=1600';
 
 export default function OrderPage() {
   return (
@@ -35,7 +36,7 @@ export default function OrderPage() {
         </section>
 
         <section className="natural-order-bottom">
-          <img src="/assets/security-dog.jpg" alt="Cavalier King Charles Spaniel с petalapa таг" />
+          <div className="natural-order-bottom-photo"><img src={CAVALIER} alt="Щастлив Cavalier King Charles Spaniel" /><span className="sharp-order-bottom-tag"><ReferenceTag variant="ocean" size={48} photo /></span></div>
           <div><span>Малки детайли.</span><b>Голяма сигурност.</b><small>Ръчно изработени с любов за по-спокойни дни. ♡</small></div>
         </section>
       </div>

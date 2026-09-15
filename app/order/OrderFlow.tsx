@@ -7,7 +7,7 @@ import { Ic, I } from '@/components/Site';
 
 const STEPS = ['Стил', 'Любимец', 'Стопанин', 'Преглед', 'Плащане'];
 const SHIP = 4.9;
-const LAGOTTO = '/assets/lagotto-profile.jpg';
+const LAGOTTO = 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Curly%20brown%20dog%20sitting%20outdoors%20with%20playful%20expression%20in%20a%20natural%20setting.jpg';
 const TAG_VARIANTS: Record<string, TagVariant> = { ocean:'ocean', forest:'forest', galaxy:'galaxy', floral:'blush', wood:'amber', minimal:'paw', love:'blush', custom:'forest' };
 type Pet = { name: string; species: 'dog' | 'cat' | 'other'; breed: string; age: string; sex: 'm' | 'f'; medical: string; allergies: string; notes: string; pubBasic: boolean; pubContact: boolean };
 type Owner = { name: string; phone: string; email: string; address: string; city: string };
@@ -70,7 +70,7 @@ export default function OrderFlow() {
         {err&&<div className="err"><Ic d={I.alert} size={16}/>{err}</div>}
         <div className="actions">{step>0?<button className="btn btn-outline" onClick={()=>setStep(step-1)}>← Назад</button>:<span/>}{step<4?<button className="btn btn-primary" onClick={next}>Продължи <Ic d={I.arrow} size={18}/></button>:<button className="btn btn-primary" onClick={submit} disabled={busy}>{busy?<><span className="spinner"/>Изпращам…</>:<>Завърши поръчката <Ic d={I.arrow} size={18}/></>}</button>}</div>
       </div>
-      <aside className="preview natural-preview">{(step===1||step===2)?<div className="viz"><div className="ph final-profile-preview natural-pet-preview" style={{backgroundImage:`url(${photoUrl||LAGOTTO})`}}/><h3>{pet.name||'Луна'}</h3><div className="meta">{pet.breed||'Lagotto Romagnolo'}{pet.age?` · ${pet.age} г.`:' · 4 години'}<br/>{owner.city}</div><div className="qrs"><span><Ic d={I.qr} size={28}/><br/>QR</span><span><Ic d={I.nfc} size={28}/><br/>NFC</span></div><p className="hint" style={{marginTop:12}}>Така ще изглежда дигиталният профил.</p></div>:<><div className="natural-tag-stage"><ReferenceTag variant={variant} size={190} photo/></div><h3>{style.name}</h3><div className="meta">Ръчно изработен кръгъл таг</div><ul>{['Вграден NFC чип','QR код','Персонализиран профил','Епоксидна смола'].map(t=><li key={t}><Ic d={I.check} size={14}/>{t}</li>)}</ul><div className="price">{price.toFixed(2)} лв.</div><div className="thumbs">{(['forest','ocean','blush'] as TagVariant[]).map(v=><span key={v}><ReferenceTag variant={v} size={56} photo/></span>)}</div></>}</aside>
+      <aside className="preview natural-preview">{(step===1||step===2)?<div className="viz"><div className="ph final-profile-preview natural-pet-preview" style={{backgroundImage:`url(${photoUrl||LAGOTTO})`}}><span className="natural-preview-tag"><ReferenceTag variant={variant} size={52} photo/></span></div><h3>{pet.name||'Луна'}</h3><div className="meta">{pet.breed||'Lagotto Romagnolo'}{pet.age?` · ${pet.age} г.`:' · 4 години'}<br/>{owner.city}</div><div className="qrs"><span><Ic d={I.qr} size={28}/><br/>QR</span><span><Ic d={I.nfc} size={28}/><br/>NFC</span></div><p className="hint" style={{marginTop:12}}>Така ще изглежда дигиталният профил.</p></div>:<><div className="natural-tag-stage"><ReferenceTag variant={variant} size={190} photo/></div><h3>{style.name}</h3><div className="meta">Ръчно изработен кръгъл таг</div><ul>{['Вграден NFC чип','QR код','Персонализиран профил','Епоксидна смола'].map(t=><li key={t}><Ic d={I.check} size={14}/>{t}</li>)}</ul><div className="price">{price.toFixed(2)} лв.</div></>}</aside>
     </div>
   </>;
 }

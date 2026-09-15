@@ -1,10 +1,11 @@
 import type { PublicTag } from '@/lib/supabase';
 import { PetalapaWordmark } from './ModernBrand';
+import { ReferenceTag } from './ReferenceTag';
 import { Ic, I } from './Site';
 import ScanBeacon from './ScanBeacon';
 
 const species = (s: string | null) => s === 'cat' ? 'Котка' : s === 'dog' ? 'Куче' : 'Любимец';
-const LAGOTTO = '/assets/lagotto-profile.jpg';
+const LAGOTTO = 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Curly%20brown%20dog%20sitting%20outdoors%20with%20playful%20expression%20in%20a%20natural%20setting.jpg';
 
 export default function PetProfile({ tag, scanId }: { tag: PublicTag; scanId: number | null }) {
   const lost = tag.status === 'lost' || !!tag.lost;
@@ -22,6 +23,7 @@ export default function PetProfile({ tag, scanId }: { tag: PublicTag; scanId: nu
     <article className="pet-profile-card natural-profile-card">
       <div className="pet-profile-photo natural-profile-photo">
         <img src={tag.photo_url || LAGOTTO} alt={tag.name ?? 'Домашен любимец'}/>
+        {!tag.photo_url && <span className="natural-profile-tag"><ReferenceTag variant="forest" size={58} photo/></span>}
         <span className="natural-profile-tech"><Ic d={I.nfc} size={14}/> NFC + QR</span>
         {lost&&<span className="pet-profile-lost">ИЗГУБЕН</span>}
       </div>
