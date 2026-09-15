@@ -21,7 +21,6 @@ function BridgePaw() {
 export function PetalapaWordmark({ href = '/', light = false, compact = false }: { href?: string; light?: boolean; compact?: boolean }) {
   return (
     <a href={href} className={`petalapa-brand${light ? ' is-light' : ''}${compact ? ' is-compact' : ''}`} aria-label="petalapa">
-      <span className="petalapa-logo-mark"><PetalapaMark size={compact ? 26 : 34} light={light} /></span>
       <span className="petalapa-lockup">
         <span className="petalapa-name"><span>pet</span><BridgePaw/><span>lapa</span></span>
         <small className="petalapa-tagline">MORE THAN A TAG</small>
