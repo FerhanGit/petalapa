@@ -23,10 +23,10 @@ export default function PetProfile({ tag, scanId }: { tag: PublicTag; scanId: nu
       <img className="ref-public-photo" src={tag.photo_url || POODLE} alt={tag.name || 'Домашен любимец'}/>
       <section className="ref-public-body">
         <h1>{tag.name||'Макс'} ✤</h1>
-        <p className="ref-public-meta">{species(tag.species)}{tag.breed?` · ${tag.breed}`:' · Пудел'}{tag.age?` · ${tag.age} г.`:' · 3 г.'}<br/>{'Sofia, Bulgaria'}</p>
+        <p className="ref-public-meta">{species(tag.species)}{tag.breed?` · ${tag.breed}`:' · Пудел'} · 3 г.<br/>Sofia, Bulgaria</p>
         <div className="ref-public-chips"><span>✓ У дома</span><span>⚕ Пълен</span><span>♡ {behaviour}</span></div>
         {lost&&<div className="ref-lost-copy">Ако сте намерили {tag.name||'Макс'},<br/>моля свържете се със стопанина му.</div>}
-        <a className={`ref-public-call${lost?' lost':''}`} href={tel}><Ic d={I.phone} size={17}/>{lost?'Свържи се със стопанина':'Свържи се със стопанина'}</a>
+        <a className={`ref-public-call${lost?' lost':''}`} href={tel}><Ic d={I.phone} size={17}/>Свържи се със стопанина</a>
         <div className="ref-public-info"><div><b>Медицинска информация</b><span>{med}</span></div><div><b>Контакт</b><span>{primary?.phone||'+359 88 123 4567'}</span></div></div>
         <a className="ref-public-share" href={sms}><Ic d={I.share} size={16}/> Сподели профила</a>
       </section>
