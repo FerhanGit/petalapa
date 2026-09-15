@@ -1,8 +1,8 @@
 import { SiteNav, Ic, I } from '@/components/Site';
 import { ReferenceTag } from '@/components/ReferenceTag';
 
-const LAGOTTO = 'https://images.pexels.com/photos/19577726/pexels-photo-19577726.jpeg?auto=compress&cs=tinysrgb&w=1400';
-const TABBY = 'https://images.pexels.com/photos/20548809/pexels-photo-20548809.jpeg?auto=compress&cs=tinysrgb&w=900';
+const LAGOTTO = 'https://static.wixstatic.com/media/012202_99f8e627d0c44df89ced2da9a8098933~mv2.png/v1/fill/w_510,h_456,fp_0.50_0.50,lg_1,q_85,enc_avif,quality_auto/012202_99f8e627d0c44df89ced2da9a8098933~mv2.png';
+const TABBY = 'https://cdn.explorecams.com/storage/photos/xFuFBOb2Ww_1600.jpg';
 const CAVALIER = 'https://images.pexels.com/photos/4079375/pexels-photo-4079375.jpeg?auto=compress&cs=tinysrgb&w=1400';
 
 const DESIGNS = [
@@ -74,7 +74,7 @@ export default function Landing() {
             <div className="pixel-tag-grid">
               {DESIGNS.map(([variant, label]) => (
                 <a className="pixel-tag-card" key={variant} href={`/order?style=${variant === 'blush' ? 'floral' : variant === 'paw' ? 'minimal' : variant === 'amber' ? 'wood' : variant}`}>
-                  <div className="pixel-tag-stage"><ReferenceTag variant={variant} size={84} /></div>
+                  <div className="pixel-tag-stage"><ReferenceTag variant={variant} size={84} photo /></div>
                   <b>{label}</b>
                 </a>
               ))}
