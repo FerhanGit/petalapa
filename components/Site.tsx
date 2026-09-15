@@ -13,7 +13,7 @@ export const I = {
   cart: 'M3 3h2l2.4 12.5a2 2 0 0 0 2 1.5h8.7a2 2 0 0 0 2-1.5L22 7H6M9 21a1 1 0 1 0 0-2 1 1 0 0 0 0 2zM18 21a1 1 0 1 0 0-2 1 1 0 0 0 0 2z',
   search: 'M11 19a8 8 0 1 0 0-16 8 8 0 0 0 0 16zM21 21l-4.3-4.3',
   user: 'M20 21a8 8 0 0 0-16 0M12 13a4 4 0 1 0 0-8 4 4 0 0 0 0 8z',
-  phone: 'M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.6 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7A2 2 0 0 1 22 16.9z',
+  phone: 'M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 2 1.7c.1.9.4 1.8.6 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7A2 2 0 0 1 22 16.9z',
   msg: 'M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z',
   share: 'M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8M16 6l-4-4-4 4M12 2v13',
   medical: 'M12 3v18M3 12h18',
@@ -35,7 +35,11 @@ export function SiteNav() {
     <header className="topbar"><div className="container nav">
       <PetalapaWordmark />
       <nav className="links"><a href="/">Начало</a><a href="/order">Дизайни</a><a href="/#how">Как работи</a><a href="/#about">За нас</a><a href="mailto:hello@petalapa.com">Контакт</a></nav>
-      <div className="navr"><a href="/dashboard" className="icbtn" aria-label="Профил"><Ic d={I.user} /></a><a className="btn btn-primary btn-sm" href="/order">Създай таг</a></div>
+      <div className="navr">
+        <a href="/#designs" className="icbtn" aria-label="Дизайни"><Ic d={I.search} size={17} /></a>
+        <a href="/dashboard" className="icbtn" aria-label="Моят профил"><Ic d={I.user} size={17} /></a>
+        <a href="/order" className="icbtn" aria-label="Поръчка"><Ic d={I.cart} size={17} /></a>
+      </div>
     </div></header>
   );
 }
