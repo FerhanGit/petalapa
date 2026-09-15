@@ -9,7 +9,7 @@ export default function Landing() {
     <main>
       <SiteNav />
       <div className="container">
-        <section className="hero bg-soft bg-paws">
+        <div className="band band-hero"><section className="hero">
           <div>
             <span className="eyebrow">MORE THAN A TAG</span>
             <h1 className="h-hero">Малък таг.<br />Голяма<br />сигурност.</h1>
@@ -18,12 +18,12 @@ export default function Landing() {
             <div className="hand">За тях<br />винаги! ♡</div>
           </div>
           <div className="hero-photo blend"><HeroRotator /></div>
-        </section>
+        </section></div>
         <div className="features">
           {[[I.grid, 'Бърз достъп'], [I.nfc, 'NFC + QR'], [I.shieldp, 'Персонален профил'], [I.shield, 'Сигурност']].map(([d, t]) => (<div className="feature" key={t}><div className="ic"><Ic d={d} size={22} /></div>{t}</div>))}
         </div>
 
-        <section className="section how bg-soft alt" id="how">
+        <div className="band band-how"><section className="section how" id="how">
           <div>
             <h2 className="h-section">Как работи?</h2>
             <p className="sub">Само 4 лесни стъпки, за да бъде твоят любимец винаги в безопасност.</p>
@@ -34,7 +34,7 @@ export default function Landing() {
             </div>
           </div>
           <div className="how-photo blend"><RandomPic pool="singles" alt="Любимец с таг petalapa" sizes="(max-width: 900px) 100vw, 50vw" /><div className="bubble">Лесно, бързо,<br />сигурно!</div></div>
-        </section>
+        </section></div>
 
         <section className="section" id="designs">
           <h2 className="h-section">Избери стил</h2>
@@ -42,7 +42,7 @@ export default function Landing() {
           <DesignGrid styles={STYLES} />
         </section>
 
-        <section className="section about bg-soft bg-paws" id="about">
+        <div className="band band-about"><section className="section about" id="about">
           <div>
             <h2 className="h-section">Повече от таг.<br />Истинска сигурност.</h2>
             <div className="sec-list">
@@ -58,7 +58,7 @@ export default function Landing() {
             <div className="btn btn-primary btn-block" style={{ height: 38, fontSize: 12 }}>Свържи се със стопанина</div>
             <div className="p-loc"><Ic d={I.pin} size={14} />София, България · преди 2 ч.</div>
           </div></div>
-        </section>
+        </section></div>
       </div>
       <SiteFooter />
     </main>

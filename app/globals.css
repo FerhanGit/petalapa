@@ -252,17 +252,47 @@ textarea.input { height: 84px; padding: 12px 14px; resize: none; }
 .pphoto.blend .nfc { right: 24px; }
 .login-pic.blend::after { box-shadow: inset 0 0 50px 22px #fff; background: linear-gradient(180deg, rgba(255,255,255,0) 60%, #fff 100%); }
 .hero-dots { bottom: 6px; z-index: 3; } .hero-dots span { background: rgba(31,77,58,.25); } .hero-dots span.on { background: var(--green); }
-/* ненатрапчиви фонове зад секциите със снимки */
-.bg-soft { position: relative; }
-.bg-soft::before { content: ''; position: absolute; inset: -40px -40vw; z-index: -1; pointer-events: none;
-  background:
-    radial-gradient(38% 55% at 78% 40%, rgba(224,162,76,.10), rgba(224,162,76,0) 70%),
-    radial-gradient(45% 60% at 20% 70%, rgba(31,77,58,.07), rgba(31,77,58,0) 70%);
-}
-.bg-soft.alt::before { background:
-    radial-gradient(40% 60% at 22% 35%, rgba(31,77,58,.08), rgba(31,77,58,0) 70%),
-    radial-gradient(36% 50% at 82% 65%, rgba(224,162,76,.09), rgba(224,162,76,0) 70%); }
-.bg-paws::after { content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none; opacity: .045;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 48 48'><g fill='%231F4D3A' transform='translate(4 4) scale(.5)'><ellipse cx='14' cy='15' rx='5' ry='6.5'/><ellipse cx='34' cy='15' rx='5' ry='6.5'/><ellipse cx='7' cy='27' rx='4.3' ry='5.6'/><ellipse cx='41' cy='27' rx='4.3' ry='5.6'/><path d='M24 25c-9-6-19 2-15 12 2.6 6 9.4 9 15 9s12.4-3 15-9c4-10-6-18-15-12z'/></g><g fill='%231F4D3A' transform='translate(78 86) scale(.38) rotate(20)'><ellipse cx='14' cy='15' rx='5' ry='6.5'/><ellipse cx='34' cy='15' rx='5' ry='6.5'/><ellipse cx='7' cy='27' rx='4.3' ry='5.6'/><ellipse cx='41' cy='27' rx='4.3' ry='5.6'/><path d='M24 25c-9-6-19 2-15 12 2.6 6 9.4 9 15 9s12.4-3 15-9c4-10-6-18-15-12z'/></g></svg>");
-  background-size: 140px 140px; }
-.hero.bg-soft, .how.bg-soft, .about.bg-soft { isolation: isolate; }
+/* дизайнерски фонове – цели секции (full-bleed), снимките преливат в тях */
+.band { position: relative; --blend: var(--cream); width: 100vw; margin-left: calc(50% - 50vw); padding-left: max(20px, calc(50vw - 560px)); padding-right: max(20px, calc(50vw - 560px)); isolation: isolate; }
+@media (max-width: 640px) { .band { padding-left: 16px; padding-right: 16px; } }
+.band::before { content: ''; position: absolute; inset: 0; z-index: -2; background: var(--blend); }
+.band::after { content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+.blend::after { box-shadow: inset 0 0 70px 34px var(--blend); background: linear-gradient(180deg, transparent 55%, var(--blend) 100%), linear-gradient(90deg, var(--blend) 0%, transparent 22%, transparent 78%, var(--blend) 100%); }
+@media (min-width: 901px) { .hero-photo.blend::after { background: linear-gradient(90deg, var(--blend) 0%, transparent 30%), linear-gradient(180deg, var(--blend) 0%, transparent 14%, transparent 82%, var(--blend) 100%); box-shadow: inset 0 0 60px 20px var(--blend); } }
+.how-photo.blend::after { box-shadow: inset 0 0 70px 30px var(--blend); }
+
+/* Hero: светло-зелен градиент с меки органични форми */
+.band-hero { --blend: #EEF3EC; padding-top: 28px; padding-bottom: 34px; border-radius: 0 0 40px 40px; overflow: hidden; }
+.band-hero::before { background: linear-gradient(160deg, #F1F5EF 0%, #EEF3EC 50%, #E9EFE7 100%); }
+.band-hero::after { background:
+  radial-gradient(520px 420px at 88% 8%, rgba(224,162,76,.18), transparent 60%),
+  radial-gradient(700px 520px at 6% 92%, rgba(31,77,58,.10), transparent 60%),
+  radial-gradient(3px 3px at 20% 20%, rgba(31,77,58,.10) 50%, transparent 52%),
+  radial-gradient(3px 3px at 60% 70%, rgba(31,77,58,.08) 50%, transparent 52%);
+  background-size: auto, auto, 90px 90px, 130px 130px; }
+.band-hero .hero { padding-top: 10px; }
+.band-hero .hero-photo.blend { border-radius: 30px; }
+
+/* Как работи: топъл пясъчен фон с диагонални вълни */
+.band-how { --blend: #F4ECDF; margin-top: 56px; padding-top: 56px; padding-bottom: 56px; border-radius: 40px; overflow: hidden; }
+.band-how::before { background: linear-gradient(135deg, #F6EFE3 0%, #F4ECDF 60%, #F1E6D4 100%); }
+.band-how::after { background:
+  repeating-linear-gradient(-30deg, rgba(224,162,76,.06) 0 2px, transparent 2px 26px),
+  radial-gradient(600px 400px at 90% 90%, rgba(224,162,76,.16), transparent 60%),
+  radial-gradient(500px 400px at 10% 10%, rgba(255,255,255,.7), transparent 60%); }
+.band-how .section { padding-top: 0; }
+.band-how .tstep .ic { border-color: #F4ECDF; } .band-how .timeline::before { background: rgba(31,77,58,.14); }
+
+/* Сигурност: тъмнозелен блок с лека мрежа – телефонът и текстът светли */
+.band-about { --blend: #1F4D3A; margin-top: 64px; padding-top: 60px; padding-bottom: 64px; border-radius: 40px; overflow: hidden; color: #E8F0EA; }
+.band-about::before { background: linear-gradient(160deg, #24563F 0%, #1F4D3A 55%, #183D2E 100%); }
+.band-about::after { background:
+  radial-gradient(600px 460px at 80% 20%, rgba(224,162,76,.22), transparent 60%),
+  radial-gradient(2px 2px at 30% 40%, rgba(255,255,255,.14) 50%, transparent 52%);
+  background-size: auto, 34px 34px; }
+.band-about .section { padding-top: 0; }
+.band-about h2 { color: #fff; } .band-about .sec-list b { color: #fff; } .band-about .sec-list span { color: #C9D9CE; }
+.band-about .sec-list .ic { background: rgba(255,255,255,.12); color: #F2D9AE; }
+.band-about .btn-primary { background: var(--gold); color: var(--green); } .band-about .btn-primary:hover { background: #E9B36A; }
+.band-about .phone { border-color: #0F1A14; box-shadow: 0 40px 80px -30px rgba(0,0,0,.6); }
+@media (max-width: 900px) { .band-how, .band-about { border-radius: 28px; margin-top: 40px; padding-top: 40px; padding-bottom: 44px; } .band-hero { border-radius: 0 0 28px 28px; } }
