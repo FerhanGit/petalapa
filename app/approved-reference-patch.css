@@ -1,0 +1,9 @@
+.approved-site .petalapa-paw{display:inline-flex;align-items:center;justify-content:center;margin:0 3px;transform:translateY(1px)}
+.approved-site .petalapa-paw svg{display:block}
+.approved-site .petalapa-tagline{display:block;margin-top:3px;font-size:7px;letter-spacing:.18em;font-weight:700;color:#8a8174}
+.approved-site .petalapa-brand{display:flex;flex-direction:column;align-items:flex-start;text-decoration:none}
+.reference-order-page .petalapa-paw,.pet-profile-shell .petalapa-paw{display:inline-flex;align-items:center;justify-content:center;margin:0 3px;transform:translateY(1px)}
+.reference-order-page .petalapa-tagline,.pet-profile-shell .petalapa-tagline{font-size:7px;letter-spacing:.18em;margin-top:3px}
+.reference-order-page .reference-round-tag .ptag,.pet-profile-shell .reference-round-tag .ptag{aspect-ratio:1/1.14!important}
+.reference-order-page .reference-round-tag .ptag .disc,.reference-order-page .reference-round-tag .ptag .edge,.pet-profile-shell .reference-round-tag .ptag .disc,.pet-profile-shell .reference-round-tag .ptag .edge{border-radius:50%!important}
+.reference-order-page .site-footer{margin-top:12px;background:#fffdf8}

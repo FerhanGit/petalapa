@@ -5,7 +5,7 @@ import { Ic, I } from './Site';
 import ScanBeacon from './ScanBeacon';
 
 const species = (s: string | null) => s === 'cat' ? 'Котка' : s === 'dog' ? 'Куче' : 'Любимец';
-const LAGOTTO = 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Curly%20brown%20dog%20sitting%20outdoors%20with%20playful%20expression%20in%20a%20natural%20setting.jpg';
+const POODLE = 'https://images.pexels.com/photos/5306978/pexels-photo-5306978.jpeg?auto=compress&cs=tinysrgb&w=1200';
 
 export default function PetProfile({ tag, scanId }: { tag: PublicTag; scanId: number | null }) {
   const lost = tag.status === 'lost' || !!tag.lost;
@@ -22,14 +22,14 @@ export default function PetProfile({ tag, scanId }: { tag: PublicTag; scanId: nu
     <div className="pet-profile-top"><PetalapaWordmark/><span className="pet-profile-label">СКАНИРАН ТАГ</span></div>
     <article className="pet-profile-card natural-profile-card">
       <div className="pet-profile-photo natural-profile-photo">
-        <img src={tag.photo_url || LAGOTTO} alt={tag.name ?? 'Домашен любимец'}/>
-        {!tag.photo_url && <span className="natural-profile-tag"><ReferenceTag variant="forest" size={58} photo/></span>}
+        <img src={tag.photo_url || POODLE} alt={tag.name ?? 'Домашен любимец'}/>
+        {!tag.photo_url && <span className="natural-profile-tag"><ReferenceTag variant="ocean" size={58}/></span>}
         <span className="natural-profile-tech"><Ic d={I.nfc} size={14}/> NFC + QR</span>
         {lost&&<span className="pet-profile-lost">ИЗГУБЕН</span>}
       </div>
       <div className="pet-profile-body">
-        <h1 className="pet-profile-name">{tag.name||'Луна'}</h1>
-        <div className="pet-profile-meta">{species(tag.species)}{tag.breed?` • ${tag.breed}`:' • Lagotto Romagnolo'}</div>
+        <h1 className="pet-profile-name">{tag.name||'Макс'}</h1>
+        <div className="pet-profile-meta">{species(tag.species)}{tag.breed?` • ${tag.breed}`:' • Пудел'}</div>
         <div className="pet-profile-facts">
           <div className="pet-fact"><span><Ic d={I.info} size={17}/></span><small>Микрочип</small><b>{tag.microchip_no?'Да':'Няма данни'}</b></div>
           <div className="pet-fact"><span><Ic d={I.medical} size={17}/></span><small>Медицински</small><b>{medicalShort}</b></div>
