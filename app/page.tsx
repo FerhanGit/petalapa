@@ -2,9 +2,9 @@ import { SiteNav, SiteFooter, Ic, I } from '@/components/Site';
 import { ReferenceTag, type TagVariant } from '@/components/ReferenceTag';
 import { PhotoTag, STYLES } from '@/components/PhotoTag';
 
-const LAGOTTO = 'https://images.pexels.com/photos/15222727/pexels-photo-15222727.jpeg?auto=compress&cs=tinysrgb&w=1600';
+const LAGOTTO = 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Dog%20with%20curly%20fur%20playfully%20sticking%20out%20its%20tongue%20in%20a%20green%20outdoor%20setting.jpg';
 const TABBY = 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Cat003.jpg';
-const POODLE = 'https://images.pexels.com/photos/5306978/pexels-photo-5306978.jpeg?auto=compress&cs=tinysrgb&w=1600';
+const POODLE = 'https://images.pexels.com/photos/4626495/pexels-photo-4626495.jpeg?auto=compress&cs=tinysrgb&w=1600';
 
 const DESIGNS: Array<{ variant: TagVariant; name: string; slug: string }> = [
   { variant: 'classic', name: 'Classic', slug: 'forest' },
@@ -40,9 +40,9 @@ export default function Landing() {
         <div className="approved-hero-visual">
           <img className="approved-hero-dog" src={LAGOTTO} alt="Щастливо Lagotto Romagnolo" />
           <img className="approved-hero-cat" src={TABBY} alt="Таби котка" />
-          <span className="approved-dog-tag"><ReferenceTag variant="ocean" size={54} /></span>
-          <span className="approved-cat-tag"><ReferenceTag variant="floral" size={42} /></span>
-          <div className="approved-note">Да те посрещнат<br />Един ден —<br />да те намерят! <span>♡</span></div>
+          <span className="approved-dog-tag"><ReferenceTag variant="ocean" size={48} /></span>
+          <span className="approved-cat-tag"><ReferenceTag variant="floral" size={40} /></span>
+          <div className="approved-note">Да те посрещнат.<br />Един ден —<br />да те намерят! <span>♡</span></div>
         </div>
       </section>
 
@@ -75,13 +75,13 @@ export default function Landing() {
             <div className="approved-design-grid">
               {DESIGNS.map((item) => (
                 <a key={item.name} className="approved-design-card" href={`/order?style=${item.slug}`}>
-                  <span className="approved-tag-stage"><ReferenceTag variant={item.variant} size={92} /></span>
+                  <span className="approved-tag-stage"><ReferenceTag variant={item.variant} size={88} /></span>
                   <b>{item.name} <span>›</span></b>
                 </a>
               ))}
             </div>
             <aside className="approved-feature-tag">
-              <div className="approved-feature-tag-visual"><PhotoTag s={ocean} size={190} qr nfc /></div>
+              <div className="approved-feature-tag-visual"><PhotoTag s={ocean} size={176} qr nfc /></div>
               <div className="approved-callout approved-callout-nfc"><b>NFC чип</b><small>(скрит в смолата)</small></div>
               <div className="approved-callout approved-callout-qr"><b>QR код</b><small>(за бърз достъп)</small></div>
               <p>Красив, устойчив и уникален.<br />Всеки таг е ръчно изработен.</p>
@@ -93,7 +93,7 @@ export default function Landing() {
       <section className="approved-security" id="about">
         <div className="approved-security-photo">
           <img src={POODLE} alt="Щастлив пудел сред цветя" />
-          <span className="approved-security-tag"><ReferenceTag variant="natural" size={46} /></span>
+          <span className="approved-security-tag"><ReferenceTag variant="natural" size={40} /></span>
         </div>
         <div className="approved-security-copy">
           <h2>Повече сигурност.<br />По-малко тревоги.</h2>
