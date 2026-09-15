@@ -1,19 +1,19 @@
-type Variant = 'forest' | 'ocean' | 'blush' | 'galaxy' | 'paw' | 'amber';
+export type TagVariant = 'forest' | 'ocean' | 'blush' | 'galaxy' | 'paw' | 'amber';
 
-const PHOTOS: Record<Variant, string> = {
-  forest: 'https://thetagtree.com/cdn/shop/files/0576D71F-C039-4B15-B434-71E55B9992A4.jpg?v=1775048909&width=1500',
-  ocean: 'https://i.etsystatic.com/iap/ddd6cd/7022308679/iap_600x600.7022308679_jggx2q0u.jpg?version=0',
-  blush: 'https://i.etsystatic.com/56567081/r/il/e89c63/7019686905/il_570xN.7019686905_nqif.jpg',
-  galaxy: 'https://dogestshop.com/cdn/shop/files/42604AAA-B5B4-4EEC-AE9F-5B9115FC12D6.jpg?v=1712483395',
-  paw: 'https://i.etsystatic.com/iap/c159d3/6301248542/iap_640x640.6301248542_ahz5ygvt.jpg?version=0',
-  amber: 'https://i.etsystatic.com/44573715/r/il/5bc8eb/5657549496/il_fullxfull.5657549496_7vkw.jpg',
+const POS: Record<TagVariant, string> = {
+  forest: '0% 0%',
+  ocean: '50% 0%',
+  blush: '100% 0%',
+  galaxy: '0% 100%',
+  paw: '50% 100%',
+  amber: '100% 100%',
 };
 
-export function ReferenceTag({ variant, size = 86, photo = false }: { variant: Variant; size?: number; photo?: boolean }) {
+export function ReferenceTag({ variant, size = 86, photo = false }: { variant: TagVariant; size?: number; photo?: boolean }) {
   if (photo) {
     return (
       <div className={`ref-tag-photo-wrap ref-tag-photo-${variant}`} style={{ width: size, height: size }} aria-hidden>
-        <img className="ref-tag-photo" src={PHOTOS[variant]} alt="" />
+        <span className="ref-tag-sprite" style={{ backgroundPosition: POS[variant] }} />
       </div>
     );
   }

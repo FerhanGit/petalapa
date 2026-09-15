@@ -1,27 +1,26 @@
 import { Suspense } from 'react';
 import { SiteNav, SiteFooter, Ic, I } from '@/components/Site';
-import { PhotoTag, STYLES, IMG } from '@/components/PhotoTag';
+import { ReferenceTag } from '@/components/ReferenceTag';
 import OrderFlow from './OrderFlow';
 
 export const metadata = { title: 'Поръчка · petalapa' };
 
 export default function OrderPage() {
-  const forest = STYLES.find((s) => s.slug === 'forest') ?? STYLES[0];
   return (
-    <main className="final-order">
+    <main className="final-order natural-order-page">
       <SiteNav />
-      <div className="final-wrap">
-        <section className="final-order-hero">
-          <div className="final-order-product" style={{ backgroundImage: `linear-gradient(rgba(244,235,220,.12),rgba(244,235,220,.12)),url(${IMG.sand})` }}>
+      <div className="final-wrap natural-order-wrap">
+        <section className="final-order-hero natural-order-hero">
+          <div className="final-order-product natural-order-product">
             <div className="final-order-product-note">Повече от адрес.<br />Повече грижа. ♡</div>
-            <PhotoTag s={forest} size={300} />
+            <ReferenceTag variant="forest" size={260} photo />
           </div>
           <div className="final-order-copy">
             <span className="final-kicker">ПЕРСОНАЛИЗИРАН МЕДАЛЬОН</span>
             <h1>Стил, който пази<br />тези, които обичаме</h1>
-            <p>NFC и QR код в елегантен кръгъл дизайн. Красив, издръжлив и винаги с най-важната информация за твоя любимец.</p>
+            <p>Ръчно изработен кръгъл resin таг с NFC и QR код. Красив, издръжлив и винаги с най-важната информация за твоя любимец.</p>
             <div className="final-order-icons">
-              {[[I.shield, 'Сигурност', 'при изгубване'], [I.heart, 'Лесна връзка', 'с вас'], [I.nfc, 'NFC и QR код', 'във всеки таг'], [I.resin, 'Уникални', 'ръчно изработени']].map(([d, a, b]) => <div key={a}><span><Ic d={d} size={17} /></span><b>{a}</b><small>{b}</small></div>)}
+              {[[I.shield, 'Сигурност', 'при изгубване'], [I.heart, 'Лесна връзка', 'с вас'], [I.nfc, 'NFC и QR код', 'във всеки таг'], [I.resin, 'Уникален', 'ръчно изработен']].map(([d, a, b]) => <div key={a}><span><Ic d={d} size={17} /></span><b>{a}</b><small>{b}</small></div>)}
             </div>
           </div>
         </section>
@@ -35,9 +34,9 @@ export default function OrderPage() {
           <Suspense><OrderFlow /></Suspense>
         </section>
 
-        <section className="final-order-bottom" style={{ backgroundImage: `linear-gradient(90deg,rgba(255,249,239,.82),rgba(238,208,155,.2)),url(${IMG.sand})` }}>
-          <div className="final-order-bottom-copy">Малки детайли.<br /><b>Голяма сигурност.</b><small>Ръчно изработени с любов за по-спокойни дни. ♡</small></div>
-          <PhotoTag s={STYLES[4]} size={240} />
+        <section className="natural-order-bottom">
+          <img src="/assets/security-dog.jpg" alt="Cavalier King Charles Spaniel с petalapa таг" />
+          <div><span>Малки детайли.</span><b>Голяма сигурност.</b><small>Ръчно изработени с любов за по-спокойни дни. ♡</small></div>
         </section>
       </div>
       <SiteFooter />
