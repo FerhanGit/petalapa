@@ -1,0 +1,1 @@
+Hero and product-card asset fidelity pass. Uses portrait Lagotto + tabby composition and photographic resin pet-tag references while preserving the approved layout.
