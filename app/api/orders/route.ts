@@ -14,7 +14,14 @@ export async function POST(req: Request) {
     const pet = payload?.pet ?? {};
     const owner = payload?.owner ?? {};
 
-    if (!price || !String(pet.name ?? '').trim() || !/^\S+@\S+\.\S+$/.test(String(owner.email ?? '')) || !String(owner.phone ?? '').trim()) {
+    const petName = String(pet.name ?? '').trim();
+    const ownerName = String(owner.name ?? '').trim();
+    const email = String(owner.email ?? '').trim();
+    const phone = String(owner.phone ?? '').trim();
+    const city = String(owner.city ?? '').trim();
+    const address = String(owner.address ?? '').trim();
+
+    if (!price || !petName || !ownerName || !/^\S+@\S+\.\S+$/.test(email) || !/^\+?[0-9 ]{8,}$/.test(phone) || !city || !address) {
       return NextResponse.json({ error: 'invalid_order' }, { status: 400 });
     }
 
@@ -22,7 +29,7 @@ export async function POST(req: Request) {
     const { data, error } = await sb.from('orders').insert({
       style,
       pet,
-      owner,
+      owner: { ...owner, name: ownerName, email, phone, city, address },
       pay_method: payMethod,
       price,
       ship: SHIP,
