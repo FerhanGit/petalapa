@@ -1,1 +1,1 @@
-Natural visual pass staged.
+Natural visual pass staged and ready for preview.
