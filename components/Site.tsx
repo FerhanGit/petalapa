@@ -34,11 +34,11 @@ export function SiteNav() {
   return (
     <header className="ref-topbar"><div className="ref-shell ref-nav">
       <PetalapaWordmark />
-      <nav className="ref-nav-links"><a href="/">Начало</a><a href="/#designs">Тагове</a><a href="/#why">Как работи</a><a href="/#why">За нас</a><a href="mailto:hello@petalapa.com">Контакт</a></nav>
+      <nav className="ref-nav-links"><a href="/">Начало</a><a href="/#designs">Тагове</a><a href="/#how">Как работи</a><a href="/#security">Сигурност</a><a href="mailto:hello@petalapa.com">Контакт</a></nav>
       <div className="ref-nav-actions">
-        <a href="/#designs" aria-label="Търсене"><Ic d={I.search} size={19}/></a>
+        <a href="/#designs" aria-label="Дизайни"><Ic d={I.search} size={19}/></a>
         <a href="/dashboard" aria-label="Профил"><Ic d={I.user} size={19}/></a>
-        <a className="ref-cart" href="/order" aria-label="Количка"><Ic d={I.cart} size={19}/><b>0</b></a>
+        <a className="ref-cart" href="/order" aria-label="Поръчай"><Ic d={I.cart} size={19}/></a>
       </div>
     </div></header>
   );
@@ -49,7 +49,7 @@ export function SiteFooter() {
     <footer className="ref-footer"><div className="ref-shell ref-footer-inner">
       <PetalapaWordmark compact />
       <span>Защото всеки любимец заслужава да бъде намерен. ♡</span>
-      <nav><a href="/#why">За нас</a><a href="mailto:hello@petalapa.com">Доставка</a><a href="mailto:hello@petalapa.com">Връщане</a><a href="mailto:hello@petalapa.com">Контакти</a></nav>
+      <nav><a href="/#how">Как работи</a><a href="/#designs">Дизайни</a><a href="/order">Поръчай</a><a href="mailto:hello@petalapa.com">Контакти</a></nav>
       <div><a href="https://instagram.com/petalapa" aria-label="Instagram"><Ic d={I.ig} size={17}/></a><a href="https://facebook.com/petalapa" aria-label="Facebook"><Ic d={I.fb} size={17}/></a></div>
     </div></footer>
   );
