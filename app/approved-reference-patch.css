@@ -1,9 +1,104 @@
 .approved-site .petalapa-paw{display:inline-flex;align-items:center;justify-content:center;margin:0 3px;transform:translateY(1px)}
 .approved-site .petalapa-paw svg{display:block}
-.approved-site .petalapa-tagline{display:block;margin-top:3px;font-size:7px;letter-spacing:.18em;font-weight:700;color:#8a8174}
+.approved-site .petalapa-tagline{display:block;margin-top:2px;font-size:6.5px;letter-spacing:.17em;font-weight:700;color:#8a8174}
 .approved-site .petalapa-brand{display:flex;flex-direction:column;align-items:flex-start;text-decoration:none}
 .reference-order-page .petalapa-paw,.pet-profile-shell .petalapa-paw{display:inline-flex;align-items:center;justify-content:center;margin:0 3px;transform:translateY(1px)}
-.reference-order-page .petalapa-tagline,.pet-profile-shell .petalapa-tagline{font-size:7px;letter-spacing:.18em;margin-top:3px}
+.reference-order-page .petalapa-tagline,.pet-profile-shell .petalapa-tagline{font-size:6.5px;letter-spacing:.17em;margin-top:2px}
 .reference-order-page .reference-round-tag .ptag,.pet-profile-shell .reference-round-tag .ptag{aspect-ratio:1/1.14!important}
 .reference-order-page .reference-round-tag .ptag .disc,.reference-order-page .reference-round-tag .ptag .edge,.pet-profile-shell .reference-round-tag .ptag .disc,.pet-profile-shell .reference-round-tag .ptag .edge{border-radius:50%!important}
-.reference-order-page .site-footer{margin-top:12px;background:#fffdf8}
+
+/* Homepage: exact approved proportions */
+.approved-home{overflow:hidden}
+.approved-home .approved-hero{height:390px;min-height:390px;grid-template-columns:48% 52%}
+.approved-home .approved-hero-copy{padding:46px 34px 24px 38px}
+.approved-home .approved-hero h1{font-size:38px;line-height:1.02;margin:13px 0 13px}
+.approved-home .approved-hero-copy>p{font-size:11.5px;max-width:405px;margin-bottom:18px}
+.approved-home .approved-hero-visual{height:390px;min-height:390px;background:#ddcfb7}
+.approved-home .approved-hero-visual:before{z-index:4;background:linear-gradient(90deg,rgba(255,250,240,.95) 0%,rgba(255,250,240,.58) 8%,rgba(255,250,240,.12) 23%,transparent 36%)}
+.approved-home .approved-hero-dog{z-index:1;left:-1%;top:0;width:66%;height:100%;object-fit:cover;object-position:50% 38%;border-radius:0;filter:saturate(.96) contrast(1.02) brightness(1.01)}
+.approved-home .approved-hero-cat{z-index:2;right:-1%;bottom:0;width:43%;height:100%;object-fit:cover;object-position:50% 40%;border-radius:0;filter:saturate(.96) contrast(1.02) brightness(1.01)}
+.approved-home .approved-dog-tag{left:47%;bottom:10%;z-index:7}
+.approved-home .approved-cat-tag{right:12%;bottom:9%;z-index:7}
+.approved-home .approved-note{right:18px;top:27px;z-index:8;font-size:16px}
+
+.approved-home .approved-how{padding:17px 0 19px}
+.approved-home .approved-how h2{font-size:23px;margin-bottom:12px}
+.approved-home .approved-how-grid{gap:32px}
+.approved-home .approved-how-grid:before{top:25px}
+.approved-home .approved-how-icon{width:45px;height:45px;margin-bottom:8px}
+.approved-home .approved-how-step p{max-width:155px}
+
+.approved-home .approved-designs{padding:18px 0 18px}
+.approved-home .approved-designs h2{font-size:22px}
+.approved-home .approved-design-layout{grid-template-columns:1fr 220px;gap:13px}
+.approved-home .approved-design-grid{gap:8px}
+.approved-home .approved-design-card{padding:7px 6px 6px}
+.approved-home .approved-tag-stage{height:78px}
+.approved-home .approved-design-card .ptag{transform:scale(.76)}
+.approved-home .approved-feature-tag{min-height:198px;padding:10px}
+.approved-home .approved-feature-tag-visual{height:134px}
+.approved-home .approved-feature-tag-visual .ptag{transform:scale(.8)}
+
+/* The lower image in the reference is a compact horizontal lifestyle strip. */
+.approved-home .approved-security{height:235px;min-height:235px;grid-template-columns:50% 50%;overflow:hidden}
+.approved-home .approved-security-photo{height:235px;min-height:235px;overflow:hidden}
+.approved-home .approved-security-photo img{display:block;width:100%;height:235px;object-fit:cover;object-position:center 42%}
+.approved-home .approved-security-copy{height:235px;min-height:235px;padding:31px 28px 20px;overflow:hidden}
+.approved-home .approved-security-copy h2{font-size:26px;margin-bottom:9px}
+.approved-home .approved-security-copy>p{font-size:9.5px;max-width:360px}
+.approved-home .approved-security-points{margin-top:18px}
+.approved-home .approved-security-tag{left:45%;top:47%;bottom:auto;transform:translate(-50%,-50%)}
+
+/* Order wizard: same scale and density as the right-hand reference screens. */
+.reference-order-page{min-height:100vh;background:#f7efe2}
+.reference-order-page .final-wrap{max-width:940px;margin:0 auto;padding:16px 0 42px}
+.reference-order-page .natural-stepper{padding:10px 14px 12px;border-radius:7px 7px 0 0}
+.reference-order-page .stepper .st{font-size:9px}
+.reference-order-page .stepper .st i{width:21px;height:21px;font-size:10px}
+.reference-order-page .natural-order-flow{grid-template-columns:minmax(0,1fr) 238px;gap:10px;padding:0}
+.reference-order-page .natural-panel{padding:17px 16px 18px;border-radius:0 0 7px 7px}
+.reference-order-page .natural-panel h2{font-size:22px;margin-bottom:3px}
+.reference-order-page .natural-panel .sub{font-size:10px;margin-top:3px}
+.reference-order-page .natural-style-grid{grid-template-columns:repeat(4,1fr);gap:8px;margin-top:13px}
+.reference-order-page .natural-style-grid .design{padding:7px 6px 6px;border-radius:6px;min-height:106px}
+.reference-order-page .natural-style-tag{height:69px}
+.reference-order-page .natural-style-tag .ptag{transform:scale(.66)}
+.reference-order-page .grid4 .design .name{font-size:9px;margin-top:4px}
+.reference-order-page .natural-preview{padding:10px;border-radius:7px;min-height:auto}
+.reference-order-page .natural-tag-stage{height:152px;border-radius:6px;margin-bottom:9px}
+.reference-order-page .natural-tag-stage .ptag{transform:scale(.72)}
+.reference-order-page .preview h3{font-size:18px;margin:8px 0 2px}
+.reference-order-page .preview .meta{font-size:9px}
+.reference-order-page .preview ul{font-size:9px;margin:9px 0}
+.reference-order-page .preview .price{font-size:22px;margin-top:8px}
+.reference-order-page .actions{margin-top:14px}
+.reference-order-page .actions .btn{height:42px;padding:0 17px;font-size:12px}
+.reference-order-page .form{margin-top:12px}
+.reference-order-page .form .two{gap:10px}
+.reference-order-page .form .field{margin-bottom:10px}
+.reference-order-page .form .label{font-size:10px}
+.reference-order-page .form .input{min-height:40px;padding:9px 11px;font-size:11px;border-radius:9px}
+.reference-order-page .form textarea.input{min-height:70px}
+.reference-order-page .seg button{min-height:40px;font-size:11px}
+.reference-order-page .upload{min-height:54px;padding:7px 9px}
+
+/* Step 2/3 preview: normal rectangular profile card, never an oval. */
+.reference-order-page .natural-preview .viz{display:block;text-align:center}
+.reference-order-page .natural-pet-preview,.reference-order-page .final-profile-preview,.reference-order-page .preview .ph{position:relative!important;width:100%!important;height:165px!important;min-height:165px!important;max-height:165px!important;aspect-ratio:auto!important;border-radius:9px!important;clip-path:none!important;overflow:hidden!important;background-size:cover!important;background-position:center 38%!important;margin:0!important;transform:none!important;box-shadow:none!important}
+.reference-order-page .natural-preview-tag{position:absolute!important;left:50%!important;right:auto!important;bottom:7px!important;top:auto!important;transform:translateX(-50%) scale(.68)!important;transform-origin:center bottom!important;z-index:4!important}
+.reference-order-page .natural-preview .qrs{display:flex;justify-content:center;gap:24px;margin-top:9px}
+.reference-order-page .natural-preview .qrs span{font-size:8px}
+.reference-order-page .natural-preview .hint{font-size:8.5px!important;margin-top:8px!important}
+.reference-order-page .site-footer{display:none!important}
+
+@media(max-width:900px){
+  .approved-home .approved-hero{height:auto;min-height:0}
+  .approved-home .approved-hero-visual{height:350px;min-height:350px}
+  .approved-home .approved-security{height:auto;min-height:0;grid-template-columns:1fr}
+  .approved-home .approved-security-photo,.approved-home .approved-security-photo img{height:250px;min-height:250px}
+  .approved-home .approved-security-copy{height:auto;min-height:0}
+  .reference-order-page .final-wrap{max-width:none;padding:12px 12px 30px}
+  .reference-order-page .natural-order-flow{grid-template-columns:1fr}
+  .reference-order-page .natural-style-grid{grid-template-columns:repeat(2,1fr)}
+  .reference-order-page .natural-preview{margin-top:10px}
+}
