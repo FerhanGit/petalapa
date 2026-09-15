@@ -8,6 +8,7 @@ import './final-extra.css';
 import './exact-reference.css';
 import './exact-nav.css';
 import './pixel-match.css';
+import './asset-fidelity.css';
 
 const serif = Lora({ subsets: ['latin', 'cyrillic'], weight: ['400', '500', '600'], variable: '--font-serif' });
 const sans = Manrope({ subsets: ['latin', 'cyrillic'], weight: ['400', '500', '600', '700'], variable: '--font-sans' });
