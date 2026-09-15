@@ -14,7 +14,6 @@ export default function PetProfile({ tag, scanId }: { tag: PublicTag; scanId: nu
   const sms = num ? `sms:${num}?body=${encodeURIComponent(`Здравей, намерих ${tag.name ?? 'вашия любимец'}. Локация: `)}` : undefined;
   const med = tag.medical_notes?.split(/[.;]/)[0]?.trim() || 'Няма отбелязана медицинска информация';
   const behaviour = tag.behaviour_notes?.split(/[.;]/)[0]?.trim() || 'Приятелски';
-  const place = 'Sofia, Bulgaria';
 
   return <main className={`ref-public-page${lost?' is-lost':''}`}>
     <ScanBeacon scanId={scanId}/>
@@ -24,12 +23,12 @@ export default function PetProfile({ tag, scanId }: { tag: PublicTag; scanId: nu
       <img className="ref-public-photo" src={tag.photo_url || POODLE} alt={tag.name || 'Домашен любимец'}/>
       <section className="ref-public-body">
         <h1>{tag.name||'Макс'} ✤</h1>
-        <p className="ref-public-meta">{species(tag.species)}{tag.breed?` · ${tag.breed}`:' · Пудел'}<br/>{place}</p>
+        <p className="ref-public-meta">{species(tag.species)}{tag.breed?` · ${tag.breed}`:''}</p>
         <div className="ref-public-chips"><span>{lost?'! Изгубен':'✓ У дома'}</span><span>⚕ Мед. инфо</span><span>♡ {behaviour}</span></div>
         {lost&&<div className="ref-lost-copy">{tag.lost_message || `Ако сте намерили ${tag.name||'този любимец'}, моля свържете се със стопанина възможно най-скоро.`}{tag.reward_text&&<><br/><b>{tag.reward_text}</b></>}</div>}
         <a className={`ref-public-call${lost?' lost':''}`} href={tel}><Ic d={I.phone} size={17}/>{lost?'Обади се на стопанина':'Свържи се със стопанина'}</a>
         <div className="ref-public-info"><div><b>Медицинска информация</b><span>{med}</span></div><div><b>Контакт</b><span>{primary?.phone||'Няма публикуван телефон'}</span></div></div>
-        <a className="ref-public-share" href={sms}><Ic d={I.share} size={16}/> Сподели профила</a>
+        {sms&&<a className="ref-public-share" href={sms}><Ic d={I.share} size={16}/> Сподели профила</a>}
       </section>
     </article>
   </main>;
