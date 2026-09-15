@@ -34,11 +34,11 @@ export function SiteNav() {
   return (
     <header className="topbar"><div className="container nav">
       <PetalapaWordmark />
-      <nav className="links"><a href="/">Начало</a><a href="/order">Дизайни</a><a href="/#how">Как работи</a><a href="/#about">За нас</a><a href="mailto:hello@petalapa.com">Контакт</a></nav>
+      <nav className="links"><a href="/">Начало</a><a href="/#designs">Дизайни</a><a href="/#how">Как работи</a><a href="/#about">За нас</a><a href="/#about">Блог</a></nav>
       <div className="navr">
-        <a href="/#designs" className="icbtn" aria-label="Дизайни"><Ic d={I.search} size={17} /></a>
-        <a href="/dashboard" className="icbtn" aria-label="Моят профил"><Ic d={I.user} size={17} /></a>
-        <a href="/order" className="icbtn" aria-label="Поръчка"><Ic d={I.cart} size={17} /></a>
+        <a href="/#designs" className="icbtn" aria-label="Търсене"><Ic d={I.search} size={18} /></a>
+        <a href="/dashboard" className="icbtn" aria-label="Моят профил"><Ic d={I.user} size={18} /></a>
+        <a href="/order" className="icbtn" aria-label="Поръчай"><Ic d={I.cart} size={18} /></a>
       </div>
     </div></header>
   );
@@ -48,9 +48,10 @@ export function SiteFooter() {
   return (
     <footer className="site-footer"><div className="container">
       <PetalapaWordmark compact />
-      <nav className="links"><a href="/">Начало</a><a href="/order">Дизайни</a><a href="/#how">Как работи</a><a href="/#about">За нас</a><a href="mailto:hello@petalapa.com">Контакт</a></nav>
+      <span className="footer-love">С любов към животните. И към хората, които се грижат за тях. ♡</span>
+      <nav className="links"><a href="/#about">За нас</a><a href="mailto:hello@petalapa.com">Доставка</a><a href="mailto:hello@petalapa.com">Връщане</a><a href="mailto:hello@petalapa.com">Контакти</a></nav>
       <div className="social"><a href="https://instagram.com/petalapa" aria-label="Instagram"><Ic d={I.ig} size={18} /></a><a href="https://facebook.com/petalapa" aria-label="Facebook"><Ic d={I.fb} size={18} /></a></div>
-      <span className="copy">© 2026 petalapa. Ръчно изработени тагове за любимци.</span>
+      <span className="copy">© 2026 petalapa</span>
     </div></footer>
   );
 }
