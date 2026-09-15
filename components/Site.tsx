@@ -32,13 +32,13 @@ export const I = {
 
 export function SiteNav() {
   return (
-    <header className="topbar"><div className="container nav">
+    <header className="ref-topbar"><div className="ref-shell ref-nav">
       <PetalapaWordmark />
-      <nav className="links"><a href="/">Начало</a><a href="/#designs">Дизайни</a><a href="/#how">Как работи</a><a href="/#about">За нас</a><a href="mailto:hello@petalapa.com">Контакт</a></nav>
-      <div className="navr">
-        <a href="/#designs" className="icbtn" aria-label="Търсене"><Ic d={I.search} size={18} /></a>
-        <a href="/order" className="icbtn" aria-label="Количка"><Ic d={I.cart} size={18} /></a>
-        <a href="/order" className="final-nav-order">Поръчай</a>
+      <nav className="ref-nav-links"><a href="/">Начало</a><a href="/#designs">Тагове</a><a href="/#why">Как работи</a><a href="/#why">За нас</a><a href="mailto:hello@petalapa.com">Контакт</a></nav>
+      <div className="ref-nav-actions">
+        <a href="/#designs" aria-label="Търсене"><Ic d={I.search} size={19}/></a>
+        <a href="/dashboard" aria-label="Профил"><Ic d={I.user} size={19}/></a>
+        <a className="ref-cart" href="/order" aria-label="Количка"><Ic d={I.cart} size={19}/><b>0</b></a>
       </div>
     </div></header>
   );
@@ -46,12 +46,11 @@ export function SiteNav() {
 
 export function SiteFooter() {
   return (
-    <footer className="site-footer"><div className="container">
+    <footer className="ref-footer"><div className="ref-shell ref-footer-inner">
       <PetalapaWordmark compact />
-      <span className="footer-love">С любов към животните. И към хората, които се грижат за тях. ♡</span>
-      <nav className="links"><a href="/#about">За нас</a><a href="mailto:hello@petalapa.com">Доставка</a><a href="mailto:hello@petalapa.com">Връщане</a><a href="mailto:hello@petalapa.com">Контакти</a></nav>
-      <div className="social"><a href="https://instagram.com/petalapa" aria-label="Instagram"><Ic d={I.ig} size={18} /></a><a href="https://facebook.com/petalapa" aria-label="Facebook"><Ic d={I.fb} size={18} /></a></div>
-      <span className="copy">© 2026 petalapa</span>
+      <span>Защото всеки любимец заслужава да бъде намерен. ♡</span>
+      <nav><a href="/#why">За нас</a><a href="mailto:hello@petalapa.com">Доставка</a><a href="mailto:hello@petalapa.com">Връщане</a><a href="mailto:hello@petalapa.com">Контакти</a></nav>
+      <div><a href="https://instagram.com/petalapa" aria-label="Instagram"><Ic d={I.ig} size={17}/></a><a href="https://facebook.com/petalapa" aria-label="Facebook"><Ic d={I.fb} size={17}/></a></div>
     </div></footer>
   );
 }

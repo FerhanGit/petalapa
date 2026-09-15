@@ -6,12 +6,10 @@ export const metadata = { title: 'Поръчка · petalapa' };
 
 export default function OrderPage() {
   return (
-    <main className="approved-site reference-order-page">
+    <main className="ref-order-page">
       <SiteNav />
-      <div className="final-wrap">
-        <section className="final-order-form-section">
-          <Suspense><OrderFlow /></Suspense>
-        </section>
+      <div className="ref-shell ref-order-shell">
+        <Suspense><OrderFlow /></Suspense>
       </div>
     </main>
   );
