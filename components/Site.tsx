@@ -38,7 +38,8 @@ export function SiteNav() {
       <div className="navr">
         <a href="/#designs" className="icbtn" aria-label="Търсене"><Ic d={I.search} size={18} /></a>
         <a href="/dashboard" className="icbtn" aria-label="Моят профил"><Ic d={I.user} size={18} /></a>
-        <a href="/order" className="icbtn" aria-label="Поръчай"><Ic d={I.cart} size={18} /></a>
+        <a href="/order" className="icbtn" aria-label="Количка"><Ic d={I.cart} size={18} /></a>
+        <a href="/order" className="final-nav-order">Поръчай</a>
       </div>
     </div></header>
   );
