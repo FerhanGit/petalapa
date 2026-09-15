@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import { STYLES, PhotoTag, IMG } from '@/components/PhotoTag';
 import { SiteNav, SiteFooter, Ic, I } from '@/components/Site';
 
@@ -28,7 +27,7 @@ export default function Landing() {
             </div>
             <div className="final-hero-media">
               <img className="final-lagotto" src={LAGOTTO_HERO} alt="Lagotto Romagnolo с кръгъл petalapa таг" />
-              <Image className="final-cat" src={IMG.cat} alt="Котка с кръгъл petalapa таг" fill sizes="330px" />
+              <img className="final-cat" src={IMG.cat} alt="Котка с кръгъл petalapa таг" />
               <div className="final-dog-tag"><PhotoTag s={forest} size={74} qr={false} nfc={false} /></div>
               <div className="final-cat-tag"><PhotoTag s={cherry} size={58} qr={false} nfc={false} /></div>
               <div className="final-hand">Малки медальони.<br />Голямо спокойствие. ♡</div>
