@@ -12,22 +12,23 @@ export default function PetProfile({ tag, scanId }: { tag: PublicTag; scanId: nu
   const num = primary?.phone?.replace(/\s+/g, '');
   const tel = num ? `tel:${num}` : undefined;
   const sms = num ? `sms:${num}?body=${encodeURIComponent(`Здравей, намерих ${tag.name ?? 'вашия любимец'}. Локация: `)}` : undefined;
-  const med = tag.medical_notes?.split(/[.;]/)[0]?.trim() || 'Няма данни';
+  const med = tag.medical_notes?.split(/[.;]/)[0]?.trim() || 'Няма отбелязана медицинска информация';
   const behaviour = tag.behaviour_notes?.split(/[.;]/)[0]?.trim() || 'Приятелски';
+  const place = 'Sofia, Bulgaria';
 
   return <main className={`ref-public-page${lost?' is-lost':''}`}>
     <ScanBeacon scanId={scanId}/>
     <article className="ref-public-phone">
       <header><PetalapaWordmark compact/><div><Ic d={I.search} size={17}/><span>☰</span></div></header>
-      {lost&&<div className="ref-lost-banner">✤ ИЗГУБЕН</div>}
+      {lost&&<div className="ref-lost-banner">✤ ИЗГУБЕН ЛЮБИМЕЦ</div>}
       <img className="ref-public-photo" src={tag.photo_url || POODLE} alt={tag.name || 'Домашен любимец'}/>
       <section className="ref-public-body">
         <h1>{tag.name||'Макс'} ✤</h1>
-        <p className="ref-public-meta">{species(tag.species)}{tag.breed?` · ${tag.breed}`:' · Пудел'} · 3 г.<br/>Sofia, Bulgaria</p>
-        <div className="ref-public-chips"><span>✓ У дома</span><span>⚕ Пълен</span><span>♡ {behaviour}</span></div>
-        {lost&&<div className="ref-lost-copy">Ако сте намерили {tag.name||'Макс'},<br/>моля свържете се със стопанина му.</div>}
-        <a className={`ref-public-call${lost?' lost':''}`} href={tel}><Ic d={I.phone} size={17}/>Свържи се със стопанина</a>
-        <div className="ref-public-info"><div><b>Медицинска информация</b><span>{med}</span></div><div><b>Контакт</b><span>{primary?.phone||'+359 88 123 4567'}</span></div></div>
+        <p className="ref-public-meta">{species(tag.species)}{tag.breed?` · ${tag.breed}`:' · Пудел'}<br/>{place}</p>
+        <div className="ref-public-chips"><span>{lost?'! Изгубен':'✓ У дома'}</span><span>⚕ Мед. инфо</span><span>♡ {behaviour}</span></div>
+        {lost&&<div className="ref-lost-copy">{tag.lost_message || `Ако сте намерили ${tag.name||'този любимец'}, моля свържете се със стопанина възможно най-скоро.`}{tag.reward_text&&<><br/><b>{tag.reward_text}</b></>}</div>}
+        <a className={`ref-public-call${lost?' lost':''}`} href={tel}><Ic d={I.phone} size={17}/>{lost?'Обади се на стопанина':'Свържи се със стопанина'}</a>
+        <div className="ref-public-info"><div><b>Медицинска информация</b><span>{med}</span></div><div><b>Контакт</b><span>{primary?.phone||'Няма публикуван телефон'}</span></div></div>
         <a className="ref-public-share" href={sms}><Ic d={I.share} size={16}/> Сподели профила</a>
       </section>
     </article>
