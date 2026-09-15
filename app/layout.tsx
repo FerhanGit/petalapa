@@ -16,6 +16,7 @@ import './approved-reference-patch.css';
 import './final-reference-v2.css';
 import './master-reference.css';
 import './approved-master.css';
+import './approved-interiors.css';
 
 const serif=Lora({subsets:['latin','cyrillic'],weight:['400','500','600'],variable:'--font-serif'});
 const sans=Manrope({subsets:['latin','cyrillic'],weight:['400','500','600','700'],variable:'--font-sans'});
