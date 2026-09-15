@@ -18,17 +18,20 @@ export default function PetProfile({ tag, scanId }: { tag: PublicTag; scanId: nu
   return <main className={`ref-public-page${lost?' is-lost':''}`}>
     <ScanBeacon scanId={scanId}/>
     <article className="ref-public-phone">
-      <header><PetalapaWordmark compact/><div><Ic d={I.search} size={17}/><span>☰</span></div></header>
-      {lost&&<div className="ref-lost-banner">✤ ИЗГУБЕН ЛЮБИМЕЦ</div>}
-      <img className="ref-public-photo" src={tag.photo_url || POODLE} alt={tag.name || 'Домашен любимец'}/>
+      <header><PetalapaWordmark compact/><div><Ic d={I.share} size={17}/></div></header>
+      {lost&&<div className="ref-lost-banner">! ИЗГУБЕН ЛЮБИМЕЦ</div>}
+      <div className="ref-public-photo-wrap">
+        <img className="ref-public-photo" src={tag.photo_url || POODLE} alt={tag.name || 'Домашен любимец'}/>
+        {lost&&<span className="ref-lost-photo-badge">ПОМОГНЕТЕ МИ ДА СЕ ПРИБЕРА</span>}
+      </div>
       <section className="ref-public-body">
-        <h1>{tag.name||'Макс'} ✤</h1>
+        <h1>{tag.name||'Макс'} <span>✤</span></h1>
         <p className="ref-public-meta">{species(tag.species)}{tag.breed?` · ${tag.breed}`:''}</p>
         <div className="ref-public-chips"><span>{lost?'! Изгубен':'✓ У дома'}</span><span>⚕ Мед. инфо</span><span>♡ {behaviour}</span></div>
-        {lost&&<div className="ref-lost-copy">{tag.lost_message || `Ако сте намерили ${tag.name||'този любимец'}, моля свържете се със стопанина възможно най-скоро.`}{tag.reward_text&&<><br/><b>{tag.reward_text}</b></>}</div>}
+        {lost&&<div className="ref-lost-copy"><b>Този любимец е изгубен.</b><br/>{tag.lost_message || `Ако сте намерили ${tag.name||'този любимец'}, моля свържете се със стопанина възможно най-скоро.`}{tag.reward_text&&<><br/><strong>{tag.reward_text}</strong></>}</div>}
         <a className={`ref-public-call${lost?' lost':''}`} href={tel}><Ic d={I.phone} size={17}/>{lost?'Обади се на стопанина':'Свържи се със стопанина'}</a>
         <div className="ref-public-info"><div><b>Медицинска информация</b><span>{med}</span></div><div><b>Контакт</b><span>{primary?.phone||'Няма публикуван телефон'}</span></div></div>
-        {sms&&<a className="ref-public-share" href={sms}><Ic d={I.share} size={16}/> Сподели профила</a>}
+        {sms&&<a className="ref-public-share" href={sms}><Ic d={I.share} size={16}/> Изпрати съобщение</a>}
       </section>
     </article>
   </main>;
