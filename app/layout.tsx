@@ -12,6 +12,7 @@ import './asset-fidelity.css';
 import './natural-visuals.css';
 import './sharp-fix.css';
 import './approved-reference.css';
+import './approved-reference-patch.css';
 
 const serif = Lora({ subsets: ['latin', 'cyrillic'], weight: ['400', '500', '600'], variable: '--font-serif' });
 const sans = Manrope({ subsets: ['latin', 'cyrillic'], weight: ['400', '500', '600', '700'], variable: '--font-sans' });
