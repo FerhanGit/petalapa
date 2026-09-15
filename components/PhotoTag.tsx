@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { PawMark } from './Brand';
 
 export const ASSETS = 'https://rduelwbqucfatmbltqic.supabase.co/storage/v1/object/public/pets/assets';
-export const IMG = { hero: `${ASSETS}/hero-sunset.jpg`, hero2: `${ASSETS}/hero-meadow.jpg`, cat: `${ASSETS}/cat.jpg`, sand: `${ASSETS}/sand.jpg` };
+export const IMG = { hero: `${ASSETS}/hero-sunset.jpg`, heroDog: `${ASSETS}/hero-dog.jpg`, hero2: `${ASSETS}/hero-meadow.jpg`, cat: `${ASSETS}/cat.jpg`, sand: `${ASSETS}/sand.jpg` };
 
 export type TagStyle = { slug: string; name: string; tex: string; pos?: string; overlay?: 'paw' | 'heart' | 'none'; ink?: string; price: number; sub: string };
 export const STYLES: TagStyle[] = [
@@ -17,7 +17,6 @@ export const STYLES: TagStyle[] = [
 ];
 export const PRICE: Record<string, number> = Object.fromEntries(STYLES.map((s) => [s.slug, s.price]));
 
-// Снимка на тага: реална текстура (лицензирана от Adobe Stock) в кръг, златна халка, гланц и сянка – като продуктова снимка.
 export function PhotoTag({ s, size = 160, qr = true, nfc = true, priority = false }: { s: TagStyle; size?: number | string; qr?: boolean; nfc?: boolean; priority?: boolean }) {
   const px = typeof size === 'number' ? size : 200;
   return (
@@ -36,7 +35,7 @@ export function PhotoTag({ s, size = 160, qr = true, nfc = true, priority = fals
     </div>
   );
 }
-// Продуктова снимка: тагът върху реален пясък
+
 export function ProductShot({ s, size = '62%', qr = false, className = '' }: { s: TagStyle; size?: number | string; qr?: boolean; className?: string }) {
   return (
     <div className={`shot ${className}`}>
