@@ -1,5 +1,5 @@
 import { Suspense } from 'react';
-import { SiteNav, SiteFooter } from '@/components/Site';
+import { SiteNav } from '@/components/Site';
 import OrderFlow from './OrderFlow';
 
 export const metadata = { title: 'Поръчка · petalapa' };
@@ -13,7 +13,6 @@ export default function OrderPage() {
           <Suspense><OrderFlow /></Suspense>
         </section>
       </div>
-      <SiteFooter />
     </main>
   );
 }
