@@ -1,20 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import { Lora, Manrope, Caveat } from 'next/font/google';
 import './globals.css';
-import './brand-refresh.css';
-import './hero-fade.css';
-import './final-design.css';
-import './final-extra.css';
-import './exact-reference.css';
-import './exact-nav.css';
-import './pixel-match.css';
-import './asset-fidelity.css';
-import './natural-visuals.css';
-import './sharp-fix.css';
-import './approved-reference.css';
-import './approved-reference-patch.css';
-import './final-reference-v2.css';
-import './master-reference.css';
 import './approved-master.css';
 import './approved-interiors.css';
 
