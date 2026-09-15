@@ -1,1 +1,1 @@
-Strict homepage match to the supplied reference screenshot. No extra homepage sections. Hero keeps Lagotto Romagnolo and tabby cat. Lower security section uses Cavalier King Charles Spaniel.
+Final natural visual pass is staged in branch feat/final-natural-visuals. Homepage, order flow, and public pet profile now use local natural assets and realistic resin-tag imagery.
