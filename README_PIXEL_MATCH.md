@@ -1,1 +1,1 @@
-Homepage pixel-match pass based strictly on the supplied reference screenshot. No structural additions beyond the reference composition.
+Natural visual pass staged.
