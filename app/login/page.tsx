@@ -2,7 +2,7 @@
 
 import { FormEvent, useState } from 'react';
 import { createClient } from '@supabase/supabase-js';
-import { PetalapaWordmark } from '@/components/ModernBrand';
+import { Wordmark } from '@/components/Brand';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -38,7 +38,7 @@ export default function LoginPage() {
   return (
     <main className="login-shell">
       <section className="login-card">
-        <PetalapaWordmark />
+        <Wordmark sub />
         <h1>Твоят petalapa профил</h1>
         <p className="sub">Влез без парола. Ще изпратим защитен линк на имейла, с който е активиран тагът ти.</p>
 

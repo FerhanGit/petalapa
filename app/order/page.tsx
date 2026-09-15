@@ -1,16 +1,7 @@
 import { Suspense } from 'react';
-import { SiteNav } from '@/components/Site';
+import { SiteNav, SiteFooter } from '@/components/Site';
 import OrderFlow from './OrderFlow';
-
-export const metadata = { title: 'Поръчка · petalapa' };
-
+export const metadata = { title: 'Създай своя таг · petalapa' };
 export default function OrderPage() {
-  return (
-    <main className="ref-order-page">
-      <SiteNav />
-      <div className="ref-shell ref-order-shell">
-        <Suspense><OrderFlow /></Suspense>
-      </div>
-    </main>
-  );
+  return (<main><SiteNav /><div className="container"><Suspense><OrderFlow /></Suspense></div><SiteFooter /></main>);
 }

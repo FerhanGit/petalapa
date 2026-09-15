@@ -1,17 +1,65 @@
-import { SiteNav, Ic, I } from '@/components/Site';
-import { PetalapaWordmark } from '@/components/ModernBrand';
-import { ReferenceTag, type TagVariant } from '@/components/ReferenceTag';
-import { PhotoTag, STYLES } from '@/components/PhotoTag';
+import Image from 'next/image';
+import { STYLES } from '@/components/Brand';
+import { SiteNav, SiteFooter, Ic, I } from '@/components/Site';
+import DesignGrid from '@/components/DesignGrid';
 
-const DOG='https://images.pexels.com/photos/4626495/pexels-photo-4626495.jpeg?auto=compress&cs=tinysrgb&w=1400';
-const CAT='https://commons.wikimedia.org/wiki/Special:Redirect/file/Cat003.jpg';
-const TAGS:Array<{variant:TagVariant;name:string;slug:string}>=[{variant:'ocean',name:'Ocean',slug:'ocean'},{variant:'classic',name:'Forest',slug:'forest'},{variant:'galaxy',name:'Galaxy',slug:'galaxy'},{variant:'floral',name:'Floral',slug:'floral'},{variant:'natural',name:'Wood',slug:'wood'},{variant:'premium',name:'Minimal',slug:'minimal'},{variant:'premium',name:'Marble',slug:'love'},{variant:'custom',name:'Custom',slug:'custom'}];
-const ocean=STYLES.find(s=>s.slug==='ocean')??STYLES[0];
+export default function Landing() {
+  return (
+    <main>
+      <SiteNav />
+      <div className="container">
+        <section className="hero">
+          <div>
+            <span className="eyebrow">MORE THAN A TAG</span>
+            <h1 className="h-hero">Малък таг.<br />Голяма<br />сигурност.</h1>
+            <p className="lead">Стилен NFC таг с персонален профил за твоя любимец.</p>
+            <div className="cta-row"><a className="btn btn-primary" href="#designs">Разгледай дизайните <Ic d={I.arrow} size={18} /></a></div>
+            <div className="hand">За тях<br />винаги! ♡</div>
+          </div>
+          <div className="hero-photo"><Image src="/img/hero-pets.jpg" alt="Куче и котка с тагове petalapa" fill priority sizes="(max-width: 900px) 100vw, 50vw" style={{ objectFit: 'cover', objectPosition: '50% 30%' }} /></div>
+        </section>
+        <div className="features">
+          {[[I.grid, 'Бърз достъп'], [I.nfc, 'NFC + QR'], [I.shieldp, 'Персонален профил'], [I.shield, 'Сигурност']].map(([d, t]) => (<div className="feature" key={t}><div className="ic"><Ic d={d} size={22} /></div>{t}</div>))}
+        </div>
 
-export default function Landing(){return <main className="master-home"><SiteNav/>
-<section className="master-hero master-shell"><div className="master-hero-copy"><PetalapaWordmark/><span className="master-eyebrow">РЪЧНО ИЗРАБОТЕН ЕПОКСИДЕН ТАГ · NFC + QR</span><h1>Красив таг.<br/>Умен начин да намерите своя любимец.</h1><p>Уникален кръгъл таг, изработен на ръка, с персонален профил, който се отваря с едно докосване или сканиране.</p><a href="/order" className="master-cta">Създай своя таг <Ic d={I.arrow} size={17}/></a></div><div className="master-hero-pets"><div><img src={DOG} alt="Сладко куче с petalapa таг"/><span><ReferenceTag variant="ocean" size={58}/></span></div><div><img src={CAT} alt="Котка с petalapa таг"/><span><ReferenceTag variant="floral" size={46}/></span></div><em>Красиво отвън.<br/>Умно отвътре. ♡</em></div></section>
-<section className="master-benefits master-shell"><article><i><Ic d={I.resin}/></i><div><b>Ръчна изработка</b><small>всеки таг е уникален</small></div></article><article><i><Ic d={I.nfc}/></i><div><b>NFC + QR</b><small>два начина за достъп</small></div></article><article><i><Ic d={I.shield}/></i><div><b>Персонален профил</b><small>контакт при нужда</small></div></article></section>
-<section className="master-how master-shell" id="how"><header><span>КАК РАБОТИ?</span><h2>Три лесни стъпки.</h2><p>Без приложение. Без абонамент. Просто таг, който винаги е с любимеца.</p></header><div className="master-how-grid"><article><strong>1</strong><i><Ic d={I.resin}/></i><h3>Избери дизайн</h3><p>Избери стила, който подхожда на твоя любимец.</p></article><article><strong>2</strong><i><Ic d={I.profile}/></i><h3>Добави информация</h3><p>Име, снимка и данните, които искаш да бъдат видими.</p></article><article><strong>3</strong><i><Ic d={I.heart}/></i><h3>Поръчай</h3><p>Ние изработваме твоя таг на ръка и го свързваме с профила.</p></article></div></section>
-<section className="master-designs master-shell" id="designs"><header><div><span>НАШИТЕ ДИЗАЙНИ</span><h2>Избери стил на таг</h2></div><p>Всеки таг е уникален — изработен на ръка от епоксидна смола.</p></header><div className="master-design-layout"><div className="master-tag-grid">{TAGS.map(t=><a href={`/order?style=${t.slug}`} key={t.name}><ReferenceTag variant={t.variant} size={92}/><b>{t.name} →</b></a>)}</div><aside className="master-product"><PhotoTag s={ocean} size={270} qr nfc/><div className="master-callout nfc"><i><Ic d={I.nfc}/></i><b>NFC чип</b><small>скрит в смолата</small></div><div className="master-callout qr"><i><Ic d={I.qr}/></i><b>QR код</b><small>за лесен достъп</small></div></aside></div></section>
-<section className="master-security master-shell" id="security"><div className="master-security-photo"><img src={CAT} alt="Котка с кръгъл petalapa таг"/><span><ReferenceTag variant="floral" size={56}/></span><em>За тях винаги! ♡</em></div><div className="master-security-copy"><span>ПОВЕЧЕ СИГУРНОСТ</span><h2>По-малко тревоги.</h2><p>Ако някой намери любимеца ти, контактът с теб е на едно докосване разстояние.</p><div className="master-security-list"><article><i><Ic d={I.resin}/></i><div><b>Уникален дизайн</b><small>Всеки таг е ръчно изработен</small></div></article><article><i><Ic d={I.nfc}/></i><div><b>NFC + QR</b><small>Два начина за достъп</small></div></article><article><i><Ic d={I.shield}/></i><div><b>Безопасност</b><small>Помага при изгубване</small></div></article><article><i><Ic d={I.share}/></i><div><b>Директна връзка</b><small>Бързо със стопанина</small></div></article></div></div><div className="master-phone"><div><PetalapaWordmark compact/><img src={DOG} alt="Примерен профил на любимец"/><h3>Макс ✤</h3><p>Пудел · 3 г.<br/>България</p><button type="button">Свържи се със стопанина</button><small>Медицинска информация<br/>Алергии: пилешко</small></div></div></section>
-<footer className="master-footer master-shell"><PetalapaWordmark light/><p>Защото всеки любимец<br/>заслужава да бъде намерен. ♡</p><a href="/order">Създай своя таг →</a></footer></main>}
+        <section className="section how" id="how">
+          <div>
+            <h2 className="h-section">Как работи?</h2>
+            <p className="sub">Само 4 лесни стъпки, за да бъде твоят любимец винаги в безопасност.</p>
+            <div className="timeline">
+              {[[I.palette, 'Избери дизайн', 'Стилен таг, който подхожда на твоя любимец.'], [I.pen, 'Персонализирай', 'Добави информация и снимка.'], [I.tool, 'Ние го изработваме', 'С внимание към всеки детайл.'], [I.shield, 'Винаги свързани', 'При сканиране – достъп до профила на твоя любимец.']].map(([d, t, s], i) => (
+                <div className="tstep" key={t}><div className="ic"><Ic d={d} size={24} /></div><div><b><span className="n">{i + 1}</span>{t}</b><span>{s}</span></div></div>
+              ))}
+            </div>
+          </div>
+          <div className="how-photo"><Image src="/img/hero-dog.jpg" alt="Куче с таг Ocean" fill sizes="(max-width: 900px) 100vw, 50vw" style={{ objectFit: 'cover', objectPosition: '50% 20%' }} /><div className="bubble">Лесно, бързо,<br />сигурно!</div></div>
+        </section>
+
+        <section className="section" id="designs">
+          <h2 className="h-section">Избери стил</h2>
+          <p className="sub">Всеки дизайн разказва история. Кой е твоят?</p>
+          <DesignGrid styles={STYLES} />
+        </section>
+
+        <section className="section about" id="about">
+          <div>
+            <h2 className="h-section">Повече от таг.<br />Истинска сигурност.</h2>
+            <div className="sec-list">
+              {[[I.bolt, 'Мигновен достъп', 'NFC + QR за всеки случай'], [I.shield, 'Помага при изгубване', 'Бързо събира хората и любимците'], [I.heart, 'Лесна връзка', 'Всеки може да се свърже с теб'], [I.lock, 'Дискретност', 'Ти избираш каква информация да показва']].map(([d, b, s]) => (<div key={b}><div className="ic"><Ic d={d} size={20} /></div><div><b>{b}</b><span>{s}</span></div></div>))}
+            </div>
+            <div className="cta-row"><a className="btn btn-primary" href="/t/demo">Виж примерен профил</a></div>
+          </div>
+          <div className="phone"><div className="p-inner">
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '4px 2px' }}><span style={{ fontWeight: 800, color: 'var(--green)' }}>pet<span style={{ color: 'var(--gold)' }}>🐾</span>lapa</span><Ic d={I.menu} size={16} /></div>
+            <div className="p-photo"><Image src="/img/hero-dog.jpg" alt="" fill sizes="300px" style={{ objectFit: 'cover', objectPosition: '50% 25%' }} /></div>
+            <div><b style={{ fontSize: 17, color: 'var(--green)' }}>Макс</b><div style={{ fontSize: 11, color: 'var(--text-3)' }}>Labradoodle · 3 г.</div></div>
+            <div className="p-chips"><span>Приятелски</span><span>Обича хора</span></div>
+            <div className="btn btn-primary btn-block" style={{ height: 38, fontSize: 12 }}>Свържи се със стопанина</div>
+            <div className="p-loc"><Ic d={I.pin} size={14} />София, България · преди 2 ч.</div>
+          </div></div>
+        </section>
+      </div>
+      <SiteFooter />
+    </main>
+  );
+}

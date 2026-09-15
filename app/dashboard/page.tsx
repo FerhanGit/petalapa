@@ -1,6 +1,6 @@
 import { redirect } from 'next/navigation';
 import { admin, serverClient } from '@/lib/supabase';
-import { PetalapaWordmark } from '@/components/ModernBrand';
+import { Wordmark } from '@/components/Brand';
 import LostToggle from './LostToggle';
 
 export const dynamic = 'force-dynamic';
@@ -42,7 +42,7 @@ export default async function Dashboard() {
   return (
     <main className="pscreen" style={{ padding: '24px 20px 30px', gap: 18 }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 14 }}>
-        <PetalapaWordmark compact />
+        <Wordmark size={20} />
         <a className="link" href="/auth/signout" style={{ fontSize: 12 }}>Изход</a>
       </div>
 

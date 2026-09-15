@@ -1,1 +1,0 @@
-Strict homepage match to the supplied reference screenshot. No extra homepage sections. Hero keeps Lagotto Romagnolo and tabby cat. Lower security section uses Cavalier King Charles Spaniel.

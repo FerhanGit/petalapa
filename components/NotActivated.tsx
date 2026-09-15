@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import { PetalapaWordmark } from './ModernBrand';
+import { Wordmark } from './Brand';
 import ActivateForm from './ActivateForm';
 
 export default function NotActivated({ tagId, presetName }: { tagId: string; presetName?: string | null }) {
@@ -19,7 +19,7 @@ export default function NotActivated({ tagId, presetName }: { tagId: string; pre
 
   return (
     <main className="pscreen pad">
-      <PetalapaWordmark compact />
+      <Wordmark size={20} />
       <div style={{ width: 140, height: 140, borderRadius: '50%', margin: '40px auto 0', background: 'repeating-linear-gradient(135deg,#E9DCC3 0 10px,#F1E7D3 10px 20px)', border: '6px solid var(--surface)', boxShadow: '0 10px 30px rgba(70,50,20,.12)' }} />
       <h1 style={{ marginTop: 28, fontSize: 30, lineHeight: 1.1, textAlign: 'center', textWrap: 'pretty' }}>Този таг още не е активиран.</h1>
       <p className="lead" style={{ fontSize: 15, color: 'var(--text-3)', textAlign: 'center', marginTop: 10 }}>Ако е твой – въведи 6-знаковия код от картончето в кутийката.</p>

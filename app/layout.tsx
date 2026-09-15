@@ -1,13 +1,15 @@
 import type { Metadata, Viewport } from 'next';
-import { Lora, Manrope, Caveat } from 'next/font/google';
+import { Manrope, Caveat } from 'next/font/google';
 import './globals.css';
-import './approved-master.css';
-import './approved-interiors.css';
-import './production-finish.css';
-
-const serif=Lora({subsets:['latin','cyrillic'],weight:['400','500','600'],variable:'--font-serif'});
-const sans=Manrope({subsets:['latin','cyrillic'],weight:['400','500','600','700'],variable:'--font-sans'});
-const hand=Caveat({subsets:['latin','cyrillic'],weight:['500'],variable:'--font-hand'});
-export const metadata:Metadata={metadataBase:new URL('https://petalapa.com'),title:'petalapa · Ръчно изработен таг за твоя любимец',description:'Уникални кръгли епоксидни тагове за домашни любимци с NFC, QR код и персонален дигитален профил.',openGraph:{title:'petalapa · Повече от таг',description:'Ръчно изработени кръгли епоксидни тагове за любимци с дискретен NFC + QR профил.',url:'https://petalapa.com',siteName:'petalapa',locale:'bg_BG',type:'website'}};
-export const viewport:Viewport={themeColor:'#F8F3EA',width:'device-width',initialScale:1};
-export default function RootLayout({children}:{children:React.ReactNode}){return <html lang="bg" className={`${serif.variable} ${sans.variable} ${hand.variable}`}><body>{children}</body></html>}
+const sans = Manrope({ subsets: ['latin', 'cyrillic'], weight: ['400', '500', '600', '700', '800'], variable: '--font-sans' });
+const hand = Caveat({ subsets: ['latin', 'cyrillic'], weight: ['500', '600'], variable: '--font-hand' });
+export const metadata: Metadata = {
+  metadataBase: new URL('https://petalapa.com'),
+  title: 'petalapa · Малък таг. Голяма сигурност.',
+  description: 'Стилен NFC таг с персонален профил за твоя любимец. Ръчно залят в епоксидна смола, с NFC чип и QR код.',
+  openGraph: { title: 'petalapa · More than a tag', description: 'Ръчно изработени епоксидни тагове с NFC + QR профил.', url: 'https://petalapa.com', siteName: 'petalapa', locale: 'bg_BG', type: 'website', images: ['/img/hero-pets.jpg'] },
+};
+export const viewport: Viewport = { themeColor: '#F8F5EE', width: 'device-width', initialScale: 1 };
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (<html lang="bg" className={`${sans.variable} ${hand.variable}`}><body>{children}</body></html>);
+}

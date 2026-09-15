@@ -1,43 +1,163 @@
 'use client';
 import { useMemo, useState } from 'react';
+import Image from 'next/image';
 import { useSearchParams } from 'next/navigation';
-import { STYLES, PRICE, type TagStyle } from '@/components/PhotoTag';
-import { ReferenceTag, type TagVariant } from '@/components/ReferenceTag';
+import { STYLES, type TagStyle } from '@/components/Brand';
 import { Ic, I } from '@/components/Site';
+import DesignGrid from '@/components/DesignGrid';
 
-const STEPS = ['Дизайн', 'Информация', 'Стопанин', 'Плащане'];
-const SHIP = 4.9;
-const TAG_VARIANTS: Record<string, TagVariant> = { ocean:'ocean', forest:'classic', galaxy:'galaxy', floral:'floral', wood:'natural', minimal:'premium', love:'premium', custom:'custom' };
-const DISPLAY_STYLES: Array<{ style: TagStyle; label: string; variant: TagVariant }> = [
-  { style: STYLES.find(s=>s.slug==='ocean')!, label:'Ocean', variant:'ocean' }, { style: STYLES.find(s=>s.slug==='forest')!, label:'Forest', variant:'classic' },
-  { style: STYLES.find(s=>s.slug==='galaxy')!, label:'Galaxy', variant:'galaxy' }, { style: STYLES.find(s=>s.slug==='floral')!, label:'Floral', variant:'floral' },
-  { style: STYLES.find(s=>s.slug==='wood')!, label:'Wood', variant:'natural' }, { style: STYLES.find(s=>s.slug==='minimal')!, label:'Minimal', variant:'premium' },
-  { style: STYLES.find(s=>s.slug==='love')!, label:'Marble', variant:'premium' }, { style: STYLES.find(s=>s.slug==='custom')!, label:'Custom', variant:'custom' },
-];
-type Pet = { name:string; species:'dog'|'cat'|'other'; breed:string; age:string; sex:'m'|'f'; medical:string; allergies:string; notes:string; pubBasic:boolean; pubContact:boolean };
-type Owner = { name:string; phone:string; email:string; address:string; city:string };
-type PayMethod='card'|'cod';
+const STEPS = ['Дизайн', 'Информация', 'Стопанин', 'Доставка', 'Плащане'];
+const SHIP = 5.9;
+type Pet = { name: string; species: 'dog' | 'cat' | 'other'; breed: string; birth: string; sex: 'm' | 'f'; medical: string; notes: string; pubFirstOnly: boolean };
+type Owner = { name: string; phone: string; email: string; address: string; city: string; firstOnly: boolean };
 
-export default function OrderFlow(){
- const sp=useSearchParams(); const [step,setStep]=useState(0); const [style,setStyle]=useState(STYLES.find(s=>s.slug===sp.get('style'))??STYLES.find(s=>s.slug==='ocean')??STYLES[0]);
- const [pet,setPet]=useState<Pet>({name:'',species:'dog',breed:'',age:'',sex:'m',medical:'',allergies:'',notes:'',pubBasic:true,pubContact:true}); const [photo,setPhoto]=useState<File|null>(null); const photoUrl=useMemo(()=>(photo?URL.createObjectURL(photo):''),[photo]);
- const [owner,setOwner]=useState<Owner>({name:'',phone:'',email:'',address:'',city:''}); const [pay,setPay]=useState<PayMethod>('card'); const [err,setErr]=useState(''); const [busy,setBusy]=useState(false); const [orderId,setOrderId]=useState<string|null>(null);
- const price=PRICE[style.slug], variant=TAG_VARIANTS[style.slug]??'ocean', displayName=DISPLAY_STYLES.find(x=>x.style.slug===style.slug)?.label??style.name;
- const P=(k:keyof Pet)=>(e:React.ChangeEvent<HTMLInputElement|HTMLTextAreaElement|HTMLSelectElement>)=>setPet({...pet,[k]:e.target.value}); const O=(k:keyof Owner)=>(e:React.ChangeEvent<HTMLInputElement>)=>setOwner({...owner,[k]:e.target.value});
- function next(){setErr('');if(step===1&&!pet.name.trim())return setErr('Напиши името на любимеца.');if(step===2){if(!owner.name.trim())return setErr('Напиши името си.');if(!/^\+?[0-9 ]{8,}$/.test(owner.phone))return setErr('Телефонът трябва да е валиден.');if(!/^\S+@\S+\.\S+$/.test(owner.email))return setErr('Имейлът не изглежда валиден.');if(!owner.city.trim())return setErr('Добави град за доставка.');if(!owner.address.trim())return setErr('Добави адрес за доставка.')}setStep(step+1)}
- async function submit(){setBusy(true);setErr('');try{const fd=new FormData();fd.append('payload',JSON.stringify({style:style.slug,pet,owner,pay,price,ship:SHIP,total:price+SHIP}));if(photo)fd.append('photo',photo);const r=await fetch('/api/orders',{method:'POST',body:fd});if(!r.ok)return setErr('Поръчката не мина. Опитай пак след малко.');const d=await r.json();setOrderId(d.id)}catch{setErr('Няма връзка със сървъра. Опитай отново.')}finally{setBusy(false)}}
- if(orderId)return <div className="ref-order-success"><Ic d={I.check} size={34}/><h2>Поръчката е приета</h2><p>Благодарим, {owner.name.split(' ')[0]}. Номер: <b>#{orderId.slice(0,6).toUpperCase()}</b></p><small>Ще получиш потвърждение с информация за изработката и плащането.</small><br/><a href="/">Към началото</a></div>;
- return <><div className="ref-order-stepper">{STEPS.map((s,i)=><div key={s} className={i===step?'active':i<step?'done':''}><span>{i<step?'✓':i+1}</span><b>{s}</b>{i<3&&<i/>}</div>)}</div><div className="ref-order-grid"><section className="ref-order-main">
- {step===0&&<><h1>Избери дизайн</h1><p className="ref-order-lead">Уникални дизайни, изработени от епоксидна смола.</p><div className="ref-order-tags">{DISPLAY_STYLES.map(item=><button key={item.label} type="button" className={item.style.slug===style.slug?'selected':''} onClick={()=>setStyle(item.style)}><ReferenceTag variant={item.variant} size={88}/><b>{item.label}</b></button>)}</div></>}
- {step===1&&<><h1>Персонализирай своя таг</h1><p className="ref-order-lead">Добави информация за любимеца. Тя ще се показва в неговия дигитален профил.</p><div className="ref-form ref-pet-form">
- <label>Име на любимеца <em>*</em><input placeholder="Макс" value={pet.name} onChange={P('name')}/></label><div className="ref-field"><span>Вид <em>*</em></span><div className="ref-choice">{[['dog','Куче'],['cat','Котка'],['other','Друго']].map(([v,l])=><button type="button" key={v} className={pet.species===v?'on':''} onClick={()=>setPet({...pet,species:v as Pet['species']})}>{l}</button>)}</div></div>
- <label>Порода<input placeholder="Напр. Пудел" value={pet.breed} onChange={P('breed')}/></label><label>Възраст (години)<input placeholder="Напр. 3" value={pet.age} onChange={P('age')}/></label>
- <div className="ref-field"><span>Пол</span><div className="ref-choice"><button type="button" className={pet.sex==='m'?'on':''} onClick={()=>setPet({...pet,sex:'m'})}>♂ Мъжки</button><button type="button" className={pet.sex==='f'?'on':''} onClick={()=>setPet({...pet,sex:'f'})}>♀ Женски</button></div></div>
- <label className="ref-upload">Снимка<input type="file" accept="image/*" onChange={e=>setPhoto(e.target.files?.[0]??null)}/><span>{photoUrl?<img src={photoUrl} alt="Преглед"/>:<Ic d={I.profile} size={24}/>}<b>{photo?'Снимката е избрана':'Качи снимка'}</b><small>JPG или PNG</small></span></label>
- <label className="span2">Медицинска информация<textarea placeholder="Алергии, лекарства, важна информация..." value={pet.medical} onChange={P('medical')}/></label><label>Алергии<input placeholder="Напр. пилешко" value={pet.allergies} onChange={P('allergies')}/></label><label>Бележка<input placeholder="Приятелски, плашлив..." value={pet.notes} onChange={P('notes')}/></label>
- <div className="ref-privacy span2"><b>Какво да се вижда в профила?</b><label><input type="checkbox" checked={pet.pubBasic} onChange={e=>setPet({...pet,pubBasic:e.target.checked})}/> Основна информация за любимеца</label><label><input type="checkbox" checked={pet.pubContact} onChange={e=>setPet({...pet,pubContact:e.target.checked})}/> Контакт със стопанина</label></div></div></>}
- {step===2&&<><h1>Данни за стопанина</h1><p className="ref-order-lead">Контактните данни са нужни при намиране на любимеца и за доставката.</p><div className="ref-form two-col"><label>Име и фамилия <em>*</em><input value={owner.name} onChange={O('name')} placeholder="Мария Петрова"/></label><label>Телефон <em>*</em><input value={owner.phone} onChange={O('phone')} placeholder="0888 123 456"/></label><label>Имейл <em>*</em><input value={owner.email} onChange={O('email')} placeholder="name@email.com"/></label><label>Град <em>*</em><input value={owner.city} onChange={O('city')} placeholder="София"/></label><label className="span2">Адрес / офис на куриер <em>*</em><input value={owner.address} onChange={O('address')} placeholder="ул. ..., № / офис ..."/></label></div><div className="ref-owner-note">🔒 Адресът за доставка не се показва в публичния профил на любимеца.</div></>}
- {step===3&&<><h1>Поръчка</h1><p className="ref-order-lead">Провери данните и избери предпочитан начин на плащане.</p><div className="ref-order-summary"><div className="ref-summary-row"><ReferenceTag variant={variant} size={54}/><div><b>{displayName}</b><span>{pet.name||'Макс'} · {pet.breed||'Порода не е посочена'}<br/>Количество: 1</span></div><strong>{price.toFixed(2)} лв.</strong></div><div className="ref-summary-row simple"><div><b>Доставка</b><span>Стандартна доставка (1–3 работни дни)</span></div><strong>{SHIP.toFixed(2)} лв.</strong></div><div className="ref-summary-total"><span>Обща сума</span><b>{(price+SHIP).toFixed(2)} лв.</b></div><div className="ref-pay"><b>Начин на плащане</b><label><input type="radio" checked={pay==='card'} onChange={()=>setPay('card')}/> Карта <span>след потвърждение</span></label><label><input type="radio" checked={pay==='cod'} onChange={()=>setPay('cod')}/> Наложен платеж</label></div></div></>}
- {err&&<div className="ref-error"><Ic d={I.alert} size={16}/>{err}</div>}<div className="ref-order-actions">{step>0?<button onClick={()=>setStep(step-1)}>← Назад</button>:<span/>}{step<3?<button className="primary" onClick={next}>Продължи <Ic d={I.arrow} size={17}/></button>:<button className="primary" onClick={submit} disabled={busy}>{busy?'Изпращам…':'Завърши поръчката'}</button>}</div></section>
- <aside className="ref-order-preview">{step===0?<><div className="ref-preview-tag"><ReferenceTag variant={variant} size={205}/></div><ul><li>✓ NFC чип</li><li>✓ QR код</li><li>✓ Ръчна изработка</li><li>✓ Устойчива на вода и UV</li></ul><div className="ref-preview-price">{price.toFixed(2)} лв.</div></>:step===3?<><div className="ref-checkout-mini"><ReferenceTag variant={variant} size={70}/><div><b>{displayName}</b><small>{pet.name||'Макс'} · {pet.breed||'Любимец'}</small></div></div><div className="ref-checkout-steps"><span>✓ Дизайн</span><span>✓ Информация</span><span>✓ Стопанин</span><span>● Плащане</span></div></>:<><div className="ref-profile-card"><div className="ref-profile-tag">{photoUrl?<img className="ref-preview-pet-photo" src={photoUrl} alt="Любимец"/>:<ReferenceTag variant={variant} size={118}/>}</div><h3>{pet.name||'Макс'} ✤</h3><p>{pet.breed||'Любимец'}{pet.age?` · ${pet.age} г.`:''}<br/>{owner.city||'България'}</p><div><span><Ic d={I.nfc} size={26}/>NFC</span><span><Ic d={I.qr} size={26}/>QR</span></div><button type="button">Визуализация на профила</button></div><small className="ref-note">* Това е предварителен изглед на дигиталния профил.</small></>}</aside></div></>;
+export default function OrderFlow() {
+  const sp = useSearchParams();
+  const initial = STYLES.find((s) => s.slug === sp.get('style'));
+  const [phase, setPhase] = useState<'pick' | 'closeup' | 'form'>(initial ? 'closeup' : 'pick');
+  const [style, setStyle] = useState<TagStyle>(initial ?? STYLES[0]);
+  const [step, setStep] = useState(1);
+  const [pet, setPet] = useState<Pet>({ name: '', species: 'dog', breed: '', birth: '', sex: 'm', medical: '', notes: '', pubFirstOnly: false });
+  const [photo, setPhoto] = useState<File | null>(null);
+  const photoUrl = useMemo(() => (photo ? URL.createObjectURL(photo) : ''), [photo]);
+  const [owner, setOwner] = useState<Owner>({ name: '', phone: '', email: '', address: '', city: 'София', firstOnly: true });
+  const [pay, setPay] = useState<'card' | 'apple' | 'google' | 'cod'>('card');
+  const [err, setErr] = useState('');
+  const [busy, setBusy] = useState(false);
+  const [orderId, setOrderId] = useState<string | null>(null);
+  const price = style.price;
+  const P = (k: keyof Pet) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => setPet({ ...pet, [k]: e.target.value });
+  const O = (k: keyof Owner) => (e: React.ChangeEvent<HTMLInputElement>) => setOwner({ ...owner, [k]: e.target.value });
+  const idx = STYLES.findIndex((s) => s.slug === style.slug);
+
+  function next() {
+    setErr('');
+    if (step === 1 && !pet.name.trim()) return setErr('Напиши името на любимеца.');
+    if (step === 2) {
+      if (!owner.name.trim()) return setErr('Напиши името си.');
+      if (!/^\+?[0-9 ]{8,}$/.test(owner.phone)) return setErr('Телефонът трябва да е валиден, напр. +359 888 123 456.');
+      if (!/^\S+@\S+\.\S+$/.test(owner.email)) return setErr('Имейлът не изглежда валиден.');
+    }
+    if (step === 3 && !owner.address.trim()) return setErr('Добави адрес или офис на куриер.');
+    setStep(step + 1);
+  }
+  async function submit() {
+    setBusy(true); setErr('');
+    const fd = new FormData();
+    fd.append('payload', JSON.stringify({ style: style.slug, pet, owner, pay, price, ship: SHIP, total: price + SHIP }));
+    if (photo) fd.append('photo', photo);
+    const r = await fetch('/api/orders', { method: 'POST', body: fd });
+    setBusy(false);
+    if (!r.ok) return setErr('Поръчката не мина. Опитай пак след малко.');
+    const d = await r.json(); setOrderId(d.id);
+  }
+
+  if (orderId) return (
+    <div className="panel done" style={{ margin: '30px auto 60px', maxWidth: 520 }}>
+      <div className="ic"><Ic d={I.check} size={34} sw={2.4} /></div>
+      <h2>Благодарим!</h2><div className="big">Поръчката ти е приета.</div>
+      <p className="sub">Ще получиш имейл с потвърждение и детайли за доставката на {owner.email}. Номер: <b>#{orderId.slice(0, 6).toUpperCase()}</b>.</p>
+      {pay === 'card' && <p className="sub">Линкът за плащане с карта ще пристигне по имейл, когато тагът е готов за изпращане.</p>}
+      <a className="btn btn-primary" style={{ marginTop: 18 }} href="/">Към началната страница</a>
+      <div style={{ marginTop: 26, borderRadius: 18, overflow: 'hidden', position: 'relative', aspectRatio: '4/3' }}><Image src="/img/hero-pets.jpg" alt="" fill sizes="520px" style={{ objectFit: 'cover', objectPosition: '50% 35%' }} /><div className="bubble" style={{ top: 'auto', bottom: 16, right: 16 }}>За още<br />щастливи истории!</div></div>
+    </div>
+  );
+
+  if (phase === 'pick') return (
+    <div style={{ padding: '22px 0 60px', maxWidth: 760, margin: '0 auto' }}>
+      <h2 className="h-section">Избери стил</h2><p className="sub">Всеки дизайн разказва история. Кой е твоят?</p>
+      <DesignGrid styles={STYLES} selected={style.slug} onSelect={(s) => { setStyle(s); setPhase('closeup'); }} />
+    </div>
+  );
+
+  if (phase === 'closeup') return (
+    <div className="panel closeup" style={{ margin: '22px auto 60px', maxWidth: 560, textAlign: 'center' }}>
+      <a className="backlink" href="#" onClick={(e) => { e.preventDefault(); setPhase('pick'); }} style={{ float: 'left' }}><Ic d={I.back} size={16} /> Към дизайните</a>
+      <div style={{ clear: 'both' }} />
+      <div className="big">
+        <Image src={style.img} alt={style.name} width={720} height={720} priority style={{ width: '100%', height: 'auto', borderRadius: 20 }} />
+        <button className="arr l" aria-label="Предишен" onClick={() => setStyle(STYLES[(idx - 1 + STYLES.length) % STYLES.length])}><Ic d={I.chevl} /></button>
+        <button className="arr r" aria-label="Следващ" onClick={() => setStyle(STYLES[(idx + 1) % STYLES.length])}><Ic d={I.chevr} /></button>
+      </div>
+      <div className="dots">{STYLES.map((s) => <span key={s.slug} className={s.slug === style.slug ? 'on' : ''} />)}</div>
+      <h3>{style.name}</h3><p className="story">{style.story}</p>
+      <div className="specs">{[[I.nfc, 'NFC + QR'], [I.shield, 'Издръжлив'], [I.drop, 'Водоустойчив'], [I.feather, 'Лек и удобен']].map(([d, t]) => <span key={t}><span className="ic"><Ic d={d} size={16} /></span>{t}</span>)}</div>
+      <div style={{ fontSize: 22, fontWeight: 800, color: 'var(--green)', marginTop: 16 }}>€{price.toFixed(2)}</div>
+      <button className="btn btn-primary btn-block" style={{ marginTop: 14 }} onClick={() => setPhase('form')}>Персонализирай този дизайн <Ic d={I.arrow} size={18} /></button>
+    </div>
+  );
+
+  return (
+    <>
+      <div className="stepper">{STEPS.map((s, i) => (<span key={s} style={{ display: 'contents' }}><span className={`st${i + 1 === step ? ' active' : i + 1 < step ? ' done' : ''}`}><i>{i + 1 < step ? '✓' : i + 1}</i>{s}</span>{i < STEPS.length - 1 && <span className="ln" />}</span>))}</div>
+      <div className="order">
+        <div className="panel">
+          {step === 1 && (<>
+            <h2>Информация за любимеца</h2><p className="sub">Разкажи ни повече, за да създадем най-добрия профил на любимеца.</p>
+            <div className="form">
+              <div className="avatar-pick">
+                <label className="ph" htmlFor="ph" style={{ backgroundImage: photoUrl ? `url(${photoUrl})` : undefined }}>{!photoUrl && <Ic d={I.cam} size={28} />}</label>
+                <input id="ph" type="file" accept="image/*" hidden onChange={(e) => setPhoto(e.target.files?.[0] ?? null)} />
+                <div className="field" style={{ flex: 1 }}><label className="label">Име <span className="req">*</span></label><input className="input" placeholder="Макс" value={pet.name} onChange={P('name')} /></div>
+              </div>
+              <div className="field"><label className="label">Вид <span className="req">*</span></label><div className="seg icons">{[['dog', I.dog, 'Куче'], ['cat', I.cat, 'Котка'], ['other', I.heart, 'Друго']].map(([v, d, l]) => <button key={v} className={pet.species === v ? 'on' : ''} onClick={() => setPet({ ...pet, species: v as Pet['species'] })}><Ic d={d} size={20} />{l}</button>)}</div></div>
+              <div className="field"><label className="label">Порода</label><input className="input" placeholder="Labradoodle" value={pet.breed} onChange={P('breed')} /></div>
+              <div className="two">
+                <div className="field"><label className="label">Пол</label><div className="seg">{[['m', 'Мъжки'], ['f', 'Женски']].map(([v, l]) => <button key={v} className={pet.sex === v ? 'on' : ''} onClick={() => setPet({ ...pet, sex: v as Pet['sex'] })}>{l}</button>)}</div></div>
+                <div className="field"><label className="label">Дата на раждане</label><input className="input" type="date" value={pet.birth} onChange={P('birth')} /></div>
+              </div>
+              <div className="field"><label className="label">Здраве и особености</label><input className="input" placeholder="Алергии, лекарства, характер…" value={pet.medical} onChange={P('medical')} /></div>
+              <div className="field"><label className="label">Бележка за намерилия</label><textarea className="input" placeholder="Напр. Спокоен е, обича лакомства…" value={pet.notes} onChange={P('notes')} /></div>
+            </div>
+          </>)}
+          {step === 2 && (<>
+            <h2>Ваша информация</h2><p className="sub">Тази информация ще се показва при намиране на любимеца.</p>
+            <div className="form">
+              <div className="field"><label className="label">Име <span className="req">*</span></label><input className="input" placeholder="Иван Петров" value={owner.name} onChange={O('name')} /></div>
+              <div className="field"><label className="label">Телефон <span className="req">*</span></label><input className="input" type="tel" placeholder="+359 888 123 456" value={owner.phone} onChange={O('phone')} /></div>
+              <div className="field"><label className="label">Имейл <span className="req">*</span></label><input className="input" type="email" placeholder="ivan@petalapa.com" value={owner.email} onChange={O('email')} /></div>
+              <label className="checkrow"><input type="checkbox" checked={owner.firstOnly} onChange={(e) => setOwner({ ...owner, firstOnly: e.target.checked })} />Покажи само първото име</label>
+            </div>
+          </>)}
+          {step === 3 && (<>
+            <h2>Доставка</h2><p className="sub">Еконт – до офис или адрес, 1–3 работни дни.</p>
+            <div className="form">
+              <div className="field"><label className="label">Адрес / офис на Еконт <span className="req">*</span></label><input className="input" placeholder="ул. …, № / Еконт офис …" value={owner.address} onChange={O('address')} /></div>
+              <div className="field"><label className="label">Град</label><input className="input" value={owner.city} onChange={O('city')} /></div>
+            </div>
+          </>)}
+          {step === 4 && (<>
+            <h2>Преглед на поръчката</h2>
+            <div className="review">
+              <div className="line"><img src={style.img} alt="" /><div><b>{style.name}</b><span>1 × €{price.toFixed(2)}</span></div><span className="p">€{price.toFixed(2)}</span></div>
+              <div className="label" style={{ margin: '4px 0 0' }}>Информация за любимеца</div>
+              <div className="line"><span style={{ width: 52, height: 52, borderRadius: '50%', background: `var(--green-tint) ${photoUrl ? `url(${photoUrl}) center/cover` : ''}`, flexShrink: 0 }} /><div><b>{pet.name}</b><span>{pet.breed || (pet.species === 'dog' ? 'Куче' : pet.species === 'cat' ? 'Котка' : 'Любимец')}</span></div><button className="edit" onClick={() => setStep(1)}>Редактирай</button></div>
+              <div className="label" style={{ margin: '4px 0 0' }}>Доставка</div>
+              <div className="line"><span className="ic" style={{ color: 'var(--green)' }}><Ic d={I.box} size={24} /></span><div><b>Еконт – {owner.address.toLowerCase().includes('офис') ? 'до офис' : 'до адрес'}</b><span>{owner.city}</span></div><span className="p">€{SHIP.toFixed(2)}</span></div>
+              <div className="tot"><span>Общо</span><span>€{(price + SHIP).toFixed(2)}</span></div>
+            </div>
+          </>)}
+          {step === 5 && (<>
+            <h2>Плащане</h2><p className="sub">Избери метод на плащане.</p>
+            <div className="pay">
+              {[['card', 'Карта', 'VISA · MC'], ['apple', 'Apple Pay', ' Pay'], ['google', 'Google Pay', 'G Pay'], ['cod', 'Наложен платеж', 'при доставка']].map(([v, l, b]) => (<label key={v} className={pay === v ? 'on' : ''}><input type="radio" name="pay" checked={pay === v} onChange={() => setPay(v as typeof pay)} />{l}<span className="brand">{b}</span></label>))}
+            </div>
+            <div className="review" style={{ marginTop: 16 }}><div className="tot"><span>Общо</span><span>€{(price + SHIP).toFixed(2)}</span></div></div>
+            <div className="secure"><Ic d={I.lock} size={14} /> Сигурно и защитено плащане</div>
+          </>)}
+          {err && <div className="err"><Ic d={I.alert} size={16} />{err}</div>}
+          <div className="actions">
+            <button className="btn btn-outline" onClick={() => step === 1 ? setPhase('closeup') : setStep(step - 1)}><Ic d={I.back} size={16} /> Назад</button>
+            {step < 4 ? <button className="btn btn-primary" onClick={next}>Продължи <Ic d={I.arrow} size={18} /></button>
+             : step === 4 ? <button className="btn btn-primary" onClick={next}>Към плащане <Ic d={I.arrow} size={18} /></button>
+             : <button className="btn btn-primary" onClick={submit} disabled={busy}>{busy ? <><span className="spinner" />Изпращам…</> : 'Поръчай'}</button>}
+          </div>
+        </div>
+        <aside className="preview">
+          {step <= 2 ? (<div className="viz"><div className="ph" style={{ backgroundImage: photoUrl ? `url(${photoUrl})` : `url(${style.img})` }} /><h3>{pet.name || 'Макс'}</h3><div className="meta">{pet.breed || 'Порода'} · {pet.species === 'cat' ? 'Котка' : pet.species === 'dog' ? 'Куче' : 'Любимец'}</div><p className="hint" style={{ marginTop: 10 }}>Така ще изглежда профилът, който се отваря при сканиране.</p></div>)
+          : (<><Image className="tag" src={style.img} alt={style.name} width={400} height={400} style={{ width: '70%', height: 'auto', margin: '0 auto', borderRadius: 16 }} /><h3>{style.name}</h3><p className="story">{style.story}</p><div className="price">€{price.toFixed(2)}</div></>)}
+        </aside>
+      </div>
+    </>
+  );
 }
