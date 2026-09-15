@@ -3,6 +3,7 @@
 import { FormEvent, useState } from 'react';
 import { createClient } from '@supabase/supabase-js';
 import { Wordmark } from '@/components/Brand';
+import { RandomPic } from '@/components/Pics';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -39,6 +40,7 @@ export default function LoginPage() {
     <main className="login-shell">
       <section className="login-card">
         <Wordmark sub />
+        <div className="login-pic"><RandomPic pool="singles" sizes="440px" /></div>
         <h1>Твоят petalapa профил</h1>
         <p className="sub">Влез без парола. Ще изпратим защитен линк на имейла, с който е активиран тагът ти.</p>
 

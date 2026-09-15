@@ -3,6 +3,7 @@ import type { PublicTag } from '@/lib/supabase';
 import { Wordmark } from './Brand';
 import { Ic, I } from './Site';
 import ScanBeacon from './ScanBeacon';
+import { SINGLES } from '@/lib/pics';
 
 const species = (s: string | null) => s === 'cat' ? 'Котка' : s === 'dog' ? 'Куче' : 'Любимец';
 const chips = (t: string | null) => (t ?? '').split(/[,·;]/).map((s) => s.trim()).filter(Boolean).slice(0, 4);
@@ -15,7 +16,7 @@ export default function PetProfile({ tag, scanId }: { tag: PublicTag; scanId: nu
   const sms = num ? `sms:${num}?body=${encodeURIComponent(`Здравей, намерих ${tag.name}. Локация: `)}` : undefined;
   const mail = primary?.email ? `mailto:${primary.email}?subject=${encodeURIComponent(`Намерих ${tag.name}`)}` : undefined;
   const url = `petalapa.com/t/${tag.id}`;
-  const photo = tag.photo_url ?? '/img/hero-dog.jpg';
+  const photo = tag.photo_url ?? SINGLES[Math.floor(Math.random() * SINGLES.length)];
 
   if (lost) return (
     <main className="pscreen lostbg">

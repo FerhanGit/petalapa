@@ -1,5 +1,5 @@
-import Image from 'next/image';
 import { STYLES } from '@/components/Brand';
+import { HeroRotator, RandomPic } from '@/components/Pics';
 import { SiteNav, SiteFooter, Ic, I } from '@/components/Site';
 import DesignGrid from '@/components/DesignGrid';
 
@@ -16,7 +16,7 @@ export default function Landing() {
             <div className="cta-row"><a className="btn btn-primary" href="#designs">Разгледай дизайните <Ic d={I.arrow} size={18} /></a></div>
             <div className="hand">За тях<br />винаги! ♡</div>
           </div>
-          <div className="hero-photo"><Image src="/img/hero-pets.jpg" alt="Куче и котка с тагове petalapa" fill priority sizes="(max-width: 900px) 100vw, 50vw" style={{ objectFit: 'cover', objectPosition: '50% 30%' }} /></div>
+          <div className="hero-photo"><HeroRotator /></div>
         </section>
         <div className="features">
           {[[I.grid, 'Бърз достъп'], [I.nfc, 'NFC + QR'], [I.shieldp, 'Персонален профил'], [I.shield, 'Сигурност']].map(([d, t]) => (<div className="feature" key={t}><div className="ic"><Ic d={d} size={22} /></div>{t}</div>))}
@@ -32,7 +32,7 @@ export default function Landing() {
               ))}
             </div>
           </div>
-          <div className="how-photo"><Image src="/img/hero-dog.jpg" alt="Куче с таг Ocean" fill sizes="(max-width: 900px) 100vw, 50vw" style={{ objectFit: 'cover', objectPosition: '50% 20%' }} /><div className="bubble">Лесно, бързо,<br />сигурно!</div></div>
+          <div className="how-photo"><RandomPic pool="singles" alt="Любимец с таг petalapa" sizes="(max-width: 900px) 100vw, 50vw" /><div className="bubble">Лесно, бързо,<br />сигурно!</div></div>
         </section>
 
         <section className="section" id="designs">
@@ -51,7 +51,7 @@ export default function Landing() {
           </div>
           <div className="phone"><div className="p-inner">
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '4px 2px' }}><span style={{ fontWeight: 800, color: 'var(--green)' }}>pet<span style={{ color: 'var(--gold)' }}>🐾</span>lapa</span><Ic d={I.menu} size={16} /></div>
-            <div className="p-photo"><Image src="/img/hero-dog.jpg" alt="" fill sizes="300px" style={{ objectFit: 'cover', objectPosition: '50% 25%' }} /></div>
+            <div className="p-photo"><RandomPic pool="singles" sizes="300px" /></div>
             <div><b style={{ fontSize: 17, color: 'var(--green)' }}>Макс</b><div style={{ fontSize: 11, color: 'var(--text-3)' }}>Labradoodle · 3 г.</div></div>
             <div className="p-chips"><span>Приятелски</span><span>Обича хора</span></div>
             <div className="btn btn-primary btn-block" style={{ height: 38, fontSize: 12 }}>Свържи се със стопанина</div>
