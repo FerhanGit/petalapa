@@ -40,7 +40,7 @@ export default function LoginPage() {
     <main className="login-shell">
       <section className="login-card">
         <Wordmark sub />
-        <div className="login-pic"><RandomPic pool="singles" sizes="440px" /></div>
+        <div className="login-pic blend"><RandomPic pool="singles" sizes="440px" /></div>
         <h1>Твоят petalapa профил</h1>
         <p className="sub">Влез без парола. Ще изпратим защитен линк на имейла, с който е активиран тагът ти.</p>
 

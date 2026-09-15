@@ -16,7 +16,7 @@ export default function Landing() {
             <div className="cta-row"><a className="btn btn-primary" href="#designs">Разгледай дизайните <Ic d={I.arrow} size={18} /></a></div>
             <div className="hand">За тях<br />винаги! ♡</div>
           </div>
-          <div className="hero-photo"><HeroRotator /></div>
+          <div className="hero-photo blend"><HeroRotator /></div>
         </section>
         <div className="features">
           {[[I.grid, 'Бърз достъп'], [I.nfc, 'NFC + QR'], [I.shieldp, 'Персонален профил'], [I.shield, 'Сигурност']].map(([d, t]) => (<div className="feature" key={t}><div className="ic"><Ic d={d} size={22} /></div>{t}</div>))}
@@ -32,7 +32,7 @@ export default function Landing() {
               ))}
             </div>
           </div>
-          <div className="how-photo"><RandomPic pool="singles" alt="Любимец с таг petalapa" sizes="(max-width: 900px) 100vw, 50vw" /><div className="bubble">Лесно, бързо,<br />сигурно!</div></div>
+          <div className="how-photo blend"><RandomPic pool="singles" alt="Любимец с таг petalapa" sizes="(max-width: 900px) 100vw, 50vw" /><div className="bubble">Лесно, бързо,<br />сигурно!</div></div>
         </section>
 
         <section className="section" id="designs">

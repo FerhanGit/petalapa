@@ -39,7 +39,7 @@ export default function PetProfile({ tag, scanId }: { tag: PublicTag; scanId: nu
     <main className="pscreen">
       <ScanBeacon scanId={scanId} />
       <div className="ptop"><a href="/" className="icbtn" aria-label="Начало"><Ic d={I.back} /></a><div className="url">{url}</div><span className="icbtn"><Ic d={I.share} size={18} /></span></div>
-      <div className="pphoto"><Image src={photo} alt={tag.name ?? ''} fill sizes="480px" style={{ objectFit: 'cover', objectPosition: '50% 30%' }} priority /><span className="nfc">NFC</span></div>
+      <div className="pphoto blend"><Image src={photo} alt={tag.name ?? ''} fill sizes="480px" style={{ objectFit: 'cover', objectPosition: '50% 30%' }} priority /><span className="nfc">NFC</span></div>
       <div className="pbody">
         <div><h1 className="pname">{tag.name}</h1><div className="pmeta">{tag.breed ?? species(tag.species)}</div>
           {chips(tag.behaviour_notes).length > 0 && <div className="pchips">{chips(tag.behaviour_notes).map((c) => <span key={c}>{c}</span>)}</div>}</div>

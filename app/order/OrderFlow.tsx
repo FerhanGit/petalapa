@@ -60,7 +60,7 @@ export default function OrderFlow() {
       <p className="sub">Ще получиш имейл с потвърждение и детайли за доставката на {owner.email}. Номер: <b>#{orderId.slice(0, 6).toUpperCase()}</b>.</p>
       {pay === 'card' && <p className="sub">Линкът за плащане с карта ще пристигне по имейл, когато тагът е готов за изпращане.</p>}
       <a className="btn btn-primary" style={{ marginTop: 18 }} href="/">Към началната страница</a>
-      <div style={{ marginTop: 26, borderRadius: 18, overflow: 'hidden', position: 'relative', aspectRatio: '4/3' }}><RandomPic pool="pairs" sizes="520px" /><div className="bubble" style={{ top: 'auto', bottom: 16, right: 16 }}>За още<br />щастливи истории!</div></div>
+      <div className="blend" style={{ marginTop: 26, overflow: 'hidden', aspectRatio: '4/3' }}><RandomPic pool="pairs" sizes="520px" /><div className="bubble" style={{ top: 'auto', bottom: 16, right: 16 }}>За още<br />щастливи истории!</div></div>
     </div>
   );
 
