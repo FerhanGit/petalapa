@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 import { SiteNav, SiteFooter, Ic, I } from '@/components/Site';
-import { PhotoTag, STYLES } from '@/components/PhotoTag';
+import { PhotoTag, STYLES, IMG } from '@/components/PhotoTag';
 import OrderFlow from './OrderFlow';
 
 export const metadata = { title: 'Поръчка · petalapa' };
@@ -12,7 +12,7 @@ export default function OrderPage() {
       <SiteNav />
       <div className="final-wrap">
         <section className="final-order-hero">
-          <div className="final-order-product">
+          <div className="final-order-product" style={{ backgroundImage: `linear-gradient(rgba(244,235,220,.12),rgba(244,235,220,.12)),url(${IMG.sand})` }}>
             <div className="final-order-product-note">Повече от адрес.<br />Повече грижа. ♡</div>
             <PhotoTag s={forest} size={300} />
           </div>
@@ -35,7 +35,7 @@ export default function OrderPage() {
           <Suspense><OrderFlow /></Suspense>
         </section>
 
-        <section className="final-order-bottom">
+        <section className="final-order-bottom" style={{ backgroundImage: `linear-gradient(90deg,rgba(255,249,239,.82),rgba(238,208,155,.2)),url(${IMG.sand})` }}>
           <div className="final-order-bottom-copy">Малки детайли.<br /><b>Голяма сигурност.</b><small>Ръчно изработени с любов за по-спокойни дни. ♡</small></div>
           <PhotoTag s={STYLES[4]} size={240} />
         </section>
