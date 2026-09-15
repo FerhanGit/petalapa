@@ -34,10 +34,10 @@ export function SiteNav() {
   return (
     <header className="topbar"><div className="container nav">
       <PetalapaWordmark />
-      <nav className="links"><a href="/">Начало</a><a href="/#designs">Дизайни</a><a href="/#how">Как работи</a><a href="/#about">За нас</a><a href="/#about">Блог</a></nav>
+      <nav className="links"><a href="/">Начало</a><a href="/#designs">Дизайни</a><a href="/#how">Как работи</a><a href="/#about">За нас</a><a href="mailto:hello@petalapa.com">Контакт</a></nav>
       <div className="navr">
         <a href="/#designs" className="icbtn" aria-label="Търсене"><Ic d={I.search} size={18} /></a>
-        <a href="/dashboard" className="icbtn" aria-label="Моят профил"><Ic d={I.user} size={18} /></a>
+        <a href="/dashboard" className="icbtn account-link" aria-label="Моят профил"><Ic d={I.user} size={18} /></a>
         <a href="/order" className="icbtn" aria-label="Количка"><Ic d={I.cart} size={18} /></a>
         <a href="/order" className="final-nav-order">Поръчай</a>
       </div>
