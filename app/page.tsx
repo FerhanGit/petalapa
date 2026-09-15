@@ -2,54 +2,57 @@ import Image from 'next/image';
 import { STYLES, PhotoTag, ProductShot, IMG } from '@/components/PhotoTag';
 import { SiteNav, SiteFooter, Ic, I } from '@/components/Site';
 
-
 export default function Landing() {
   return (
     <main>
       <SiteNav />
       <div className="container">
         <section className="hero">
-          <div className="hero-img"><Image src={IMG.hero} alt="Голдън ретривър на поляна при залез" fill priority sizes="60vw" style={{ objectFit: 'cover', objectPosition: '60% 40%' }} /></div>
+          <div className="hero-img"><Image src={IMG.hero} alt="Куче с кръгъл епоксиден petalapa таг" fill priority sizes="60vw" style={{ objectFit: 'cover', objectPosition: '60% 40%' }} /></div>
           <div className="copy">
-            <h1 className="h-hero">Красив таг.<br />Умен начин да<br />намерите своя любимец.</h1>
-            <p className="lead">Епоксидни тагове с вграден NFC чип и QR код. Персонален профил на вашия любимец и лесен достъп до неговата информация.</p>
-            <div className="cta-row"><a className="btn btn-primary" href="/order">Създай своя таг <Ic d={I.arrow} size={18} /></a></div>
+            <h1 className="h-hero">Красив таг.<br />Създаден специално<br />за твоя любимец.</h1>
+            <p className="lead">Ръчно изработен кръгъл таг от епоксидна смола, който съчетава характерен дизайн с NFC, QR код и персонален дигитален профил.</p>
+            <div className="cta-row"><a className="btn btn-primary" href="/order">Създай своя таг <Ic d={I.arrow} size={18} /></a><a className="btn btn-outline" href="#designs">Разгледай дизайните</a></div>
+            <span className="round-note"><Ic d={I.heart} size={13} /> Кръгъл · лек · ръчно изработен</span>
           </div>
-          <div className="note">Малък таг,<b>голямо спокойствие ♡</b></div>
-          <div className="hero-tag"><PhotoTag s={STYLES[0]} size={104} priority /></div>
+          <div className="note">Ръчно направен,<b>за една специална лапа ♡</b></div>
+          <div className="hero-tag"><PhotoTag s={STYLES[0]} size={112} priority /></div>
         </section>
 
         <div className="features">
-          {[[I.nfc, 'NFC + QR', 'Двойна защита'], [I.resin, 'Епоксидна смола', 'Ръчна изработка'], [I.shield, 'Персонален профил', 'За всеки любимец'], [I.heart, 'Повече сигурност', 'Винаги и навсякъде']].map(([d, b, s]) => (
+          {[[I.resin, 'Ръчна изработка', 'Всеки таг е уникален'], [I.palette, 'Епоксидна смола', 'Цвят и характер'], [I.nfc, 'NFC + QR', 'Достъп за секунди'], [I.shield, 'Дигитален профил', 'Информация при нужда']].map(([d, b, s]) => (
             <div className="feature" key={b}><span className="ic"><Ic d={d} size={22} /></span><b>{b}</b><span>{s}</span></div>
           ))}
         </div>
 
         <section className="section" id="how">
-          <h2 className="h-section">Как работи?</h2>
-          <p className="sub">Само 3 лесни стъпки до персонален таг за твоя любимец.</p>
+          <span className="brand-kicker">лесно и лично</span>
+          <h2 className="h-section">От идея до неговия таг</h2>
+          <p className="sub">Три лесни стъпки. Ние се грижим за останалото.</p>
           <div className="steps">
-            {[[I.palette, 'Избери дизайн', 'Разгледай нашите уникални стилове и намери своя.'], null, [I.pen, 'Добави информация', 'Попълни данни за любимеца и стопанина.'], null, [I.cart, 'Поръчай', 'Ние ще изработим и доставим твоя таг до 3–5 работни дни.']].map((s, i) => s ? (
+            {[[I.palette, 'Избери дизайн', 'Намери стила, който най-добре подхожда на твоя любимец.'], null, [I.pen, 'Създай профил', 'Добави име, снимка и информация за връзка.'], null, [I.cart, 'Поръчай', 'Изработваме тага на ръка и го изпращаме до 3–5 работни дни.']].map((s, i) => s ? (
               <div className="step" key={s[1]}><div className="wrap"><span className="ic"><Ic d={s[0]} size={28} /></span><span className="num">{i / 2 + 1}</span></div><b>{s[1]}</b><span>{s[2]}</span></div>
             ) : <span className="arrow" key={i}><Ic d={I.arrow} /></span>)}
           </div>
         </section>
 
         <section className="section" id="designs">
-          <h2 className="h-section">Популярни дизайни</h2>
-          <p className="sub">Стил, който подхожда на всяка лапа.</p>
+          <span className="brand-kicker">избери характер</span>
+          <h2 className="h-section">Избери неговия стил</h2>
+          <p className="sub">Всеки кръгъл таг е малко произведение, изработено от смола на ръка.</p>
           <div className="designs">
             {STYLES.map((s) => (<a className="design" key={s.slug} href={`/order?style=${s.slug}`}><ProductShot s={s} /><span className="name">{s.name}</span></a>))}
           </div>
         </section>
 
         <section className="more" id="about">
-          <div style={{ position: 'relative', minHeight: 340 }}><Image src={IMG.cat} alt="Котка с таг PetaLapa" fill sizes="50vw" style={{ objectFit: 'cover', objectPosition: '55% 40%' }} /></div>
+          <div style={{ position: 'relative', minHeight: 340 }}><Image src={IMG.cat} alt="Котка с кръгъл petalapa таг" fill sizes="50vw" style={{ objectFit: 'cover', objectPosition: '55% 40%' }} /></div>
           <div className="body">
-            <h2>Повече от таг.<br />Дигитален дом<br />за твоя любимец.</h2>
-            <p>Със PetaLapa получаваш не просто красив аксесоар, а сигурност, информация и връзка — когато е най-важно.</p>
+            <span className="brand-kicker">повече от аксесоар</span>
+            <h2>Неговата малка<br />връзка към дома.</h2>
+            <p>Красивият таг остава на нашийника. NFC и QR технологията стоят дискретно зад него и отвеждат към профила на любимеца, когато това е важно.</p>
             <div className="list">
-              {[[I.nfc, 'NFC чип', 'Чете се за секунди'], [I.qr, 'QR код', 'Алтернативен достъп'], [I.profile, 'Персонализиран профил', 'Снимки, данни, медицинска инфо'], [I.resin, 'Ръчна изработка', 'Уникален дизайн']].map(([d, b, s]) => (<div key={b}><div className="ic"><Ic d={d} /></div><b>{b}</b><span>{s}</span></div>))}
+              {[[I.resin, 'Ръчна изработка', 'Смола и характер'], [I.nfc, 'NFC', 'Докосни и отвори'], [I.qr, 'QR код', 'Сканирай с камера'], [I.profile, 'Профил', 'Данни за любимеца']].map(([d, b, s]) => (<div key={b}><div className="ic"><Ic d={d} /></div><b>{b}</b><span>{s}</span></div>))}
             </div>
           </div>
         </section>
