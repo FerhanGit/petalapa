@@ -6,14 +6,14 @@ export const IMG = { hero: `${ASSETS}/hero-sunset.jpg`, heroDog: `${ASSETS}/hero
 
 export type TagStyle = { slug: string; name: string; tex: string; pos?: string; overlay?: 'paw' | 'heart' | 'none'; ink?: string; price: number; sub: string };
 export const STYLES: TagStyle[] = [
-  { slug: 'ocean', name: 'Ocean', tex: 'tex-ocean.jpg', pos: '40% 50%', price: 29, sub: 'синьо, като море' },
-  { slug: 'forest', name: 'Forest', tex: 'tex-forest.jpg', pos: '50% 40%', price: 29, sub: 'папрат и зелено' },
-  { slug: 'galaxy', name: 'Galaxy', tex: 'tex-galaxy.jpg', pos: '50% 50%', price: 29, sub: 'звезден прах' },
-  { slug: 'floral', name: 'Floral', tex: 'tex-floral.jpg', pos: '50% 45%', price: 29, sub: 'сушени цветя' },
-  { slug: 'wood', name: 'Wood', tex: 'tex-wood.jpg', pos: '50% 50%', overlay: 'paw', ink: '#2B1B0C', price: 32, sub: 'дърво и смола' },
-  { slug: 'minimal', name: 'Minimal', tex: 'tex-minimal.jpg', pos: '50% 50%', overlay: 'paw', ink: '#2A2621', price: 27, sub: 'мрамор и злато' },
-  { slug: 'love', name: 'Love', tex: 'tex-love.jpg', pos: '50% 50%', overlay: 'heart', ink: '#FFF1EE', price: 29, sub: 'червено и злато' },
-  { slug: 'custom', name: 'Custom', tex: 'tex-custom.jpg', pos: '50% 50%', price: 39, sub: 'по твой избор' },
+  { slug: 'ocean', name: 'Ocean', tex: 'tex-ocean.jpg', pos: '40% 50%', price: 29, sub: 'синьо и златни акценти' },
+  { slug: 'forest', name: 'Forest', tex: 'tex-forest.jpg', pos: '50% 40%', price: 29, sub: 'зеленина и цветя' },
+  { slug: 'floral', name: 'Blush', tex: 'tex-floral.jpg', pos: '50% 45%', price: 29, sub: 'нежни сушени цветя' },
+  { slug: 'galaxy', name: 'Midnight', tex: 'tex-galaxy.jpg', pos: '50% 50%', price: 29, sub: 'тъмно синьо и злато' },
+  { slug: 'wood', name: 'Amber', tex: 'tex-wood.jpg', pos: '50% 50%', overlay: 'paw', ink: '#2B1B0C', price: 32, sub: 'топъл кехлибарен тон' },
+  { slug: 'love', name: 'Cherry', tex: 'tex-love.jpg', pos: '50% 50%', overlay: 'heart', ink: '#FFF1EE', price: 29, sub: 'наситено червено и цветя' },
+  { slug: 'minimal', name: 'Luna', tex: 'tex-minimal.jpg', pos: '50% 50%', overlay: 'paw', ink: '#2A2621', price: 27, sub: 'светъл минималистичен стил' },
+  { slug: 'custom', name: 'Onyx', tex: 'tex-custom.jpg', pos: '50% 50%', price: 39, sub: 'тъмен премиум дизайн' },
 ];
 export const PRICE: Record<string, number> = Object.fromEntries(STYLES.map((s) => [s.slug, s.price]));
 
