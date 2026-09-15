@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import { Wordmark } from './Brand';
+import { PetalapaWordmark } from './ModernBrand';
 import ActivateForm from './ActivateForm';
 
 export default function NotActivated({ tagId, presetName }: { tagId: string; presetName?: string | null }) {
@@ -19,7 +19,7 @@ export default function NotActivated({ tagId, presetName }: { tagId: string; pre
 
   return (
     <main className="pscreen pad">
-      <Wordmark size={20} />
+      <PetalapaWordmark compact />
       <div style={{ width: 140, height: 140, borderRadius: '50%', margin: '40px auto 0', background: 'repeating-linear-gradient(135deg,#E9DCC3 0 10px,#F1E7D3 10px 20px)', border: '6px solid var(--surface)', boxShadow: '0 10px 30px rgba(70,50,20,.12)' }} />
       <h1 style={{ marginTop: 28, fontSize: 30, lineHeight: 1.1, textAlign: 'center', textWrap: 'pretty' }}>Този таг още не е активиран.</h1>
       <p className="lead" style={{ fontSize: 15, color: 'var(--text-3)', textAlign: 'center', marginTop: 10 }}>Ако е твой – въведи 6-знаковия код от картончето в кутийката.</p>
@@ -30,8 +30,8 @@ export default function NotActivated({ tagId, presetName }: { tagId: string; pre
       <button className="btn btn-primary btn-block" style={{ marginTop: 14 }} onClick={activate} disabled={state === 'loading'}>
         {state === 'loading' ? <><span className="spinner" />Проверявам…</> : state === 'error' ? 'Опитай пак' : 'Активирай'}
       </button>
-      <div className="infobox"><strong>Какво е това?</strong> Ръчно направен епокси таг за нашийник с NFC и QR. Който го сканира, вижда профила на любимеца и се обажда на стопанина – без да вижда номера.</div>
-      <a className="link" href="/">Нямаш таг? Купи таг</a>
+      <div className="infobox"><strong>Какво е това?</strong> Ръчно изработен кръгъл епоксиден таг за нашийник с NFC и QR. При сканиране се отваря профилът на любимеца и информация за връзка със стопанина.</div>
+      <a className="link" href="/order">Нямаш таг? Създай своя</a>
     </main>
   );
 }
