@@ -24,7 +24,7 @@ export default function Landing() {
           </div>
 
           <div className="ref-hero-media">
-            <Image src={IMG.hero} alt="Куче с кръгъл petalapa таг" fill priority sizes="(max-width:900px) 100vw, 50vw" className="ref-dog" />
+            <Image src={IMG.heroDog} alt="Куче с кръгъл petalapa таг" fill priority sizes="(max-width:900px) 100vw, 50vw" className="ref-dog" />
             <div className="ref-cat-card"><Image src={IMG.cat} alt="Котка с petalapa таг" fill sizes="240px" /></div>
             <div className="ref-hero-tag"><PhotoTag s={featured} size={108} priority /></div>
             <div className="ref-hand-note">„Тук живее<br />една голяма<br />любов ♡“</div>
