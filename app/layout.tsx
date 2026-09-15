@@ -1,14 +1,24 @@
 import type { Metadata, Viewport } from 'next';
 import { Lora, Manrope, Caveat } from 'next/font/google';
 import './globals.css';
+import './brand-refresh.css';
 
 const serif = Lora({ subsets: ['latin', 'cyrillic'], weight: ['400', '500', '600'], variable: '--font-serif' });
 const sans = Manrope({ subsets: ['latin', 'cyrillic'], weight: ['400', '500', '600', '700'], variable: '--font-sans' });
 const hand = Caveat({ subsets: ['latin', 'cyrillic'], weight: ['500'], variable: '--font-hand' });
 
 export const metadata: Metadata = {
-  title: 'PetaLapa · Красив таг. Умен начин да намерите своя любимец.',
-  description: 'Епоксидни тагове с вграден NFC чип и QR код. Персонален профил на вашия любимец и лесен достъп до неговата информация.',
+  metadataBase: new URL('https://petalapa.com'),
+  title: 'petalapa · Ръчно изработен таг за твоя любимец',
+  description: 'Уникални кръгли епоксидни тагове за домашни любимци с NFC, QR код и персонален дигитален профил.',
+  openGraph: {
+    title: 'petalapa · Повече от таг',
+    description: 'Ръчно изработени кръгли епоксидни тагове за любимци с дискретен NFC + QR профил.',
+    url: 'https://petalapa.com',
+    siteName: 'petalapa',
+    locale: 'bg_BG',
+    type: 'website',
+  },
 };
 export const viewport: Viewport = { themeColor: '#F8F3EA', width: 'device-width', initialScale: 1 };
 
