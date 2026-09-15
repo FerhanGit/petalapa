@@ -64,7 +64,7 @@ h1, h2, h3 { margin: 0; font-weight: 700; letter-spacing: -0.02em; line-height: 
 .lead { margin: 14px 0 0; font-size: 15.5px; line-height: 1.55; color: var(--text-2); max-width: 420px; }
 .cta-row { display: flex; gap: 12px; margin-top: 22px; flex-wrap: wrap; }
 .hand { margin-top: 26px; font-family: var(--font-hand), cursive; font-size: 22px; color: var(--green); transform: rotate(-6deg); display: inline-block; line-height: 1.1; }
-.hero-photo { position: relative; border-radius: 26px; overflow: hidden; aspect-ratio: 4/4.6; background: var(--green-tint); }
+.hero-photo { position: relative; z-index: 0; border-radius: 26px; overflow: hidden; aspect-ratio: 4/4.6; background: var(--green-tint); }
 @media (max-width: 900px) { .hero-photo { aspect-ratio: 4/4.2; order: -1; } }
 .hero-photo img { width: 100%; height: 100%; object-fit: cover; }
 .features { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; padding: 24px 0 0; }
@@ -112,7 +112,7 @@ h1, h2, h3 { margin: 0; font-weight: 700; letter-spacing: -0.02em; line-height: 
 .sec-list b { display: block; font-size: 15px; color: var(--green); } .sec-list span { font-size: 13.5px; color: var(--text-3); line-height: 1.45; }
 .phone { width: 300px; margin: 0 auto; border-radius: 36px; border: 8px solid #15201B; background: var(--cream); overflow: hidden; box-shadow: 0 40px 80px -40px rgba(0,0,0,.5); }
 .phone .p-inner { padding: 12px; display: flex; flex-direction: column; gap: 10px; }
-.phone .p-photo { border-radius: 14px; overflow: hidden; aspect-ratio: 1.15; } .phone .p-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; }
+.phone .p-photo { position: relative; border-radius: 14px; overflow: hidden; aspect-ratio: 1.15; } .phone .p-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; }
 .phone .p-chips { display: flex; gap: 6px; } .phone .p-chips span { font-size: 10px; padding: 4px 8px; border-radius: 999px; background: var(--green-tint); color: var(--green); font-weight: 600; }
 .phone .p-loc { font-size: 11px; color: var(--text-3); display: flex; gap: 6px; align-items: center; }
 
